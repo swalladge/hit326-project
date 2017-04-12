@@ -11,13 +11,31 @@ and will aim to replace the current, non-ideal solution.
 
 ## Developing
 
-CakePHP comes with a development server to be used while developing. To run it:
+1. Make sure you have php and composer installed. More information on dependencies can be found in the [cakephp docs][1].
 
-```bash
-bin/cake server -p 8765
-```
+2. Install project dependencies and run the post-install script with composer.
 
-Then visit `http://localhost:8765`.
+   ```bash
+   composer install
+   composer run-script post-install-cmd
+   ```
+
+3. Copy `config/app.default.php` to `config/app.php` and edit as required. Note that `config/app.php` is the live config
+   and not checked into git.
+
+4. Start the development server for testing while developing.
+
+   ```bash
+   bin/cake server -p 8765
+   ```
+
+   Then visit `http://localhost:8765`.
+
+5. Run any tests with:
+
+   ```bash
+   composer run-script check
+   ```
 
 
 ## Deploying
@@ -34,3 +52,5 @@ configuration relevant for your application.
 ## License
 
 TODO
+
+[1]: https://book.cakephp.org/3.0/en/installation.html
