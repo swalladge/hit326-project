@@ -2,3 +2,8 @@
 /config/app.php
 /tmp/*
 /logs/*
+
+# testing databases
+*.db
+*.sqlite
+*.sqlite3

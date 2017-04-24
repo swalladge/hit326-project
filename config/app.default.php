@@ -220,6 +220,16 @@ return [
     'Datasources' => [
         'default' => [
             'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Sqlite',
+            'datasource' => 'Database/Sqlite',
+            'persistent' => false,
+            'database' => 'db.sqlite3',
+            'prefix' => '',
+            'encoding' => 'utf8',
+        ],
+
+        'mysql' => [
+            'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
             'host' => 'localhost',
