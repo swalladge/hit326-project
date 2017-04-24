@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "webpack": "^2.4.1"
+  },
+  "name": "hit326-project",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/swalladge/hit326-project",
+  "author": "HIT326 group",
+  "license": "CLOSED"
+}

@@ -1,0 +1,21 @@
+{
+  "name": "hit326-project",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "HIT326 group"
+  ],
+  "license": "CLOSED",
+  "homepage": "https://github.com/swalladge/hit326-project",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.x"
+  }
+}

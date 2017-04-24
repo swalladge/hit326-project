@@ -7,3 +7,6 @@
 *.db
 *.sqlite
 *.sqlite3
+
+# bower
+/webroot/bower_components/*
