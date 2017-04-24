@@ -23,7 +23,13 @@ and will aim to replace the current, non-ideal solution.
 3. Copy `config/app.default.php` to `config/app.php` and edit as required. Note that `config/app.php` is the live config
    and not checked into git.
 
-4. Start the development server for testing while developing.
+4. Install frontend dependencies with [bower](https://bower.io/#install-bower).
+
+   ```bash
+   bower install
+   ```
+
+5. Start the development server for testing while developing.
 
    ```bash
    bin/cake server -p 8765
@@ -31,7 +37,7 @@ and will aim to replace the current, non-ideal solution.
 
    Then visit `http://localhost:8765`.
 
-5. Run any tests with:
+6. Run any tests with:
 
    ```bash
    composer run-script check
