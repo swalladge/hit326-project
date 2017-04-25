@@ -1,0 +1,21 @@
+/* footer at bottom - source: http://stackoverflow.com/a/27864663 */
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+/* note: add top padding if use fixed navbar -
+ * http://getbootstrap.com/components/#navbar-fixed-top */
+body {
+    /* note: this margin should be the same as the footer height (see below) */
+    margin-bottom: 60px;
+}
+
+.main-footer {
+    position: absolute;
+    margin-bottom: 0;
+    height: 60px;
+    width: 100%;
+    bottom: 0;
+}
