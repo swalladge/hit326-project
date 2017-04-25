@@ -44,36 +44,53 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
-    /**
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, src/Template/Pages/home.ctp)...
-     */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
-    /**
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    /**
-     * Connect catchall routes for all controllers.
-     *
-     * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
-     *    `$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);`
-     *    `$routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);`
-     *
-     * Any route class can be used with this method, such as:
-     * - DashedRoute
-     * - InflectedRoute
-     * - Route
-     * - Or your own route class
-     *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
-     */
-    $routes->fallbacks(DashedRoute::class);
+    // homepage
+    $routes->connect('/', ['controller' => 'Main', 'action' => 'index']);
+
+    // user pages
+    $routes->connect('/login', ['controller' => 'User', 'action' => 'login']);
+
+    // NOTE: only allow post requests to logout page
+    $routes->connect('/logout', ['controller' => 'User', 'action' => 'logout', '_method' => 'POST']);
+    $routes->connect('/account', ['controller' => 'User', 'action' => 'account']);
+
+    // REST routes for equipment and bookings
+    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index', '_method' => 'GET']);
+    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'add', '_method' => 'POST']);
+    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
+
+    $routes->connect('/booking', ['controller' => 'Bookings', 'action' => 'index', '_method' => 'GET']);
+    $routes->connect('/booking', ['controller' => 'Bookings', 'action' => 'add', '_method' => 'POST']);
+    $routes->connect('/booking/:id', ['controller' => 'Bookings', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/booking/:id', ['controller' => 'Bookings', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/booking/:id', ['controller' => 'Bookings', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
+
 });
+
+// admin-specific pages
+Router::scope('/admin', function (RouteBuilder $routes) {
+
+    $routes->connect('/', ['controller' => 'Admin', 'action' => 'index']);
+
+    // REST routes for equipment and bookings - admin controller
+    $routes->connect('/equipment', ['controller' => 'AdminEquipment', 'action' => 'index', '_method' => 'GET']);
+    $routes->connect('/equipment', ['controller' => 'AdminEquipment', 'action' => 'add', '_method' => 'POST']);
+    $routes->connect('/equipment/:id', ['controller' => 'AdminEquipment', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id', ['controller' => 'AdminEquipment', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id', ['controller' => 'AdminEquipment', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
+
+    $routes->connect('/booking', ['controller' => 'AdminBookings', 'action' => 'index', '_method' => 'GET']);
+    $routes->connect('/booking', ['controller' => 'AdminBookings', 'action' => 'add', '_method' => 'POST']);
+    $routes->connect('/booking/:id', ['controller' => 'AdminBookings', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/booking/:id', ['controller' => 'AdminBookings', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/booking/:id', ['controller' => 'AdminBookings', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
+
+});
+
 
 /**
  * Load all plugin routes.  See the Plugin documentation on
