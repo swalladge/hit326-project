@@ -50,11 +50,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Main', 'action' => 'index']);
 
     // user pages
-    $routes->connect('/login', ['controller' => 'User', 'action' => 'login']);
+    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
 
     // NOTE: only allow post requests to logout page
-    $routes->connect('/logout', ['controller' => 'User', 'action' => 'logout', '_method' => 'POST']);
-    $routes->connect('/account', ['controller' => 'User', 'action' => 'account']);
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout', '_method' => 'POST']);
+    $routes->connect('/account', ['controller' => 'Users', 'action' => 'account']);
 
     // REST routes for equipment and bookings
     $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index', '_method' => 'GET']);

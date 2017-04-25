@@ -20,11 +20,24 @@ use Cake\Event\Event;
 /**
  * controller for the equipment listing and individual pages
  */
-class UserController extends AppController
+class UsersController extends AppController
 {
 
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+
+        $this->Auth->allow(['logout']);
+    }
+
+
     public function login() {
-        // TODO
+        if ($this->request->is('post')) {
+            // TODO: real login
+            // https://book.cakephp.org/3.0/en/controllers/components/authentication.html#identifying-users-and-logging-them-in
+            $user = array('id' => 1, 'username' => 'testuser');
+            $this->Auth->setUser($user);
+            return $this->redirect($this->Auth->redirectUrl());
+        }
     }
 
     public function account() {
@@ -32,9 +45,7 @@ class UserController extends AppController
     }
 
     public function logout() {
-        // use this so we don't require a view file
-        $this->autoRender = false;
-        // TODO
+        return $this->redirect($this->Auth->logout());
     }
 
 }

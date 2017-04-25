@@ -14,3 +14,7 @@ $this->layout = 'default';
 <p>
     Login page
 </p>
+
+<form method="post">
+    <input type="submit" value="Login">
+</form>

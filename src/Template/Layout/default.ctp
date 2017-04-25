@@ -1,6 +1,9 @@
 <?php
 
 $cakeDescription = 'HIT326 Booking';
+
+$username = $this->request->session()->read('Auth.User.username');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +28,14 @@ $cakeDescription = 'HIT326 Booking';
 <body>
     <header>
         <nav class="nav">
+        <?php if ($this->request->session()->read('Auth.User')): ?>
+        <span>(<?= $username ?>)</span>
+        <form action="/logout" method="post">
+            <input type="submit" value="logout">
+        </form>
+        <?php else: ?>
+        <a href="/login">Login</a>
+        <?php endif; ?>
         </nav>
     </header>
 

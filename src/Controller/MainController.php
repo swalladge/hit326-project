@@ -23,6 +23,13 @@ use Cake\Event\Event;
 class MainController extends AppController
 {
 
+    public function beforeFilter(Event $event) {
+        parent::beforeFilter($event);
+
+        // allow public access to the homepage
+        $this->Auth->allow(['index']);
+    }
+
     public function index() {
         // TODO
 
