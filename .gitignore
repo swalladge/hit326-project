@@ -10,3 +10,6 @@
 
 # bower
 /webroot/bower_components/*
+
+# osx weirdness
+.DS_Store
