@@ -12,6 +12,7 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Equipment id <?= $this->request->params['id'] ?>
+    Booking id <?= $this->request->params['id'] ?> updated. In future, this
+    shouldn't be a view, but rather redirect back to the item or return json data
 </p>
 

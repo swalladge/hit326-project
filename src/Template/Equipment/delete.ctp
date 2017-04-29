@@ -12,6 +12,6 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Equipment id <?= $this->request->params['id'] ?>
+    Equipment id <?= $this->request->params['id'] ?> - DELETE request handler (delete)
 </p>
 

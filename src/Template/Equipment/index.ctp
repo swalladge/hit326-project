@@ -12,6 +12,31 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Equipment listing page
+    Admin equipment (and rooms too?) listing page
 </p>
+
+<p>
+    <a href="/equipment/new">add new thing</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Equipment</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <?php foreach ($equipment as $item): ?>
+            <tr>
+                <td><?= $item->name ?></td>
+                <td><?= $item->notes ?></td>
+                <td><a href="/equipment/<?= $item->id ?>">edit</a></td>
+            </tr>
+        <?php endforeach; ?>
+
+    </tbody>
+</table>
 

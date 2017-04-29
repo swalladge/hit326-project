@@ -11,7 +11,8 @@ $this->layout = 'default';
 
 ?>
 
-<p>
-    Equipment add
-</p>
+<form action="/equipment" method="post">
+    add new equipment form
 
+    <input type="submit" value="Add">
+</p>

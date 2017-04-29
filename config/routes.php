@@ -49,46 +49,36 @@ Router::scope('/', function (RouteBuilder $routes) {
     // homepage
     $routes->connect('/', ['controller' => 'Main', 'action' => 'index']);
 
-    // user pages
+    // login/logout controllers
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-
     // NOTE: only allow post requests to logout page
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout', '_method' => 'POST']);
+
+    // user personal account page
     $routes->connect('/account', ['controller' => 'Users', 'action' => 'account']);
 
-    // REST routes for equipment and bookings
+    // pages to display the create booking form
+    $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1', '_method' => 'GET']);
+    $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+
+    // view your own bookings
+    $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'index', '_method' => 'GET']);
+
+    // CRUD for bookings
+    $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'add', '_method' => 'POST']);
+    $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
+
+
+    // equipment/rooms management - list and CRUD
     $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index', '_method' => 'GET']);
     $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'add', '_method' => 'POST']);
     $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
 
-    $routes->connect('/booking', ['controller' => 'Bookings', 'action' => 'index', '_method' => 'GET']);
-    $routes->connect('/booking', ['controller' => 'Bookings', 'action' => 'add', '_method' => 'POST']);
-    $routes->connect('/booking/:id', ['controller' => 'Bookings', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/booking/:id', ['controller' => 'Bookings', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/booking/:id', ['controller' => 'Bookings', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
-
-});
-
-// admin-specific pages
-Router::scope('/admin', function (RouteBuilder $routes) {
-
-    $routes->connect('/', ['controller' => 'Admin', 'action' => 'index']);
-
-    // REST routes for equipment and bookings - admin controller
-    $routes->connect('/equipment', ['controller' => 'AdminEquipment', 'action' => 'index', '_method' => 'GET']);
-    $routes->connect('/equipment', ['controller' => 'AdminEquipment', 'action' => 'add', '_method' => 'POST']);
-    $routes->connect('/equipment/:id', ['controller' => 'AdminEquipment', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/equipment/:id', ['controller' => 'AdminEquipment', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/equipment/:id', ['controller' => 'AdminEquipment', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
-
-    $routes->connect('/booking', ['controller' => 'AdminBookings', 'action' => 'index', '_method' => 'GET']);
-    $routes->connect('/booking', ['controller' => 'AdminBookings', 'action' => 'add', '_method' => 'POST']);
-    $routes->connect('/booking/:id', ['controller' => 'AdminBookings', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/booking/:id', ['controller' => 'AdminBookings', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/booking/:id', ['controller' => 'AdminBookings', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
-
+    $routes->connect('/equipment/new', ['controller' => 'Equipment', 'action' => 'new', '_method' => 'GET']);
 });
 
 

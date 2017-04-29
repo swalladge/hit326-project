@@ -8,6 +8,29 @@ Copyright © 2017 Mrinalini Padmanabhan, Jarrod O'Callaghan, Samuel Walladge
 This project aims to create an online room and equipment booking application. It will be targeted for use within CDU,
 and will aim to replace the current, non-ideal solution.
 
+## TODO
+
+- need to work out how to manage timeslots
+- should it be dependent on javascript? consider using ajax? - this will help
+  decide whether to make it a RESTful-like api returning json data, or just flash a
+  message and redirect on form submissions
+
+- sort out the equipment vs room booking problem - can you book a room, space
+  in a room, equipment, or a combination? Maybe some bookable equipment can
+  be "room space"? This would work unless it's possible to book specific
+  equipment in a room _as well as_ simply room space - because then we have
+  dependencies between bookable items which would increase the complexity of
+  the database.
+
+- for booking, do we want ability to do something like clicking "book" on some
+  equipment item in a table of equipment to open a form for booking that
+  equipment (rather than selecting some equipment from a dropdown list in the
+  form?
+
+## Ideas
+
+- no separate admin page - extra controls display when admin logged in
+
 
 ## Developing
 
@@ -42,6 +65,37 @@ and will aim to replace the current, non-ideal solution.
    ```bash
    composer run-script check
    ```
+
+## Database
+
+WIP - sqlite database being used for testing atm - some instructions:
+
+```
+# load the initial equipment db to the database
+sqlite3 db.sqlite3 < config/schema/equipment-sqlite.sql
+
+# load some test data
+sqlite3 db.sqlite3 < db/test/example-equipment.sql
+```
+
+
+## Routes
+
+- GET `/` - homepage (only this and the login page should be public?)
+- GET `/book` - new booking form, select equipment to book
+- GET `/book/:id` - new booking form, equipment chosen, choose details and submit
+- GET, POST `/bookings` - display bookings (admins can see all bookings),
+  post handles creating new bookings
+- GET, PUT, DELETE `/bookings/:id` - read, update, delete on individual
+  bookings
+- GET `/account` - view your account details
+- GET, POST `/login` - handles user login
+- POST `/logout` - handles user logout
+- GET, POST `/equipment` - (admins only) view list of equipment, post to create
+  new equipment
+- GET, PUT, DELETE `/equipment/:id` - (admins only) read, update, delete
+  equipment available to book
+- GET `/equipment/new` - (admins only) display add new equipment form
 
 
 ## Deploying

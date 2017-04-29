@@ -39,9 +39,14 @@ $username = $this->request->session()->read('Auth.User.username');
         <div class="container">
         <ul class="nav navbar-nav">
             <?php if ($this->request->session()->read('Auth.User')): ?>
+            <li><a href="/">Home</a></li>
+            <li><a href="/equipment">Manage equipment</a></li>
+            <li><a href="/bookings">Bookings</a></li>
+            <li><a href="/book">New Booking</a></li>
+            <li><a href="/account">My Account</a></li>
             <li>
                 <form action="/logout" method="post">
-                <input class="btn btn-default navbar-btn" type="submit" value="(<?= $username ?>) logout">
+                    <input class="btn btn-default navbar-btn" type="submit" value="(<?= $username ?>) logout">
                 </form>
             </li>
             <?php else: ?>

@@ -12,6 +12,6 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Equipment id <?= $this->request->params['id'] ?>
+    DELETE handler called for booking id <?= $this->request->params['id'] ?>
 </p>
 

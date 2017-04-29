@@ -12,6 +12,6 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Home page
+    Home page - more stuff goes here
 </p>
 
