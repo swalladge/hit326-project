@@ -33,7 +33,9 @@ class BookingsController extends AppController
 
     // called on POST - create a new booking
     public function add() {
-        // TODO
+        // TODO: validate, create new booking entity, etc.
+        $this->Flash->success("new booking added");
+        $this->set('data', $this->request->getData());
     }
 
     // method to display the new booking form - called on GET
@@ -55,11 +57,6 @@ class BookingsController extends AppController
     // DELETE - remove/cancel a booking
     public function delete($id) {
         // TODO
-    }
-
-    // DELETE - remove/cancel a booking
-    public function post($id) {
-        // TODO: forward to edit() or delete()
     }
 
 }

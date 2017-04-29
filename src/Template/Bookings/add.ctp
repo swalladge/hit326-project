@@ -15,3 +15,14 @@ $this->layout = 'default';
     booking added via POST to /bookings
 </p>
 
+<p>
+    equipment id: <?= $data['equipment'] ?>
+</p>
+
+<p>
+    timeslot chosen: <?= $data['timeslot'] ?>
+</p>
+
+<p>
+    notes: <?= $data['notes'] ?>
+</p>
