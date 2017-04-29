@@ -14,3 +14,7 @@ $this->layout = 'default';
 <p>
     account page
 </p>
+
+<a href="/bookings/new">New booking</a>
+
+<a href="/bookings/">My bookings</a>

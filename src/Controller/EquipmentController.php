@@ -35,6 +35,11 @@ class EquipmentController extends AppController
         // TODO
     }
 
+    // called on GET - display add new equipment form
+    public function new() {
+        // TODO
+    }
+
     /**
      * view a single item of equipment with id
      * called on GET

@@ -12,6 +12,6 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Equipment add
+    POST handler - new equipment added
 </p>
 
