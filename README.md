@@ -66,6 +66,18 @@ and will aim to replace the current, non-ideal solution.
    composer run-script check
    ```
 
+## Database
+
+WIP - sqlite database being used for testing atm - some instructions:
+
+```
+# load the initial equipment db to the database
+sqlite3 db.sqlite3 < config/schema/equipment-sqlite.sql
+
+# load some test data
+sqlite3 db.sqlite3 < db/test/example-equipment.sql
+```
+
 
 ## Routes
 
