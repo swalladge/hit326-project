@@ -16,7 +16,7 @@ $this->layout = 'default';
 </p>
 
 <p>
-    equipment id: <?= $data['equipment'] ?>
+    equipment id: <?= $data['id'] ?>
 </p>
 
 <p>

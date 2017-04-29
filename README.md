@@ -67,6 +67,25 @@ and will aim to replace the current, non-ideal solution.
    ```
 
 
+## Routes
+
+- GET `/` - homepage (only this and the login page should be public?)
+- GET `/book` - new booking form, select equipment to book
+- GET `/book/:id` - new booking form, equipment chosen, choose details and submit
+- GET, POST `/bookings` - display bookings (admins can see all bookings),
+  post handles creating new bookings
+- GET, PUT, DELETE `/bookings/:id` - read, update, delete on individual
+  bookings
+- GET `/account` - view your account details
+- GET, POST `/login` - handles user login
+- POST `/logout` - handles user logout
+- GET, POST `/equipment` - (admins only) view list of equipment, post to create
+  new equipment
+- GET, PUT, DELETE `/equipment/:id` - (admins only) read, update, delete
+  equipment available to book
+- GET `/equipment/new` - (admins only) display add new equipment form
+
+
 ## Deploying
 
 TODO

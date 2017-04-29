@@ -12,7 +12,7 @@ $this->layout = 'default';
 ?>
 
 <p>
-    <a href="/bookings/new">New booking</a>
+    <a href="/book">New booking</a>
 </p>
 
 <p>

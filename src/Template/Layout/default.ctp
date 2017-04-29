@@ -42,6 +42,7 @@ $username = $this->request->session()->read('Auth.User.username');
             <li><a href="/">Home</a></li>
             <li><a href="/equipment">Manage equipment</a></li>
             <li><a href="/bookings">Bookings</a></li>
+            <li><a href="/book">New Booking</a></li>
             <li><a href="/account">My Account</a></li>
             <li>
                 <form action="/logout" method="post">

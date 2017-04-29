@@ -57,10 +57,12 @@ Router::scope('/', function (RouteBuilder $routes) {
     // user personal account page
     $routes->connect('/account', ['controller' => 'Users', 'action' => 'account']);
 
+    // pages to display the create booking form
+    $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1', '_method' => 'GET']);
+    $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+
     // view your own bookings
     $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'index', '_method' => 'GET']);
-    // page to display the create booking form
-    $routes->connect('/bookings/new', ['controller' => 'Bookings', 'action' => 'new', '_method' => 'GET']);
 
     // CRUD for bookings
     $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'add', '_method' => 'POST']);

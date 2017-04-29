@@ -11,15 +11,11 @@ $this->layout = 'default';
 
 ?>
 
+<p>
+    Booking "<?= $equipment->name ?>"
+</p>
+
 <form class="form" action="/bookings" method="post">
-    <div class="from-group">
-        <label for="equipment-input">select equipment</label>
-        <select class="form-control" id="equipment-input" name="equipment">
-            <option value="">-- select equipment --</option>
-            <option value="1">printer</option>
-            <option value="2">computer</option>
-        </select>
-    </div>
 
     <div class="form-group">
         <label for="timeslot-input">Select timeslot</label>
@@ -31,6 +27,7 @@ $this->layout = 'default';
         <textarea class="form-control" name="notes" id="notes-input"></textarea>
     </div>
 
+    <input type="hidden" name="id" value="<?= $equipment->id ?>">
     <input class="btn btn-primary" type="submit" value="Submit">
 </form>
 

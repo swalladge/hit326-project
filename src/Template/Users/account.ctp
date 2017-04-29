@@ -15,6 +15,6 @@ $this->layout = 'default';
     account page
 </p>
 
-<a href="/bookings/new">New booking</a>
+<a href="/book">New booking</a>
 
 <a href="/bookings/">My bookings</a>
