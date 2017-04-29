@@ -23,7 +23,7 @@ and will aim to replace the current, non-ideal solution.
 3. Copy `config/app.default.php` to `config/app.php` and edit as required. Note that `config/app.php` is the live config
    and not checked into git.
 
-4. Install frontend dependencies with [bower](https://bower.io/#install-bower).
+4. Install frontend dependencies with [bower](https://bower.io/#install-bower). (Note: unless you are modifying what frontend js libraries are installed, this is unnecessary: all bower component files are stored in the repo.)
 
    ```bash
    bower install
