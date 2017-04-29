@@ -28,16 +28,15 @@ $this->layout = 'default';
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Printer</td>
-            <td></td>
-            <td><a href="/equipment/1">edit</a></td>
-        </tr>
-        <tr>
-            <td>Computer</td>
-            <td></td>
-            <td><a href="/equipment/2">edit</a></td>
-        </tr>
+
+        <?php foreach ($equipment as $item): ?>
+            <tr>
+                <td><?= $item->name ?></td>
+                <td><?= $item->notes ?></td>
+                <td><a href="/equipment/<?= $item->id ?>">edit</a></td>
+            </tr>
+        <?php endforeach; ?>
+
     </tbody>
 </table>
 

@@ -15,6 +15,17 @@ and will aim to replace the current, non-ideal solution.
   decide whether to make it a RESTful-like api returning json data, or just flash a
   message and redirect on form submissions
 
+- sort out the equipment vs room booking problem - can you book a room, space
+  in a room, equipment, or a combination? Maybe some bookable equipment can
+  be "room space"? This would work unless it's possible to book specific
+  equipment in a room _as well as_ simply room space - because then we have
+  dependencies between bookable items which would increase the complexity of
+  the database.
+
+- for booking, do we want ability to do something like clicking "book" on some
+  equipment item in a table of equipment to open a form for booking that
+  equipment (rather than selecting some equipment from a dropdown list in the
+  form?
 
 ## Ideas
 

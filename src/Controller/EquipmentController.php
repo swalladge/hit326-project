@@ -28,6 +28,8 @@ class EquipmentController extends AppController
     // rooms to equipment controller?)
     public function index() {
         // TODO
+        $equipment = $this->Equipment->find('all');
+        $this->set(compact('equipment'));
     }
 
     // called on POST - add new equipment
