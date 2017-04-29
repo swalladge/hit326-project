@@ -8,6 +8,18 @@ Copyright © 2017 Mrinalini Padmanabhan, Jarrod O'Callaghan, Samuel Walladge
 This project aims to create an online room and equipment booking application. It will be targeted for use within CDU,
 and will aim to replace the current, non-ideal solution.
 
+## TODO
+
+- need to work out how to manage timeslots
+- should it be dependent on javascript? consider using ajax? - this will help
+  decide whether to make it a RESTful-like api returning json data, or just flash a
+  message and redirect on form submissions
+
+
+## Ideas
+
+- no separate admin page - extra controls display when admin logged in
+
 
 ## Developing
 

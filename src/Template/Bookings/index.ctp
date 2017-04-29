@@ -12,6 +12,35 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Equipment listing page
+    <a href="/bookings/new">New booking</a>
 </p>
+
+<p>
+    My bookings
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Equipment</th>
+            <th>Timeslot</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Printer</td>
+            <td>1-2pm friday</td>
+            <td></td>
+            <td><a href="/bookings/1">edit</a></td>
+        </tr>
+        <tr>
+            <td>Computer</td>
+            <td>9am - 12pm Saturday</td>
+            <td></td>
+            <td><a href="/bookings/2">edit</a></td>
+        </tr>
+    </tbody>
+</table>
 

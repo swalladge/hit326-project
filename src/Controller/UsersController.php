@@ -30,6 +30,7 @@ class UsersController extends AppController
     }
 
 
+    // log the user in - display login form on GET and actually login on POST
     public function login() {
         if ($this->request->is('post')) {
             // TODO: real login
@@ -40,10 +41,14 @@ class UsersController extends AppController
         }
     }
 
+    // display user account information, etc. maybe this isn't requiped for
+    // this app, since it's fairly small - the homepage can cover a lot.
+    // might be useful to keep around though
     public function account() {
         // TODO
     }
 
+    // logs the user out - called on POST only
     public function logout() {
         return $this->redirect($this->Auth->logout());
     }

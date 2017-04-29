@@ -12,6 +12,10 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Equipment add
+    new booking form
+</p>
+
+<p>
+    post to /bookings
 </p>
 
