@@ -31,4 +31,8 @@ class MainController extends AppController
         $this->set('notices', $notices);
     }
 
+
+    public function admin() {
+        // TODO
+    }
 }

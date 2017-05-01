@@ -62,8 +62,10 @@ and will aim to replace the current, non-ideal solution.
 WIP - sqlite database being used for testing atm - some instructions:
 
 ```
-# load the initial equipment db to the database
+# load the initial equipment table to the database
 sqlite3 db.sqlite3 < config/schema/equipment-sqlite.sql
+# and the notices table
+sqlite3 db.sqlite3 < config/schema/notices-sqlite.sql
 
 # load some test data
 sqlite3 db.sqlite3 < db/test/example-equipment.sql
@@ -92,8 +94,6 @@ sqlite3 db.sqlite3 < db/test/example-equipment.sql
 - `/notices/:id` GET - view a notice
 - `/notices/:id/edit` GET, POST - edit a notice
 - `/notices/:id/delete` DELETE, POST - delete a notice
-
-TODO: list routes for notices
 
 
 ## Deploying
