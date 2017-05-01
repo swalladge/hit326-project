@@ -26,7 +26,7 @@ create table equipment(
     location text, -- TODO: make this reference location table
     is_portable boolean not null,
     quantity integer default 1,
-    is_active default 1
+    is_active integer default 1
 );
 
 

@@ -48,6 +48,7 @@ class NoticesController extends AppController
      */
     public function add()
     {
+
         $notice = $this->Notices->newEntity();
         if ($this->request->is('post')) {
             $notice = $this->Notices->patchEntity($notice, $this->request->getData());

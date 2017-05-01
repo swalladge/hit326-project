@@ -2,21 +2,25 @@
 /**
   * @var \App\View\AppView $this
   */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Notice'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
 
-<h3><?= __('Notices') ?></h3>
+?>
+
+<h3><?= 'Notices Admin' ?></h3>
 
 <p>
     Notices are system notices that can be configured to display within certain
 date ranges. They display on the homepage and can be used for alerts, upcoming
 events, import information, etc.
 </p>
+
+<div>
+<h2>Actions</h2>
+<div class="btn-group">
+<?= $this->Html->link(__('New Notice'), ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
+</div>
+</div>
+
+
 
 <table class="table">
     <thead>
@@ -34,9 +38,11 @@ events, import information, etc.
             <td><?= $this->Number->format($notice->display_to) ?></td>
             <td><?= h($notice->title); ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $notice->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $notice->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $notice->id], ['confirm' => __('Are you sure you want to delete "{0}"?', $notice->title)]) ?>
+                <div class="btn-group">
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $notice->id], ['class' => 'btn btn-default']) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $notice->id], ['class' => 'btn btn-warning']) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $notice->id], ['confirm' => __('Are you sure you want to delete "{0}"?', $notice->title), 'class' => 'btn btn-danger']) ?>
+                </div>
             </td>
         </tr>
         <?php endforeach; ?>

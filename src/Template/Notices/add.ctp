@@ -2,24 +2,28 @@
 /**
   * @var \App\View\AppView $this
   */
+
+$templates = ['inputContainer' => '<div class="form-group">{{content}}</div>'];
+$this->Form->setTemplates($templates);
+
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Notices'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="notices form large-9 medium-8 columns content">
-    <?= $this->Form->create($notice) ?>
-    <fieldset>
-        <legend><?= __('Add Notice') ?></legend>
-        <?php
-            echo $this->Form->control('display_from');
-            echo $this->Form->control('display_to');
-            echo $this->Form->control('title', ['type' => 'text']);
-            echo $this->Form->control('content');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+<div>
+<h2>Actions</h2>
+<?= $this->Html->link(__('List Notices'), ['action' => 'index'], ['class' => 'btn btn-default']) ?>
 </div>
+
+
+
+<h2>Add Notice</h2>
+
+<?= $this->Form->create($notice) ?>
+<?php
+echo $this->Form->control('display_from', ['class' => 'form-control']);
+echo $this->Form->control('display_to', ['class' => 'form-control']);
+echo $this->Form->control('title', ['type' => 'text', 'class' => 'form-control']);
+echo $this->Form->control('content', ['class' => 'form-control']);
+?>
+<?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>
+<?= $this->Form->end() ?>
+

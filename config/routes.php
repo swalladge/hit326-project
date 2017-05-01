@@ -87,8 +87,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/notices', ['controller' => 'Notices', 'action' => 'index']);
     $routes->connect('/notices/new', ['controller' => 'Notices', 'action' => 'add' ]);
     $routes->connect('/notices/:id', ['controller' => 'Notices', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    // $routes->connect('/notices/:id/edit', ['controller' => 'Notices', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
-    // $routes->connect('/notices/:id/delete', ['controller' => 'Notices', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/notices/:id/edit', ['controller' => 'Notices', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/notices/:id/delete', ['controller' => 'Notices', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
     // admin timeslots management
     $routes->connect('/timeslots', ['controller' => 'Timeslots', 'action' => 'index']);
