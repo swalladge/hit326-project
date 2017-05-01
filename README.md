@@ -22,15 +22,6 @@ and will aim to replace the current, non-ideal solution.
   dependencies between bookable items which would increase the complexity of
   the database.
 
-- for booking, do we want ability to do something like clicking "book" on some
-  equipment item in a table of equipment to open a form for booking that
-  equipment (rather than selecting some equipment from a dropdown list in the
-  form?
-
-## Ideas
-
-- no separate admin page - extra controls display when admin logged in
-
 
 ## Developing
 
