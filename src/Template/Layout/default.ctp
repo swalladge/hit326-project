@@ -18,6 +18,7 @@ $username = $this->request->session()->read('Auth.User.username');
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('/bower_components/bootstrap/dist/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') ?>
     <?= $this->Html->css('main') ?>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -27,7 +28,12 @@ $username = $this->request->session()->read('Auth.User.username');
     <![endif]-->
 
     <?= $this->Html->script('/bower_components/jquery/dist/jquery.min.js') ?>
+    <?= $this->Html->script('/bower_components/moment/min/moment.min.js') ?>
     <?= $this->Html->script('/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>
+    <?= $this->Html->script('/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>
+    <?= $this->Html->script('/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>
+    <?= $this->Html->script('main') ?>
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

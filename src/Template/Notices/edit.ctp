@@ -27,9 +27,28 @@ $this->Form->setTemplates($templates);
 <h2>Edit Notice</h2>
 
     <?= $this->Form->create($notice) ?>
+
+<div class="form-group">
+    <label for="display-from">Display From</label>
+    <div class='input-group date-picker' >
+        <?= $this->Form->text('display_from', ['class' => 'form-control', 'id' => 'display-from']) ?>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="display-to">Display To</label>
+    <div class='input-group date-picker' >
+        <?= $this->Form->text('display_to', ['class' => 'form-control', 'id' => 'display-to']) ?>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+</div>
+
 <?php
-echo $this->Form->control('display_from', ['class' => 'form-control']);
-echo $this->Form->control('display_to', ['class' => 'form-control']);
 echo $this->Form->control('title', ['type' => 'text', 'class' => 'form-control']);
 echo $this->Form->control('content', ['class' => 'form-control']);
 ?>

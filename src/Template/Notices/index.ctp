@@ -34,8 +34,8 @@ events, import information, etc.
     <tbody>
         <?php foreach ($notices as $notice): ?>
         <tr>
-            <td><?= $this->Number->format($notice->display_from) ?></td>
-            <td><?= $this->Number->format($notice->display_to) ?></td>
+            <td><?= $notice->display_from ?></td>
+            <td><?= $notice->display_to ?></td>
             <td><?= h($notice->title); ?></td>
             <td class="actions">
                 <div class="btn-group">

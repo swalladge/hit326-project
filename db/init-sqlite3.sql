@@ -59,8 +59,8 @@ create table bookings (
 -- table for storing system notices to display on the homepage
 create table notices (
     id integer primary key,
-    display_from integer, -- date
-    display_to integer,   -- date
+    display_from text, -- date
+    display_to text,   -- date
     title text,
     content text
 );
