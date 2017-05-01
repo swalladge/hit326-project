@@ -81,21 +81,21 @@ sqlite3 db.sqlite3 < db/test/example-equipment.sql
 
 ## Routes
 
-- GET `/` - homepage (only this and the login page should be public?)
-- GET `/book` - new booking form, select equipment to book
-- GET `/book/:id` - new booking form, equipment chosen, choose details and submit
-- GET, POST `/bookings` - display bookings (admins can see all bookings),
+- `/` GET - homepage (only this and the login page should be public?)
+- `/book` GET - new booking form, select equipment to book
+- `/book/:id` GET - new booking form, equipment chosen, choose details and submit
+- `/bookings` GET, POST - display bookings (admins can see all bookings),
   post handles creating new bookings
-- GET, PUT, DELETE `/bookings/:id` - read, update, delete on individual
+- `/bookings/:id` GET, PUT, DELETE - read, update, delete on individual
   bookings
-- GET `/account` - view your account details
-- GET, POST `/login` - handles user login
-- POST `/logout` - handles user logout
-- GET, POST `/equipment` - (admins only) view list of equipment, post to create
+- `/account` GET - view your account details
+- `/login` GET, POST - handles user login
+- `/logout` POST - handles user logout
+- `/equipment` GET, POST - (admins only) view list of equipment, post to create
   new equipment
-- GET, PUT, DELETE `/equipment/:id` - (admins only) read, update, delete
+- `/equipment/:id` GET, PUT, DELETE - (admins only) read, update, delete
   equipment available to book
-- GET `/equipment/new` - (admins only) display add new equipment form
+- `/equipment/new` GET - (admins only) display add new equipment form
 
 
 ## Deploying
