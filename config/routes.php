@@ -49,6 +49,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     // homepage
     $routes->connect('/', ['controller' => 'Main', 'action' => 'index']);
 
+    // admin view page
+    $routes->connect('/admin', ['controller' => 'Main', 'action' => 'admin', '_method' => 'GET']);
+
     // login/logout controllers
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
     // NOTE: only allow post requests to logout page
@@ -79,6 +82,32 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
 
     $routes->connect('/equipment/new', ['controller' => 'Equipment', 'action' => 'new', '_method' => 'GET']);
+
+    // admin notices management
+    $routes->connect('/notices', ['controller' => 'Notices', 'action' => 'index']);
+    $routes->connect('/notices/new', ['controller' => 'Notices', 'action' => 'add' ]);
+    $routes->connect('/notices/:id', ['controller' => 'Notices', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    // $routes->connect('/notices/:id/edit', ['controller' => 'Notices', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    // $routes->connect('/notices/:id/delete', ['controller' => 'Notices', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+
+    // admin timeslots management
+    $routes->connect('/timeslots', ['controller' => 'Timeslots', 'action' => 'index']);
+    $routes->connect('/timeslots/new', ['controller' => 'Timeslots', 'action' => 'add' ]);
+    $routes->connect('/timeslots/:id', ['controller' => 'Timeslots', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/timeslots/:id/edit', ['controller' => 'Timeslots', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/timeslots/:id/delete', ['controller' => 'Timeslots', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+
+    // admin closed-days management
+    $routes->connect('/closed-days', ['controller' => 'ClosedDays', 'action' => 'index']);
+    $routes->connect('/closed-days/new', ['controller' => 'ClosedDays', 'action' => 'add' ]);
+    $routes->connect('/closed-days/:id', ['controller' => 'ClosedDays', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/closed-days/:id/edit', ['controller' => 'ClosedDays', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/closed-days/:id/delete', ['controller' => 'ClosedDays', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+
+
+
+
+
 });
 
 

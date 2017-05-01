@@ -40,8 +40,7 @@ $username = $this->request->session()->read('Auth.User.username');
         <ul class="nav navbar-nav">
             <?php if ($this->request->session()->read('Auth.User')): ?>
             <li><a href="/">Home</a></li>
-            <li><a href="/equipment">Manage equipment</a></li>
-            <li><a href="/bookings">Bookings</a></li>
+            <li><a href="/admin">Admin</a></li>
             <li><a href="/book">New Booking</a></li>
             <li><a href="/account">My Account</a></li>
             <li>
