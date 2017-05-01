@@ -87,6 +87,13 @@ sqlite3 db.sqlite3 < db/test/example-equipment.sql
 - `/equipment/:id` GET, PUT, DELETE - (admins only) read, update, delete
   equipment available to book
 - `/equipment/new` GET - (admins only) display add new equipment form
+- `/notices` GET - table of notices
+- `/notices/new` GET, POST - create new notice
+- `/notices/:id` GET - view a notice
+- `/notices/:id/edit` GET, POST - edit a notice
+- `/notices/:id/delete` DELETE, POST - delete a notice
+
+TODO: list routes for notices
 
 
 ## Deploying
