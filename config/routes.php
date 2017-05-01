@@ -79,6 +79,15 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
 
     $routes->connect('/equipment/new', ['controller' => 'Equipment', 'action' => 'new', '_method' => 'GET']);
+
+    // admin notices management
+    $routes->connect('/notices', ['controller' => 'Notices', 'action' => 'index']);
+    $routes->connect('/notices/new', ['controller' => 'Notices', 'action' => 'add' ]);
+    $routes->connect('/notices/:id', ['controller' => 'Notices', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/notices/edit/:id', ['controller' => 'Notices', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/delete/:id', ['controller' => 'Notices', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+
+
 });
 
 
