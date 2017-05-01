@@ -62,10 +62,10 @@ and will aim to replace the current, non-ideal solution.
 WIP - sqlite database being used for testing atm - some instructions:
 
 ```
-# load the initial equipment table to the database
+# load the initial tables to the database
 sqlite3 db.sqlite3 < config/schema/equipment-sqlite.sql
-# and the notices table
 sqlite3 db.sqlite3 < config/schema/notices-sqlite.sql
+sqlite3 db.sqlite3 < config/schema/timeslots-sqlite.sql
 
 # load some test data
 sqlite3 db.sqlite3 < db/test/example-equipment.sql
@@ -82,6 +82,7 @@ sqlite3 db.sqlite3 < db/test/example-equipment.sql
 - `/bookings/:id` GET, PUT, DELETE - read, update, delete on individual
   bookings
 - `/account` GET - view your account details
+- `/admin` GET - general admin dashboard page
 - `/login` GET, POST - handles user login
 - `/logout` POST - handles user logout
 - `/equipment` GET, POST - (admins only) view list of equipment, post to create
@@ -94,6 +95,16 @@ sqlite3 db.sqlite3 < db/test/example-equipment.sql
 - `/notices/:id` GET - view a notice
 - `/notices/:id/edit` GET, POST - edit a notice
 - `/notices/:id/delete` DELETE, POST - delete a notice
+- `/timeslots` GET - table of timeslots
+- `/timeslots/new` GET, POST - create new notice
+- `/timeslots/:id` GET - view a notice
+- `/timeslots/:id/edit` GET, POST - edit a notice
+- `/timeslots/:id/delete` DELETE, POST - delete a notice
+- `/closed-days` GET - table of closed days
+- `/closed-days/new` GET, POST - create new closed day
+- `/closed-days/:id` GET - view a closed day
+- `/closed-days/:id/edit` GET, POST - edit a closed day
+- `/closed-days/:id/delete` DELETE, POST - delete a closed day
 
 
 ## Deploying
