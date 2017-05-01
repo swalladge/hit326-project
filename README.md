@@ -62,13 +62,11 @@ and will aim to replace the current, non-ideal solution.
 WIP - sqlite database being used for testing atm - some instructions:
 
 ```
-# load the initial tables to the database
-sqlite3 db.sqlite3 < config/schema/equipment-sqlite.sql
-sqlite3 db.sqlite3 < config/schema/notices-sqlite.sql
-sqlite3 db.sqlite3 < config/schema/timeslots-sqlite.sql
+# initiate the database (warning: drops tables before creating)
+sqlite3 db.sqlite3 < db/init-sqlite3.sql
 
 # load some test data
-sqlite3 db.sqlite3 < db/test/example-equipment.sql
+sqlite3 db.sqlite3 < db/test/example-data.sql
 ```
 
 
