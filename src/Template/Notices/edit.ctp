@@ -36,6 +36,11 @@ $this->Form->setTemplates($templates);
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
     </div>
+    <?php
+    if ($this->Form->isFieldError('display_from')) {
+        echo $this->Form->error('display_from');
+    }
+    ?>
 </div>
 
 <div class="form-group">
@@ -46,6 +51,11 @@ $this->Form->setTemplates($templates);
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
     </div>
+    <?php
+    if ($this->Form->isFieldError('display_to')) {
+        echo $this->Form->error('display_to');
+    }
+    ?>
 </div>
 
 <?php
