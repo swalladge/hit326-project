@@ -50,7 +50,6 @@ class NoticesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('display_from')
             ->add('display_from', 'custom', [
                 'rule' => 'date',
                 'provider' => 'custom',

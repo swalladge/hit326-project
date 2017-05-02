@@ -18,6 +18,7 @@ $this->layout = 'default';
     <?php foreach ($notices as $notice): ?>
     <div class="notice">
         <h3 class="notice-title"><?= h($notice->title); ?></h3>
+        <span class="small">Posted on <?= $notice->display_from ?></span>
         <div class="notice-content">
             <?= $this->Text->autoParagraph(h($notice->content)); ?>
         </div>

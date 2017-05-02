@@ -29,7 +29,7 @@ $this->Form->setTemplates($templates);
     <?= $this->Form->create($notice) ?>
 
 <div class="form-group">
-    <label for="display-from">Display From</label>
+    <label for="display-from">Display From (also displayed as posted date)</label>
     <div class='input-group date-picker' >
         <?= $this->Form->text('display_from', ['class' => 'form-control', 'id' => 'display-from']) ?>
         <span class="input-group-addon">
