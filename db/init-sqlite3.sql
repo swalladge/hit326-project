@@ -12,10 +12,10 @@ drop table if exists users;
 
 create table users (
     id integer primary key,
-    first_name text,
-    last_name text not null,
-    role integer,
-    email text
+    email text not null unique,
+    password text not null,
+    role text not null,
+    phone text not null
 );
 
 

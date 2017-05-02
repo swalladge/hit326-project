@@ -52,8 +52,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     // admin view page
     $routes->connect('/admin', ['controller' => 'Main', 'action' => 'admin', '_method' => 'GET']);
 
-    // login/logout controllers
+    // user controllers
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/register', ['controller' => 'Users', 'action' => 'register']);
     // NOTE: only allow post requests to logout page
     $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout', '_method' => 'POST']);
 

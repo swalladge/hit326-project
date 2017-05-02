@@ -14,7 +14,7 @@ class UsersController extends AppController
     public function beforeFilter(Event $event) {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['logout']);
+        $this->Auth->allow(['logout', 'register']);
     }
 
 
@@ -41,4 +41,20 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
+    public function register() {
+        $user = $this->Users->newEntity();
+
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user->set('role', 'user');
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Your account has been created successfully! You may now make a booking.'));
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Unable to add the user.'));
+        }
+
+        $this->set('user', $user);
+    }
 }
