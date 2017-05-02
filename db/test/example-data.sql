@@ -8,4 +8,7 @@ insert into equipment (name, description, location, is_portable, quantity) value
     ("something", "", "lab2", 1, 1);
 
 
--- TODO: example data for other tables
+-- 2 example users (an admin and a standard user), both with passwords set to 'password'
+INSERT INTO users (email, password, role, phone) values
+    ('admin@example.com','$2y$10$kJcXaIbe2h9jw/wOskR3/u7NvEM5dIPEeEzJXMGvwwDAyZyeIXhtC','admin','999'),
+    ('test@example.com','$2y$10$Ufpiw8gs4icUVfKMx9GT6usMC.cDEmKUuQz4VYqN9RUZWsFq.qUly','user','777');
