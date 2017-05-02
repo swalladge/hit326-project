@@ -8,19 +8,8 @@ Copyright © 2017 Mrinalini Padmanabhan, Jarrod O'Callaghan, Samuel Walladge
 This project aims to create an online room and equipment booking application. It will be targeted for use within CDU,
 and will aim to replace the current, non-ideal solution.
 
+
 ## TODO
-
-- need to work out how to manage timeslots
-- should it be dependent on javascript? consider using ajax? - this will help
-  decide whether to make it a RESTful-like api returning json data, or just flash a
-  message and redirect on form submissions
-
-- sort out the equipment vs room booking problem - can you book a room, space
-  in a room, equipment, or a combination? Maybe some bookable equipment can
-  be "room space"? This would work unless it's possible to book specific
-  equipment in a room _as well as_ simply room space - because then we have
-  dependencies between bookable items which would increase the complexity of
-  the database.
 
 
 ## Developing
@@ -62,6 +51,7 @@ and will aim to replace the current, non-ideal solution.
 WIP - sqlite database being used for testing atm - some instructions:
 
 ```
+# note: run from the project directory
 # initiate the database (warning: drops tables before creating)
 sqlite3 db.sqlite3 < db/init-sqlite3.sql
 
@@ -81,6 +71,7 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
   bookings
 - `/account` GET - view your account details
 - `/admin` GET - general admin dashboard page
+- `/register` GET, POST - handles registering users
 - `/login` GET, POST - handles user login
 - `/logout` POST - handles user logout
 - `/equipment` GET, POST - (admins only) view list of equipment, post to create
