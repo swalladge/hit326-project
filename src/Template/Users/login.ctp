@@ -11,10 +11,11 @@ $this->layout = 'default';
 
 ?>
 
-<p>
-    Login page
-</p>
+<h1>Login</h1>
 
-<form method="post">
-    <input type="submit" value="Login">
-</form>
+<?= $this->Form->create() ?>
+<?= $this->Form->control('email', ['class' => 'form-control']) ?>
+<?= $this->Form->control('password', ['class' => 'form-control']) ?>
+<?= $this->Form->button('Login', ['class' => 'btn btn-primary']); ?>
+<?= $this->Form->end() ?>
+

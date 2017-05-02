@@ -52,6 +52,11 @@ class AppController extends Controller
             'logoutRedirect' => [
                 'controller' => 'Main',
                 'action' => 'index'
+            ],
+            'authenticate' => [
+                'Form' => [
+                    'fields' => ['username' => 'email', 'password' => 'password']
+                ]
             ]
         ]);
 

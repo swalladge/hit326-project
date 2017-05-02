@@ -11,9 +11,25 @@ $this->layout = 'default';
 
 ?>
 
+<h1>Account</h1>
+
+<h2>Info</h2>
+
 <p>
-    account page
+    email: <?= h($user['email']) ?>
 </p>
+
+<p>
+    phone: <?= h($user['phone']) ?>
+</p>
+
+
+<p>
+    role: <?= h($user['role']) ?>
+</p>
+
+
+<h2>Actions</h2>
 
 <a href="/book">New booking</a>
 
