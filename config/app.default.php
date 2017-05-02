@@ -223,6 +223,9 @@ return [
             'driver' => 'Cake\Database\Driver\Sqlite',
             'datasource' => 'Database/Sqlite',
             'persistent' => false,
+            // TODO, NOTE: this relative path is relative to the cwd when the cake
+            // server is running. Must investigate what it is relative to when
+            // running under apache (likely the webroot)
             'database' => 'db.sqlite3',
             'prefix' => '',
             'encoding' => 'utf8',
