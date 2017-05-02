@@ -1,12 +1,12 @@
 -- init the database tables - sqlite version
 
 -- drop all the tables!
-drop table notices;
-drop table bookings;
-drop table closed_days;
-drop table timeslots;
-drop table equipment;
-drop table users;
+drop table if exists notices;
+drop table if exists bookings;
+drop table if exists closed_days;
+drop table if exists timeslots;
+drop table if exists equipment;
+drop table if exists users;
 
 
 
