@@ -9,9 +9,6 @@ use Cake\Network\Exception\NotFoundException;
 
 $this->layout = 'default';
 
-$templates = ['inputContainer' => '<div class="form-group">{{content}}</div>'];
-$this->Form->setTemplates($templates);
-
 ?>
 
 <h1>Register</h1>

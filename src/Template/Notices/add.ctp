@@ -3,9 +3,6 @@
   * @var \App\View\AppView $this
   */
 
-$templates = ['inputContainer' => '<div class="form-group">{{content}}</div>'];
-$this->Form->setTemplates($templates);
-
 ?>
 
 <div>

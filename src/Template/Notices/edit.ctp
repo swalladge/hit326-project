@@ -3,11 +3,6 @@
   * @var \App\View\AppView $this
   */
 
-// TODO: how to make this load from one place without needing to put it in each
-// view?
-$templates = ['inputContainer' => '<div class="form-group">{{content}}</div>'];
-$this->Form->setTemplates($templates);
-
 ?>
 
 <div>
