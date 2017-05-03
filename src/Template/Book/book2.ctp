@@ -17,11 +17,20 @@ $this->layout = 'default';
 
 <form class="form" method="post">
 
-    <div class="form-group">
-        <label for="timeslot-input">Select timeslot</label>
-        <input class="form-control" type="text" name="timeslot" id="timeslot-input"
-               value="<?= $booking->start_date ?>">
+<div class="form-group">
+    <label for="timeslot-input">Select timeslot</label>
+    <div class='input-group date-picker' >
+    <input name="timeslot" id="timeslot" type='text' class="form-control" value="<?= $booking->start_date ?>"/>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
     </div>
+    <?php
+    if ($this->Form->isFieldError('timeslot')) {
+        echo $this->Form->error('timeslot');
+    }
+    ?>
+</div>
 
     <div class="form-group">
         <label for="notes-input">Notes</label>
