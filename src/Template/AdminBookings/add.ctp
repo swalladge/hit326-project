@@ -19,8 +19,7 @@
             echo $this->Form->control('userid');
             echo $this->Form->control('equipment_id', ['options' => $equipment, 'empty' => true]);
             echo $this->Form->control('state');
-            echo $this->Form->control('date');
-            echo $this->Form->control('start_time');
+            echo $this->Form->control('start_date');
             echo $this->Form->control('duration');
         ?>
     </fieldset>

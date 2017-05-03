@@ -13,14 +13,12 @@
 </nav>
 <div class="bookings index large-9 medium-8 columns content">
     <h3><?= __('Bookings') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('userid') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('equipment_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('start_time') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('state') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('start_date') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('duration') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -28,13 +26,12 @@
         <tbody>
             <?php foreach ($bookings as $booking): ?>
             <tr>
-                <td><?= $this->Number->format($booking->id) ?></td>
-                <td><?= $this->Number->format($booking->userid) ?></td>
                 <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
-                <td><?= $this->Number->format($booking->date) ?></td>
-                <td><?= $this->Number->format($booking->start_time) ?></td>
+                <td><?= h($booking->state) ?></td>
+                <td><?= h($booking->start_date) ?></td>
                 <td><?= $this->Number->format($booking->duration) ?></td>
                 <td class="actions">
+                    <?php // TODO: quick button to confirm/reject booking? ?>
                     <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?>

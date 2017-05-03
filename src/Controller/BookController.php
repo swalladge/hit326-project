@@ -16,32 +16,45 @@ class BookController extends AppController
     // $id is the id of the thing to book
     public function book2($id)
     {
+        $Bookings = TableRegistry::get('Bookings');
+        $booking = $Bookings->newEntity();
+
+        $equipmentTable = TableRegistry::get('Equipment');
+        $equipment = $equipmentTable->get($id);
+
         // post - handle form submission (add new booking)
         if ($this->request->is('post')) {
-            $Bookings = TableRegistry::get('Bookings');
-            $booking = $Bookings->newEntity();
-            // TODO: use form data to update $booking
 
-            // pseudo success for now
-            $this->Flash->success(__('The booking has been saved. (no not really)'));
-            return $this->redirect('/bookings');
+            $data = $this->request->getData();
 
-            // TODO: actually save
+            $user = $this->Auth->user();
+            $booking->set('userid', $user['id']);
+
+            $booking->set('equipment_id', $id);
+
+            $booking->set('state', 'pending');
+
+            if (isset($data['notes'])) {
+                $booking->set('user_notes', $data['notes']);
+            }
+
+            // TODO: use timeslots properly
+            if (isset($data['timeslot'])) {
+                $booking->set('start_date', $data['timeslot']);
+            }
+            $booking->set('duration', 60);
+
             if ($Bookings->save($booking)) {
-                $this->Flash->success(__('The booking has been saved.'));
+                $this->Flash->success('Your booking has been submitted succesfully!');
+
                 return $this->redirect('/bookings');
             }
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
 
-        // TODO: use submitted form data to re-populate the form on reload
+        $this->set('booking', $booking);
+        $this->set('equipment', $equipment);
 
-        $this->set('id', $id);
-        $equipmentTable = TableRegistry::get('Equipment');
-        $equipment = $equipmentTable->get($id);
-        $this->set(compact('equipment'));
-
-        // TODO
     }
 
     // first page of the booking process/form - allows selecting a thing to

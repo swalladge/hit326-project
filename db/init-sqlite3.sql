@@ -51,8 +51,8 @@ create table bookings (
     userid integer references users(id) on delete cascade,
     equipment_id integer references equipment(id) on delete cascade,
     state text not null default 'pending',
-    date integer not null,
-    start_time integer not null,
+    user_notes text not null default '',
+    start_date text not null,
     duration integer not null
 );
 
