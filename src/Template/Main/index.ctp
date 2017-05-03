@@ -16,7 +16,7 @@ $this->layout = 'default';
 <div class="notices">
     <h2>System Notices</h2>
     <?php if ($userRole == 'admin'): ?>
-        <a href="/notices" role="button" class="btn btn-primary">Manage notices</a>
+        <a href="/admin/notices" role="button" class="btn btn-primary">Manage notices</a>
     <?php endif; ?>
 
     <?php foreach ($notices as $notice): ?>
