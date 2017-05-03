@@ -1,6 +1,19 @@
 <?php
 
-$cakeDescription = 'HIT326 Booking';
+$siteTitle = 'HIT326 Booking';
+
+// array containing the logged in user's details
+// use this variable in views to display info on the user
+$theUser = $this->request->session()->read('Auth.User');
+
+if ($theUser == NULL) {
+    $userRole = 'null';
+    $loggedIn = false;
+} else {
+    $userRole = $theUser['role'];
+    $loggedIn = true;
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -10,7 +23,7 @@ $cakeDescription = 'HIT326 Booking';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
+        <?= $siteTitle ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
@@ -42,9 +55,11 @@ $cakeDescription = 'HIT326 Booking';
     <nav class="navbar navbar-inverse">
         <div class="container">
         <ul class="nav navbar-nav">
-            <?php if ($this->request->session()->read('Auth.User')): ?>
+            <?php if ($loggedIn): ?>
             <li><a href="/">Home</a></li>
+            <?php if ($userRole == 'admin'): ?>
             <li><a href="/admin">Admin</a></li>
+            <?php endif; ?>
             <li><a href="/book">New Booking</a></li>
             <li><a href="/account">My Account</a></li>
             <li>
