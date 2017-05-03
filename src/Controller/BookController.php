@@ -28,7 +28,7 @@ class BookController extends AppController
             $data = $this->request->getData();
 
             $user = $this->Auth->user();
-            $booking->set('userid', $user['id']);
+            $booking->set('user_id', $user['id']);
 
             $booking->set('equipment_id', $id);
 

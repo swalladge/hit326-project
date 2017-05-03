@@ -12,35 +12,45 @@ $this->layout = 'default';
 ?>
 
 <p>
-    <a href="/book">New booking</a>
+    <a href="/book" role="button" class="btn btn-primary">New booking</a>
 </p>
 
-<p>
-    My bookings
-</p>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Equipment</th>
-            <th>Timeslot</th>
-            <th>Notes</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Printer</td>
-            <td>1-2pm friday</td>
-            <td></td>
-            <td><a href="/bookings/1">edit</a></td>
-        </tr>
-        <tr>
-            <td>Computer</td>
-            <td>9am - 12pm Saturday</td>
-            <td></td>
-            <td><a href="/bookings/2">edit</a></td>
-        </tr>
-    </tbody>
-</table>
-
+<div>
+    <h3>Bookings</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('equipment_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('state') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('start_date') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('duration') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($bookings as $booking): ?>
+            <tr>
+                <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
+                <td><?= h($booking->state) ?></td>
+                <td><?= h($booking->start_date) ?></td>
+                <td><?= $this->Number->format($booking->duration) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to delete this booking?']) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    </div>
+</div>

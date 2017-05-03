@@ -48,7 +48,7 @@ create table closed_days (
 
 create table bookings (
     id integer primary key,
-    userid integer references users(id) on delete cascade,
+    user_id integer references users(id) on delete cascade,
     equipment_id integer references equipment(id) on delete cascade,
     state text not null default 'pending',
     user_notes text not null default '',

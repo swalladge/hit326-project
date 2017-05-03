@@ -16,7 +16,7 @@
     <fieldset>
         <legend><?= __('Add Booking') ?></legend>
         <?php
-            echo $this->Form->control('userid');
+            echo $this->Form->control('user_id');
             echo $this->Form->control('equipment_id', ['options' => $equipment, 'empty' => true]);
             echo $this->Form->control('state');
             echo $this->Form->control('start_date');

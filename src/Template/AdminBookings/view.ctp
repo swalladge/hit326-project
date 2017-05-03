@@ -14,36 +14,32 @@
         <li><?= $this->Html->link(__('New Equipment'), ['controller' => 'Equipment', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
-<div class="bookings view large-9 medium-8 columns content">
-    <h3><?= h($booking->id) ?></h3>
-    <table class="vertical-table">
+<div>
+    <h3>Viewing booking id <?= h($booking->id) ?></h3>
+    <table class="table">
         <tr>
             <th scope="row"><?= __('Equipment') ?></th>
             <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($booking->id) ?></td>
+            <th scope="row">User</th>
+            <td><?= $booking->has('user') ? $this->Html->link($booking->user->email, ['controller' => 'AdminUsers', 'action' => 'view', $booking->user->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Userid') ?></th>
-            <td><?= $this->Number->format($booking->userid) ?></td>
+            <th scope="row">Start Date</th>
+            <td><?= $this->Number->format($booking->start_date) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Date') ?></th>
-            <td><?= $this->Number->format($booking->date) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Start Time') ?></th>
-            <td><?= $this->Number->format($booking->start_time) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Duration') ?></th>
+            <th scope="row">Duration</th>
             <td><?= $this->Number->format($booking->duration) ?></td>
         </tr>
+        <tr>
+            <th scope="row">State</th>
+            <td><?= h($booking->state) ?></td>
+        </tr>
+        <tr>
+            <th scope="row">User Notes</th>
+            <td><?= $this->Text->autoParagraph(h($booking->user_notes)) ?></td>
+        </tr>
     </table>
-    <div class="row">
-        <h4><?= __('State') ?></h4>
-        <?= $this->Text->autoParagraph(h($booking->state)); ?>
-    </div>
 </div>

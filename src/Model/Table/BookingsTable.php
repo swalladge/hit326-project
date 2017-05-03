@@ -39,6 +39,9 @@ class BookingsTable extends Table
         $this->belongsTo('Equipment', [
             'foreignKey' => 'equipment_id'
         ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id'
+        ]);
     }
 
     /**
@@ -54,8 +57,8 @@ class BookingsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('userid')
-            ->allowEmpty('userid');
+            ->integer('user_id')
+            ->allowEmpty('user_id');
 
         $validator
             ->requirePresence('state', 'create')
@@ -89,6 +92,7 @@ class BookingsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['equipment_id'], 'Equipment'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
     }

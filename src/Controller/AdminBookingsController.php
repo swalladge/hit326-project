@@ -26,7 +26,7 @@ class AdminBookingsController extends AdminAppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Equipment']
+            'contain' => ['Equipment', 'Users']
         ];
         $bookings = $this->paginate($this->Bookings);
 
@@ -44,7 +44,7 @@ class AdminBookingsController extends AdminAppController
     public function view($id = null)
     {
         $booking = $this->Bookings->get($id, [
-            'contain' => ['Equipment']
+            'contain' => ['Equipment', 'Users']
         ]);
 
         $this->set('booking', $booking);
@@ -95,7 +95,8 @@ class AdminBookingsController extends AdminAppController
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
         $equipment = $this->Bookings->Equipment->find('list', ['limit' => 200]);
-        $this->set(compact('booking', 'equipment'));
+        $user = $this->Bookings->Users->find('list', ['limit' => 200]);
+        $this->set(compact('booking', 'equipment', 'user'));
         $this->set('_serialize', ['booking']);
     }
 

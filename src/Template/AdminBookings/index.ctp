@@ -16,6 +16,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('equipment_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('state') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('start_date') ?></th>
@@ -26,6 +27,7 @@
         <tbody>
             <?php foreach ($bookings as $booking): ?>
             <tr>
+                <td><?= $booking->has('user') ? $this->Html->link($booking->user->email, ['controller' => 'AdminUsers', 'action' => 'view', $booking->user->id]) : '' ?></td>
                 <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
                 <td><?= h($booking->state) ?></td>
                 <td><?= h($booking->start_date) ?></td>

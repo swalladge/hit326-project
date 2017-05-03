@@ -15,7 +15,11 @@ class BookingsController extends AppController
     // - note: could be many bookings, so a search feature could be useful for
     //   admins?
     public function index() {
+        $this->paginate = [
+            'contain' => ['Equipment']
+        ];
         $bookings = $this->paginate($this->Bookings);
+        // TODO: limit to user bookings
 
         $this->set(compact('bookings'));
         $this->set('_serialize', ['bookings']);
@@ -39,6 +43,7 @@ class BookingsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
+            $booking->set('state', 'pending');
             if ($this->Bookings->save($booking)) {
                 $this->Flash->success(__('The booking has been saved.'));
 

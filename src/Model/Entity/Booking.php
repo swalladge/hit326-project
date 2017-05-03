@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Booking Entity
  *
  * @property int $id
- * @property int $userid
+ * @property int $user_id
  * @property int $equipment_id
  * @property string $state
  * @property int $date
