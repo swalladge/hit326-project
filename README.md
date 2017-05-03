@@ -62,38 +62,48 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 
 ## Routes
 
-- `/` GET - homepage (only this and the login page should be public?)
-- `/book` GET - new booking form, select equipment to book
-- `/book/:id` GET - new booking form, equipment chosen, choose details and submit
-- `/bookings` GET, POST - display bookings (admins can see all bookings),
-  post handles creating new bookings
-- `/bookings/:id` GET, PUT, DELETE - read, update, delete on individual
-  bookings
+- `/` GET - homepage (public access)
+- `/login` GET, POST - handles user login (public access)
+- `/register` GET, POST - handles registering users (public access)
+- `/logout` POST - logs the user out if logged in (redirects to homepage)
 - `/account` GET - view your account details
+- `/book` GET - new booking form, select equipment to book
+- `/book/:id` GET, POST - new booking form, equipment chosen, choose details and submit
+- `/bookings` GET - display all user's bookings
+- `/bookings/:id` GET - view a booking
+- `/bookings/:id/edit` GET, POST - edit a booking
+- `/bookings/:id/delete` POST, DELETE - delete a booking
+
+### admins
+
 - `/admin` GET - general admin dashboard page
-- `/register` GET, POST - handles registering users
-- `/login` GET, POST - handles user login
-- `/logout` POST - handles user logout
-- `/equipment` GET, POST - (admins only) view list of equipment, post to create
-  new equipment
-- `/equipment/:id` GET, PUT, DELETE - (admins only) read, update, delete
-  equipment available to book
-- `/equipment/new` GET - (admins only) display add new equipment form
-- `/notices` GET - table of notices
-- `/notices/new` GET, POST - create new notice
-- `/notices/:id` GET - view a notice
-- `/notices/:id/edit` GET, POST - edit a notice
-- `/notices/:id/delete` DELETE, POST - delete a notice
-- `/timeslots` GET - table of timeslots
-- `/timeslots/new` GET, POST - create new notice
-- `/timeslots/:id` GET - view a notice
-- `/timeslots/:id/edit` GET, POST - edit a notice
-- `/timeslots/:id/delete` DELETE, POST - delete a notice
-- `/closed-days` GET - table of closed days
-- `/closed-days/new` GET, POST - create new closed day
-- `/closed-days/:id` GET - view a closed day
-- `/closed-days/:id/edit` GET, POST - edit a closed day
-- `/closed-days/:id/delete` DELETE, POST - delete a closed day
+- `/admin/bookings` GET - display all user's bookings
+- `/admin/bookings/:id` GET - view a booking
+- `/admin/bookings/:id/edit` GET, POST - edit a booking
+- `/admin/bookings/:id/delete` POST, DELETE - delete a booking
+- `/admin/equipment` GET, POST - (admins only) view list of equipment, post to create new equipment
+- `/admin/equipment/:id` GET, PUT, DELETE - (admins only) read, update, delete equipment available to book
+- `/admin/equipment/new` GET - (admins only) display add new equipment form
+- `/admin/notices` GET - table of notices
+- `/admin/notices/new` GET, POST - create new notice
+- `/admin/notices/:id` GET - view a notice
+- `/admin/notices/:id/edit` GET, POST - edit a notice
+- `/admin/notices/:id/delete` DELETE, POST - delete a notice
+- `/admin/timeslots` GET - table of timeslots
+- `/admin/timeslots/new` GET, POST - create new notice
+- `/admin/timeslots/:id` GET - view a notice
+- `/admin/timeslots/:id/edit` GET, POST - edit a notice
+- `/admin/timeslots/:id/delete` DELETE, POST - delete a notice
+- `/admin/closed-days` GET - table of closed days
+- `/admin/closed-days/new` GET, POST - create new closed day
+- `/admin/closed-days/:id` GET - view a closed day
+- `/admin/closed-days/:id/edit` GET, POST - edit a closed day
+- `/admin/closed-days/:id/delete` DELETE, POST - delete a closed day
+- `/admin/users` GET - table of users
+- `/admin/users/new` GET, POST - create new user
+- `/admin/users/:id` GET - view a closed day
+- `/admin/users/:id/edit` GET, POST - edit a user
+- `/admin/users/:id/delete` DELETE, POST - delete a user
 
 
 ## Deploying

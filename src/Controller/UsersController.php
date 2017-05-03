@@ -40,6 +40,9 @@ class UsersController extends AppController
 
     // logs the user out - called on POST only
     public function logout() {
+        if ($this->Auth->user()) {
+            $this->Flash->success(__('You have been logged out.'));
+        }
         return $this->redirect($this->Auth->logout());
     }
 
