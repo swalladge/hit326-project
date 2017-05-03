@@ -14,21 +14,32 @@ $this->layout = 'default';
 <?php if ($loggedIn): ?>
 
 <div class="notices">
-    <h2>System Notices</h2>
-    <?php if ($userRole == 'admin'): ?>
-        <a href="/admin/notices" role="button" class="btn btn-primary">Manage notices</a>
-    <?php endif; ?>
 
-    <?php foreach ($notices as $notice): ?>
-    <div class="notice">
-        <h3 class="notice-title"><?= h($notice->title); ?></h3>
-        <span class="small">Posted on <?= $notice->display_from ?></span>
-        <div class="notice-content">
-            <?= $this->Text->autoParagraph(h($notice->content)); ?>
-        </div>
-    </div>
-    <?php endforeach; ?>
 
+         <div class="panel panel-primary">
+            <div class="panel-heading">
+           <h2>System Notices</h2>
+                  <?php if ($userRole == 'admin'): ?>
+                         <a href="/admin/notices" role="button" class="btn btn-primary">Manage notices</a>
+                  <?php endif; ?>
+           </div>
+           <div class="panel-body" style="max-height: 10;overflow-y: scroll;">
+                <ul class="list-group">
+
+                    <?php foreach ($notices as $notice): ?>
+                        <li class="list-group-item">
+                            <div class="notice">
+                                <h3 class="notice-title"><?= h($notice->title); ?></h3>
+                                <span class="small">Posted on <?= $notice->display_from ?></span>
+                                <div class="notice-content">
+                                  <?= $this->Text->autoParagraph(h($notice->content)); ?>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                 </ul>
+            </div>
+         </div>
 </div>
 
 <?php endif; ?>
