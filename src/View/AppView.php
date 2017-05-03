@@ -32,7 +32,7 @@ class AppView extends View
         // add info about the logged in user to the view
         $theUser = $this->request->session()->read('Auth.User');
 
-        if ($theUser == NULL) {
+        if ($theUser == null) {
             $userRole = 'null';
             $loggedIn = false;
         } else {

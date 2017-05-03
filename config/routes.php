@@ -50,7 +50,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => 'Main', 'action' => 'index']);
 
     // admin view page
-    $routes->connect('/admin', ['controller' => 'Main', 'action' => 'admin', '_method' => 'GET']);
+    $routes->connect('/admin', ['controller' => 'Admin', 'action' => 'index']);
 
     // user controllers
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
@@ -62,7 +62,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/account', ['controller' => 'Users', 'action' => 'account']);
 
     // pages to display the create booking form
-    $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1', '_method' => 'GET']);
+    $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1']);
     $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2'], ['id' => '\d+', 'pass' => ['id']]);
 
     // CRUD for user bookings

@@ -1,14 +1,13 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 
 /**
  * ClosedDays Controller
  *
  * @property \App\Model\Table\ClosedDaysTable $ClosedDays
  */
-class ClosedDaysController extends AppController
+class ClosedDaysController extends AdminAppController
 {
 
     /**

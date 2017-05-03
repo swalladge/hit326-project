@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use Cake\Log\Log;
@@ -11,7 +10,7 @@ use Cake\Log\Log;
  *
  * @property \App\Model\Table\UsersTable $Users
  */
-class AdminUsersController extends AppController
+class AdminUsersController extends AdminAppController
 {
 
     public function beforeFilter(Event $event)

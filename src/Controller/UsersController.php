@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Log\Log;
 use Cake\ORM\TableRegistry;

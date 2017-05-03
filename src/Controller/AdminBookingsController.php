@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 
@@ -10,7 +9,7 @@ use Cake\Event\Event;
  *
  * @property \App\Model\Table\BookingsTable $Bookings
  */
-class AdminBookingsController extends AppController
+class AdminBookingsController extends AdminAppController
 {
 
     public function beforeFilter(Event $event)

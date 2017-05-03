@@ -1,14 +1,13 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 
 /**
  * Equipment Controller
  *
  * @property \App\Model\Table\EquipmentTable $Equipment
  */
-class EquipmentController extends AppController
+class EquipmentController extends AdminAppController
 {
 
     /**

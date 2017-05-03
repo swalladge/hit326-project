@@ -1,14 +1,13 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 
 /**
  * Timeslots Controller
  *
  * @property \App\Model\Table\TimeslotsTable $Timeslots
  */
-class TimeslotsController extends AppController
+class TimeslotsController extends AdminAppController
 {
 
     /**
