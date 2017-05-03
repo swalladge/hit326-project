@@ -33,7 +33,8 @@ class MainController extends AppController
                     ->add($orConditions)
                     ->lte('display_from', $today);
             })
-            ->order(['display_from' => 'DESC']);
+            ->order(['display_from' => 'DESC'])
+            ->all();
 
         $this->set('notices', $notices);
 
