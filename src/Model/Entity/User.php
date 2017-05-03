@@ -39,11 +39,13 @@ class User extends Entity
         'password'
     ];
 
-    // setter for password to auto hashit
+    // setter for password to be auto hashed
     protected function _setPassword($password)
     {
         if (strlen($password) > 0) {
           return (new DefaultPasswordHasher)->hash($password);
+        } else {
+          return '';
         }
     }
 

@@ -43,7 +43,6 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        // TODO: validate stuff
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
@@ -51,7 +50,8 @@ class UsersTable extends Table
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->notEmpty('email');
+            ->notEmpty('email')
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->requirePresence('password', 'create')

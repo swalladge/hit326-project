@@ -5,6 +5,7 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Log\Log;
+use Cake\ORM\TableRegistry;
 
 /**
  * controller for the equipment listing and individual pages
@@ -43,12 +44,18 @@ class UsersController extends AppController
     }
 
     public function register() {
-        $user = $this->Users->newEntity();
+        $Users = TableRegistry::get('Users');
+
+        $user = $Users->newEntity();
 
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $data = $this->request->getData();
+            Log::write('debug', $data);
+
+            $user = $Users->patchEntity($user, $data);
             $user->set('role', 'user');
-            if ($this->Users->save($user)) {
+
+            if ($Users->save($user)) {
                 $this->Flash->success(__('Your account has been created successfully! You may now make a booking.'));
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());

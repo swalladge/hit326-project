@@ -24,6 +24,7 @@ class UsersFixture extends TestFixture
         'phone' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'precision' => null, 'comment' => null, 'collate' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'sqlite_autoindex_users_1' => ['type' => 'unique', 'columns' => ['email'], 'length' => []],
         ],
     ];
     // @codingStandardsIgnoreEnd

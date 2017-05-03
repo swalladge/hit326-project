@@ -112,6 +112,13 @@ Router::scope('/admin/', function (RouteBuilder $routes) {
     $routes->connect('/bookings/:id/edit', ['controller' => 'AdminBookings', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/bookings/:id/delete', ['controller' => 'AdminBookings', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
+    // admin users management
+    $routes->connect('/users', ['controller' => 'AdminUsers', 'action' => 'index']);
+    $routes->connect('/users/new', ['controller' => 'AdminUsers', 'action' => 'add' ]);
+    $routes->connect('/users/:id', ['controller' => 'AdminUsers', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/users/:id/edit', ['controller' => 'AdminUsers', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/users/:id/delete', ['controller' => 'AdminUsers', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+
 });
 
 
