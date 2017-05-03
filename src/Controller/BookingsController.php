@@ -16,30 +16,52 @@ class BookingsController extends AppController
     // - note: could be many bookings, so a search feature could be useful for
     //   admins?
     public function index() {
-        // TODO
-    }
+        $bookings = $this->paginate($this->Bookings);
 
-    // called on POST - create a new booking
-    public function add() {
-        // TODO: validate, create new booking entity, etc.
-        $this->Flash->success("new booking added");
-        $this->set('data', $this->request->getData());
+        $this->set(compact('bookings'));
+        $this->set('_serialize', ['bookings']);
     }
 
     // GET - view a single booking - should also display formm for updating the
     // booking
     public function view($id) {
-        // TODO
+        $booking = $this->Bookings->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('booking', $booking);
+        $this->set('_serialize', ['booking']);
     }
 
-    // PUT - update a single booking
+    // update a single booking
     public function edit($id) {
-        // TODO
+        $booking = $this->Bookings->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
+            if ($this->Bookings->save($booking)) {
+                $this->Flash->success(__('The booking has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The booking could not be saved. Please, try again.'));
+        }
+        $this->set(compact('booking'));
+        $this->set('_serialize', ['booking']);
     }
 
     // DELETE - remove/cancel a booking
     public function delete($id) {
-        // TODO
+        $this->request->allowMethod(['post', 'delete']);
+        $notice = $this->Bookings->get($id);
+        if ($this->Bookings->delete($notice)) {
+            $this->Flash->success(__('The booking has been deleted.'));
+        } else {
+            $this->Flash->error(__('The booking could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
     }
 
 }

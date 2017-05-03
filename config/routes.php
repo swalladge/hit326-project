@@ -63,26 +63,26 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     // pages to display the create booking form
     $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1', '_method' => 'GET']);
-    $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2'], ['id' => '\d+', 'pass' => ['id']]);
 
-    // view your own bookings
-    $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'index', '_method' => 'GET']);
-
-    // CRUD for bookings
-    $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'add', '_method' => 'POST']);
-    $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
+    // CRUD for user bookings
+    $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'index']);
+    $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/bookings/:id/edit', ['controller' => 'Bookings', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/bookings/:id/delete', ['controller' => 'Bookings', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
 
-    // equipment/rooms management - list and CRUD
-    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index', '_method' => 'GET']);
-    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'add', '_method' => 'POST']);
-    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'view', '_method' => 'GET'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'edit', '_method' => 'PUT'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'delete', '_method' => 'DELETE'], ['id' => '\d+', 'pass' => ['id']]);
+});
 
-    $routes->connect('/equipment/new', ['controller' => 'Equipment', 'action' => 'new', '_method' => 'GET']);
+Router::scope('/admin/', function (RouteBuilder $routes) {
+
+    // admin equipment management
+    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index']);
+    $routes->connect('/equipment/new', ['controller' => 'Equipment', 'action' => 'add' ]);
+    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id/edit', ['controller' => 'Equipment', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id/delete', ['controller' => 'Equipment', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+
 
     // admin notices management
     $routes->connect('/notices', ['controller' => 'Notices', 'action' => 'index']);
@@ -105,9 +105,12 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/closed-days/:id/edit', ['controller' => 'ClosedDays', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/closed-days/:id/delete', ['controller' => 'ClosedDays', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
-
-
-
+    // admin bookings management
+    $routes->connect('/bookings', ['controller' => 'AdminBookings', 'action' => 'index']);
+    $routes->connect('/bookings/new', ['controller' => 'AdminBookings', 'action' => 'add' ]);
+    $routes->connect('/bookings/:id', ['controller' => 'AdminBookings', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/bookings/:id/edit', ['controller' => 'AdminBookings', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/bookings/:id/delete', ['controller' => 'AdminBookings', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
 });
 

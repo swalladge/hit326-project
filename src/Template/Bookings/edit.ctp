@@ -12,7 +12,13 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Booking id <?= $this->request->params['id'] ?> updated. In future, this
-    shouldn't be a view, but rather redirect back to the item or return json data
+    edit booking id <?= $this->request->params['id'] ?>
 </p>
+
+<form action="/bookings/1" method="post">
+    edit form
+    <!-- need this hidden input to make cakephp send to the PUT handler -->
+    <input type="hidden" name="_method" value="PUT">
+    <input type="submit" value="Save">
+</form>
 

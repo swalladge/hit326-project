@@ -1,51 +1,109 @@
 <?php
-
 namespace App\Controller;
 
-use Cake\Controller\Controller;
-use Cake\Event\Event;
+use App\Controller\AppController;
 
 /**
- * controller for equipment/room management available for booking
- * - accessible to admins only!
+ * Equipment Controller
+ *
+ * @property \App\Model\Table\EquipmentTable $Equipment
  */
 class EquipmentController extends AppController
 {
 
-    // display a table of all the equipment/rooms (need separate controller for
-    // rooms to equipment controller?)
-    public function index() {
-        // TODO
-        $equipment = $this->Equipment->find('all');
+    /**
+     * Index method
+     *
+     * @return \Cake\Network\Response|null
+     */
+    public function index()
+    {
+        $equipment = $this->paginate($this->Equipment);
+
         $this->set(compact('equipment'));
-    }
-
-    // called on POST - add new equipment
-    public function add() {
-        // TODO
-    }
-
-    // called on GET - display add new equipment form
-    public function new() {
-        // TODO
+        $this->set('_serialize', ['equipment']);
     }
 
     /**
-     * view a single item of equipment with id
-     * called on GET
+     * View method
+     *
+     * @param string|null $id Equipment id.
+     * @return \Cake\Network\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id) {
-        // TODO
+    public function view($id = null)
+    {
+        $equipment = $this->Equipment->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('equipment', $equipment);
+        $this->set('_serialize', ['equipment']);
     }
 
-    // called on PUT - edit an item by id
-    public function edit($id) {
-        // TODO
+    /**
+     * Add method
+     *
+     * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
+     */
+    public function add()
+    {
+        $equipment = $this->Equipment->newEntity();
+        if ($this->request->is('post')) {
+            $equipment = $this->Equipment->patchEntity($equipment, $this->request->getData());
+            if ($this->Equipment->save($equipment)) {
+                $this->Flash->success(__('The equipment has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The equipment could not be saved. Please, try again.'));
+        }
+        $this->set(compact('equipment'));
+        $this->set('_serialize', ['equipment']);
     }
 
-    // called on DELETE - remove an item
-    public function delete($id) {
-        // TODO
+    /**
+     * Edit method
+     *
+     * @param string|null $id Equipment id.
+     * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $equipment = $this->Equipment->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $equipment = $this->Equipment->patchEntity($equipment, $this->request->getData());
+            if ($this->Equipment->save($equipment)) {
+                $this->Flash->success(__('The equipment has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The equipment could not be saved. Please, try again.'));
+        }
+        $this->set(compact('equipment'));
+        $this->set('_serialize', ['equipment']);
     }
 
+    /**
+     * Delete method
+     *
+     * @param string|null $id Equipment id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $equipment = $this->Equipment->get($id);
+        if ($this->Equipment->delete($equipment)) {
+            $this->Flash->success(__('The equipment has been deleted.'));
+        } else {
+            $this->Flash->error(__('The equipment could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
 }

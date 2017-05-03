@@ -20,10 +20,10 @@ $this->layout = 'default';
 <h3>List of things to edit</h3>
 
 <ul>
-    <li><a href="/equipment">Equipment</a></li>
-    <li><a href="/notices">Notices</a></li>
-    <li><a href="/bookings">Bookings</a></li>
-    <li><a href="/closed-days">Closed Days</a></li>
-    <li><a href="/timeslots">Timeslots</a></li>
+    <li><a href="/admin/equipment">Equipment</a></li>
+    <li><a href="/admin/notices">Notices</a></li>
+    <li><a href="/admin/bookings">Bookings</a></li>
+    <li><a href="/admin/closed-days">Closed Days</a></li>
+    <li><a href="/admin/timeslots">Timeslots</a></li>
 </ul>
 

@@ -15,7 +15,7 @@ $this->layout = 'default';
     Booking "<?= $equipment->name ?>"
 </p>
 
-<form class="form" action="/bookings" method="post">
+<form class="form" method="post">
 
     <div class="form-group">
         <label for="timeslot-input">Select timeslot</label>
