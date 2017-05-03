@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
+use Cake\Log\Log;
 
 /**
  * Users Controller
@@ -17,6 +18,9 @@ class AdminUsersController extends AppController
     {
         parent::beforeFilter($event);
         $this->Users = TableRegistry::get('Users');
+
+        $this->roleOptions = ['user' => 'user', 'admin' => 'admin'];
+        $this->set('roleOptions', $this->roleOptions);
     }
 
     /**
@@ -83,7 +87,14 @@ class AdminUsersController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+            $data = $this->request->getData();
+
+            // remove password from the array if empty string
+            if (isset($data['password']) && strlen($data['password']) == 0) {
+                unset($data['password']);
+            }
+
+            $user = $this->Users->patchEntity($user, $data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -106,10 +117,16 @@ class AdminUsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+        $loggedInUser = $this->Auth->user();
+
+        if ($loggedInUser['id'] == $user->id) {
+            $this->Flash->error('You cannot delete your own account here!');
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            if ($this->Users->delete($user)) {
+                $this->Flash->success(__('The user has been deleted.'));
+            } else {
+                $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            }
         }
 
         return $this->redirect(['action' => 'index']);

@@ -57,6 +57,7 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
+        // TODO: validate role - must be in list of allowed roles
         $validator
             ->requirePresence('role', 'create')
             ->notEmpty('role');

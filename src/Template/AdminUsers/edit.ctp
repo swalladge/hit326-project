@@ -3,29 +3,40 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
+
+<div>
+<h2>Actions</h2>
+<div class="btn-group">
+<?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'btn btn-default']) ?>
+<?= $this->Form->postLink(
+    __('Delete'),
+    ['action' => 'delete', $user->id],
+    ['confirm' => __('Are you sure you want to delete {0}?', $user->email), 'class' => 'btn btn-danger']
+)
+?>
+</div>
+</div>
+
+<div>
+<h2>Edit User</h2>
     <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit User') ?></legend>
+        <?= $this->Form->control('email', ['class' => 'form-control']) ?>
+
+        <div class="form-group">
+            <label for="password">Password (leave blank if you don't want to change the password)</label>
+                <input name="password" id="password" type="password" class="form-control" />
+            </div>
+            <?php
+            if ($this->Form->isFieldError('password')) {
+                echo $this->Form->error('password');
+            }
+            ?>
+        </div>
+
         <?php
-            echo $this->Form->control('email');
-            echo $this->Form->control('password');
-            echo $this->Form->control('role');
-            echo $this->Form->control('phone');
+            echo $this->Form->control('role', ['type' => 'select', 'options' => $roleOptions, 'class' => 'form-control']);
+            echo $this->Form->control('phone', ['class' => 'form-control']);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button('Save', ['class' => 'btn btn-primary']) ?>
     <?= $this->Form->end() ?>
 </div>

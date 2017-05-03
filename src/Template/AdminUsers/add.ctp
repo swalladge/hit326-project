@@ -3,23 +3,24 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
+
+<div>
+<h2>Actions</h2>
+<div class="btn-group">
+<?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'btn btn-default']) ?>
+</div>
+</div>
+
+
+<div>
+<h2>Add User</h2>
     <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Add User') ?></legend>
         <?php
-            echo $this->Form->control('email');
-            echo $this->Form->control('password');
-            echo $this->Form->control('role');
-            echo $this->Form->control('phone');
+            echo $this->Form->control('email', ['class' => 'form-control']);
+            echo $this->Form->control('password', ['class' => 'form-control']);
+            echo $this->Form->control('role', ['type' => 'select', 'options' => $roleOptions, 'class' => 'form-control']);
+            echo $this->Form->control('phone', ['class' => 'form-control']);
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Add user'), ['class' => 'btn btn-primary']) ?>
     <?= $this->Form->end() ?>
 </div>
