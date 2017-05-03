@@ -2,19 +2,6 @@
 
 $siteTitle = 'HIT326 Booking';
 
-// array containing the logged in user's details
-// use this variable in views to display info on the user
-$theUser = $this->request->session()->read('Auth.User');
-
-if ($theUser == NULL) {
-    $userRole = 'null';
-    $loggedIn = false;
-} else {
-    $userRole = $theUser['role'];
-    $loggedIn = true;
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

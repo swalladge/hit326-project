@@ -28,5 +28,22 @@ class AppView extends View
         // bootstrap styled forms
         $templates = ['inputContainer' => '<div class="form-group">{{content}}</div>'];
         $this->Form->setTemplates($templates);
+
+        // add info about the logged in user to the view
+        $theUser = $this->request->session()->read('Auth.User');
+
+        if ($theUser == NULL) {
+            $userRole = 'null';
+            $loggedIn = false;
+        } else {
+            $userRole = $theUser['role'];
+            $loggedIn = true;
+        }
+
+        $this->set('loggedIn', $loggedIn);
+        $this->set('userRole', $userRole);
+        $this->set('theUser', $theUser);
+
+
     }
 }
