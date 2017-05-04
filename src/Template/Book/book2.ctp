@@ -11,9 +11,9 @@ $this->layout = 'default';
 
 ?>
 
-<p>
+<h1>
     Booking  <?= $this->Html->link($equipment->name, ['controller' => 'Equipment', 'action' => 'view', $equipment->id]) ?>
-</p>
+</h1>
 
 <form class="form" method="post">
 
@@ -33,7 +33,7 @@ $this->layout = 'default';
 </div>
 
     <div class="form-group">
-        <label for="notes-input">Notes</label>
+        <label for="notes-input">Notes to admin (optional)</label>
         <textarea class="form-control" name="notes" id="notes-input"><?= $booking->user_notes ?></textarea>
     </div>
 

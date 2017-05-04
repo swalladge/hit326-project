@@ -10,8 +10,6 @@
         <li><?= $this->Form->postLink(__('Delete Booking'), ['action' => 'delete', $booking->id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Bookings'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Booking'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Equipment'), ['controller' => 'Equipment', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Equipment'), ['controller' => 'Equipment', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div>

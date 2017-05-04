@@ -67,7 +67,6 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 - `/register` GET, POST - handles registering users (public access)
 - `/logout` POST - logs the user out if logged in (redirects to homepage)
 - `/account` GET - view your account details
-<!-- - `/book` GET - new booking form, select equipment to book -->
 - `/equipment` GET - view the list of available equipment
 - `/equipment/:id` GET - view an item of equipment to book
 - `/book/:id` GET, POST - new booking form, equipment chosen, choose details and submit
