@@ -21,6 +21,10 @@ class UsersController extends AppController
 
     // log the user in - display login form on GET and actually login on POST
     public function login() {
+        // if the user is already logged in, redirect to homepage
+        if ($this->Auth->user()) {
+            return $this->redirect($this->Auth->redirectUrl());
+        }
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
