@@ -58,7 +58,8 @@ class BookController extends AppController
     }
 
     // first page of the booking process/form - allows selecting a thing to
-    // book
+    // book - NOTE: probably not going to be used - using /equipment to select
+    // things to book
     public function book1()
     {
         // TODO

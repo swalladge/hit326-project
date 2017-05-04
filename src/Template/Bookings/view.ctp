@@ -11,20 +11,41 @@ $this->layout = 'default';
 
 ?>
 
-<p>
-    Booking id <?= $this->request->params['id'] ?>
-</p>
 
-<p>
-    equipment: Something
-</p>
 
-<p>timeslot: sometime</p>
+<h3>Viewing booking id <?= h($booking->id) ?></h3>
 
-<a href="/bookings/1/edit">edit booking</a>
+<div class="btn-group">
+<?= $this->Html->link('Edit', ['action' => 'edit', $booking->id], ['class' => 'btn btn-warning']) ?>
+<?= $this->Form->postLink(
+    'Delete',
+    ['action' => 'delete', $booking->id],
+    ['confirm' => 'Are you sure you want to delete this booking?', 'class' => 'btn btn-danger']
+)
+?>
+</div>
 
-<form action="/bookings/1/delete" method="post">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Remove booking">
-</form>
+
+<table class="table">
+    <tr>
+        <th scope="row"><?= __('Equipment') ?></th>
+        <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
+    </tr>
+    <tr>
+        <th scope="row">Start Date</th>
+        <td><?= $this->Number->format($booking->start_date) ?></td>
+    </tr>
+    <tr>
+        <th scope="row">Duration</th>
+        <td><?= $this->Number->format($booking->duration) ?></td>
+    </tr>
+    <tr>
+        <th scope="row">State</th>
+        <td><?= h($booking->state) ?></td>
+    </tr>
+    <tr>
+        <th scope="row">User Notes</th>
+        <td><?= $this->Text->autoParagraph(h($booking->user_notes)) ?></td>
+    </tr>
+</table>
 

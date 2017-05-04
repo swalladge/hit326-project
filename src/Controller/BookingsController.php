@@ -29,7 +29,7 @@ class BookingsController extends AppController
     // booking
     public function view($id) {
         $booking = $this->Bookings->get($id, [
-            'contain' => []
+            'contain' => ['Equipment']
         ]);
 
         $this->set('booking', $booking);

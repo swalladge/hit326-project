@@ -12,7 +12,7 @@ $this->layout = 'default';
 ?>
 
 <p>
-    Booking "<?= $equipment->name ?>"
+    Booking  <?= $this->Html->link($equipment->name, ['controller' => 'Equipment', 'action' => 'view', $equipment->id]) ?>
 </p>
 
 <form class="form" method="post">
@@ -38,6 +38,6 @@ $this->layout = 'default';
     </div>
 
     <input type="hidden" name="id" value="<?= $equipment->id ?>">
-    <input class="btn btn-primary" type="submit" value="Submit">
+    <input class="btn btn-primary" type="submit" value="Submit Booking">
 </form>
 

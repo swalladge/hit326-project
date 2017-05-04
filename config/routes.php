@@ -62,7 +62,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/account', ['controller' => 'Users', 'action' => 'account']);
 
     // pages to display the create booking form
-    $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1']);
+    // $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1']); // replaced with /equipment
     $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2'], ['id' => '\d+', 'pass' => ['id']]);
 
     // CRUD for user bookings
@@ -71,17 +71,20 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/bookings/:id/edit', ['controller' => 'Bookings', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/bookings/:id/delete', ['controller' => 'Bookings', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
+    // user view equipment
+    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index']);
+    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
 });
 
 Router::scope('/admin/', function (RouteBuilder $routes) {
 
     // admin equipment management
-    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index']);
-    $routes->connect('/equipment/new', ['controller' => 'Equipment', 'action' => 'add' ]);
-    $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/equipment/:id/edit', ['controller' => 'Equipment', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/equipment/:id/delete', ['controller' => 'Equipment', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment', ['controller' => 'AdminEquipment', 'action' => 'index']);
+    $routes->connect('/equipment/new', ['controller' => 'AdminEquipment', 'action' => 'add' ]);
+    $routes->connect('/equipment/:id', ['controller' => 'AdminEquipment', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id/edit', ['controller' => 'AdminEquipment', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/equipment/:id/delete', ['controller' => 'AdminEquipment', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
 
     // admin notices management

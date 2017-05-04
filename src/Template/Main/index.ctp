@@ -48,7 +48,6 @@ $this->layout = 'default';
 </div>
 <?php endif; ?>
 
-
-<p>
-    Home page - more stuff goes here
-</p>
+<?php if ($loggedIn): ?>
+    <?= $this->Html->link('New Booking', ['controller' => 'Equipment', 'action' => 'index']) ?>
+<?php endif; ?>
