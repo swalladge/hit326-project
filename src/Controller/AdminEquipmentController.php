@@ -1,6 +1,9 @@
 <?php
 namespace App\Controller;
 
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+
 
 /**
  * Equipment Controller
@@ -9,6 +12,12 @@ namespace App\Controller;
  */
 class AdminEquipmentController extends AdminAppController
 {
+
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        $this->Equipment = TableRegistry::get('Equipment');
+    }
 
     /**
      * Index method
