@@ -14,8 +14,10 @@ create table users (
     id integer primary key,
     email text not null unique,
     password text not null,
-    role text not null,
-    phone text not null
+    firstName text not null,
+    lastName text not null,
+    role text not null, -- set as text for readability
+    phone text not null -- can also be set to int, currently text would allow a free text field
 );
 
 
@@ -29,13 +31,20 @@ create table equipment(
     is_active integer default 1
 );
 
+ -- Currently Not Implemented, will be added with equipment table
+create table location(
+  locationID int IDENTITY(1,1) PRIMARY KEY,
+  location varchar (255),
+  description varchar (255)
+);
+
 
 -- tables for storing timeslot info
 create table timeslots (
     id integer primary key,
     weekday int not null,    -- or a better type? if int, then it should be 1-7
-    start_time int not null, -- datetime (with only the hh:mm set)
-    duration int not null    -- duration in minutes
+    start_DateTime datetime not null, -- datetime (with only the hh:mm set)
+    end_DateTime datetime not null, -- Store date time as: YYYY-MM-DD HH:MM or : YYYY-MM-DDTHH:MM
 );
 
 create table closed_days (
@@ -52,9 +61,10 @@ create table bookings (
     equipment_id integer references equipment(id) on delete cascade,
     state text not null default 'pending',
     user_notes text not null default '',
-    start_date text not null,
-    duration integer not null
+    startDateTime datetime not null,
+    endDateTime datetime not null
 );
+--removed Duration
 
 
 -- table for storing system notices to display on the homepage
@@ -65,4 +75,3 @@ create table notices (
     title text,
     content text
 );
-
