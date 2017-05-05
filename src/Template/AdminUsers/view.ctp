@@ -27,10 +27,17 @@
         <h4><?= __('Email') ?></h4>
         <?= $this->Text->autoParagraph(h($user->email)); ?>
     </div>
+
+    <div class="row">
+        <h4>Name</h4>
+        <?= h($user->name) ?>
+    </div>
+
     <div class="row">
         <h4><?= __('Role') ?></h4>
         <?= $this->Text->autoParagraph(h($user->role)); ?>
     </div>
+
     <div class="row">
         <h4><?= __('Phone') ?></h4>
         <?= $this->Text->autoParagraph(h($user->phone)); ?>

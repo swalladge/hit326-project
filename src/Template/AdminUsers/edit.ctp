@@ -34,6 +34,7 @@
         </div>
 
         <?php
+            echo $this->Form->control('name', ['type' => 'text', 'class' => 'form-control']);
             echo $this->Form->control('role', ['type' => 'select', 'options' => $roleOptions, 'class' => 'form-control']);
             echo $this->Form->control('phone', ['class' => 'form-control']);
         ?>

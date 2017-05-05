@@ -17,6 +17,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('role') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -25,6 +26,7 @@
             <?php foreach ($users as $user): ?>
             <tr>
                 <td><?= h($user->email) ?></td>
+                <td><?= h($user->name) ?></td>
                 <td><?= h($user->role) ?></td>
                 <td class="actions">
                     <div class="btn-group">
