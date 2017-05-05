@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Start Time') ?></th>
-            <td><?= $this->Number->format($timeslot->start_time) ?></td>
+            <td><?= $timeslot->start_time ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Duration') ?></th>

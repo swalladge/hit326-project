@@ -43,8 +43,8 @@ create table location (
 create table timeslots (
     id integer primary key,
     weekday integer not null,    -- or a better type? if int, then it should be 1-7
-    start_datetime text not null, -- datetime (with only the hh:mm set)
-    end_datetime text not null -- Store date time as: YYYY-MM-DD HH:MM or : YYYY-MM-DDTHH:MM
+    start_time text not null, -- datetime string (with only the hh:mm set)
+    duration integer not null -- duration in minutes
 );
 
 create table closed_days (
@@ -61,8 +61,8 @@ create table bookings (
     equipment_id integer references equipment(id) on delete cascade,
     state text not null default 'pending',
     user_notes text not null default '',
-    start_datetime text not null, -- store as date string
-    end_datetime text not null
+    start_date text not null, -- store as date string
+    duration integer not null -- duration in minutes
 );
 --removed Duration
 

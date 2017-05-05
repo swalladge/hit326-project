@@ -31,7 +31,7 @@ TODO: do some equipment or rooms require different timeslots?
         <tr>
             <td><?= $this->Number->format($timeslot->id) ?></td>
             <td><?= $this->Number->format($timeslot->weekday) ?></td>
-            <td><?= $this->Number->format($timeslot->start_time) ?></td>
+            <td><?= $timeslot->start_time ?></td>
             <td><?= $this->Number->format($timeslot->duration) ?></td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $timeslot->id]) ?>

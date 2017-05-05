@@ -53,7 +53,6 @@ class TimeslotsTable extends Table
             ->notEmpty('weekday');
 
         $validator
-            ->integer('start_time')
             ->requirePresence('start_time', 'create')
             ->notEmpty('start_time');
 
