@@ -11,6 +11,7 @@ drop table if exists users;
 drop table if exists location;
 
 
+-- NOTE: all dates generally in the following format: YYYY-MM-DD HH:mm
 
 create table users (
     id integer primary key,

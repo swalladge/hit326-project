@@ -19,7 +19,7 @@ $this->layout = 'default';
 
 <div class="form-group">
     <label for="start_date">Select start_date</label>
-    <div class="input-group" id="start_date" >
+    <div class="input-group" id="booking_start_date" >
     <input name="start_date" type='text' class="form-control" value="<?= $booking->start_date ?>"/>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
@@ -34,7 +34,7 @@ $this->layout = 'default';
 
 <div class="form-group">
     <label for="end_date">Select end_date</label>
-    <div class="input-group" id="end_date" >
+    <div class="input-group" id="booking_end_date" >
     <input name="end_date" type='text' class="form-control" value="<?= $booking->start_date ?>"/>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>

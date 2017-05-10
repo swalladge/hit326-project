@@ -7,11 +7,11 @@ $(function () {
     });
 
     $('#start_time').datetimepicker({
-        format: 'LT',
+        format: 'HH:mm',
         showClear: true
     });
     $('#end_time').datetimepicker({
-        format: 'LT',
+        format: 'HH:mm',
         useCurrent: false, //Important! See issue #1075
         showClear: true
     });
@@ -22,17 +22,19 @@ $(function () {
         $('#start_time').data("DateTimePicker").maxDate(e.date);
     });
 
-    $('#start_date').datetimepicker({
-        format: 'YYYY-MM-DD LT',
+
+    // date/time linked pickers for booking equipment
+    $('#booking_start_date').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
         showClear: true
     });
-    $('#end_date').datetimepicker({
-        format: 'LT',
+    $('#booking_end_date').datetimepicker({
+        format: 'YYYY-MM-DD HH:mm',
         useCurrent: false, //Important! See issue #1075
         showClear: true
     });
-    $("#start_date").on("dp.change", function (e) {
-        var end_picker = $('#end_date').data("DateTimePicker");
+    $("#booking_start_date").on("dp.change", function (e) {
+        var end_picker = $('#booking_end_date').data("DateTimePicker");
 
         end_picker.minDate(false);
         end_picker.maxDate(false);
@@ -54,8 +56,7 @@ $(function () {
         end_picker.maxDate(end_date);
 
     });
-    $("#end_date").on("dp.change", function (e) {
-        // $('#start_date').data("DateTimePicker").maxDate(e.date);
+    $("#booking_end_date").on("dp.change", function (e) {
     });
 
 });
