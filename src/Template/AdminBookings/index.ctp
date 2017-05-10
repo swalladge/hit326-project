@@ -13,7 +13,7 @@
             <th scope="col"><?= $this->Paginator->sort('equipment_id') ?></th>
             <th scope="col"><?= $this->Paginator->sort('state') ?></th>
             <th scope="col"><?= $this->Paginator->sort('start_date') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('duration') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('end_date') ?></th>
             <th scope="col" class="actions"><?= __('Actions') ?></th>
         </tr>
     </thead>
@@ -24,7 +24,7 @@
             <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
             <td><?= h($booking->state) ?></td>
             <td><?= h($booking->start_date) ?></td>
-            <td><?= $this->Number->format($booking->duration) ?></td>
+            <td><?= h($booking->end_date) ?></td>
             <td class="actions">
                 <?php // TODO: quick button to confirm/reject booking? ?>
                 <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>

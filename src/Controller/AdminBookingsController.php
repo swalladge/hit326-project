@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
+use Cake\Log\Log;
 
 /**
  * Bookings Controller
@@ -16,6 +17,13 @@ class AdminBookingsController extends AdminAppController
     {
         parent::beforeFilter($event);
         $this->Bookings = TableRegistry::get('Bookings');
+        $this->Users = TableRegistry::get('Users');
+
+        $stateOptions = ['pending' => 'pending',
+                         'confirmed' => 'confirmed',
+                         'rejected' => 'rejected'
+                     ];
+        $this->set('stateOptions', $stateOptions);
     }
 
     /**
@@ -69,7 +77,9 @@ class AdminBookingsController extends AdminAppController
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
         $equipment = $this->Bookings->Equipment->find('list', ['limit' => 200]);
-        $this->set(compact('booking', 'equipment'));
+        // TODO: better use of $user?
+        $user = $this->Bookings->Users->find('list', ['limit' => 200]);
+        $this->set(compact('booking', 'equipment', 'user'));
         $this->set('_serialize', ['booking']);
     }
 
@@ -83,7 +93,7 @@ class AdminBookingsController extends AdminAppController
     public function edit($id = null)
     {
         $booking = $this->Bookings->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
@@ -95,8 +105,7 @@ class AdminBookingsController extends AdminAppController
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
         $equipment = $this->Bookings->Equipment->find('list', ['limit' => 200]);
-        $user = $this->Bookings->Users->find('list', ['limit' => 200]);
-        $this->set(compact('booking', 'equipment', 'user'));
+        $this->set(compact('booking', 'equipment'));
         $this->set('_serialize', ['booking']);
     }
 

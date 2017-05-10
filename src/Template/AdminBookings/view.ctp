@@ -25,11 +25,11 @@
         </tr>
         <tr>
             <th scope="row">Start Date</th>
-            <td><?= $this->Number->format($booking->start_date) ?></td>
+            <td><?= h($booking->start_date) ?></td>
         </tr>
         <tr>
-            <th scope="row">Duration</th>
-            <td><?= $this->Number->format($booking->duration) ?></td>
+            <th scope="row">End Date</th>
+            <td><?= h($booking->end_date) ?></td>
         </tr>
         <tr>
             <th scope="row">State</th>
