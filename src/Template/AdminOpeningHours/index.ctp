@@ -11,19 +11,21 @@
 </nav>
 <div class="openingHours index large-9 medium-8 columns content">
     <h3><?= __('Opening Hours') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('weekday') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('start_time') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('end_time') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($openingHours as $openingHour): ?>
             <tr>
-                <td><?= $this->Number->format($openingHour->id) ?></td>
-                <td><?= $this->Number->format($openingHour->weekday) ?></td>
+                <td><?= $weekdayOptions[$openingHour->weekday] ?></td>
+                <td><?= h($openingHour->start_time) ?></td>
+                <td><?= h($openingHour->end_time) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $openingHour->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $openingHour->id]) ?>

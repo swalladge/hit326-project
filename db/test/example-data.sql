@@ -16,3 +16,10 @@ insert into users (email, password, name, role, phone) values
 
 insert into notices (display_from, display_to, title, content) values
     ('2017-05-02', '', 'Example Notice', 'This is an example notice to note that notices are working.');
+
+insert into opening_hours (weekday, start_time, end_time) values
+    (1, '09:00', '17:00'),
+    (2, '09:00', '17:00'),
+    (3, '09:00', '17:00'),
+    (4, '09:00', '17:00'),
+    (5, '09:00', '17:00');

@@ -19,11 +19,41 @@
     <?= $this->Form->create($openingHour) ?>
     <fieldset>
         <legend><?= __('Edit Opening Hour') ?></legend>
+
         <?php
-            echo $this->Form->control('weekday');
-            echo $this->Form->control('start_time');
-            echo $this->Form->control('end_time');
+            echo $this->Form->control('weekday', ['type' => 'select', 'options' => $weekdayOptions, 'class' => 'form-control']);
         ?>
+
+        <div class="form-group">
+            <label for="start_date">Select start date</label>
+            <div class="input-group" id="start_time_picker" >
+            <input name="start_time" type='text' class="form-control" value="<?= $openingHour->start_time ?>"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <?php
+            if ($this->Form->isFieldError('start_time')) {
+                echo $this->Form->error('start_time');
+            }
+            ?>
+        </div>
+
+        <div class="form-group">
+            <label for="end_date">Select end date</label>
+            <div class="input-group" id="end_time_picker" >
+            <input name="end_time" type='text' class="form-control" value="<?= $openingHour->end_time ?>"/>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+            <?php
+            if ($this->Form->isFieldError('end_time')) {
+                echo $this->Form->error('end_time');
+            }
+            ?>
+        </div>
+
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
