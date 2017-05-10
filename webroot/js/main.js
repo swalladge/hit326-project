@@ -23,17 +23,39 @@ $(function () {
     });
 
     $('#start_date').datetimepicker({
+        format: 'YYYY-MM-DD LT',
         showClear: true
     });
     $('#end_date').datetimepicker({
+        format: 'LT',
         useCurrent: false, //Important! See issue #1075
         showClear: true
     });
     $("#start_date").on("dp.change", function (e) {
-        $('#end_date').data("DateTimePicker").minDate(e.date);
+        var end_picker = $('#end_date').data("DateTimePicker");
+
+        end_picker.minDate(false);
+        end_picker.maxDate(false);
+
+        // need to call moment() on the dates here to clone them, otherwise
+        // future mutations carry through... *facepalm javascript
+        var start_date = moment(e.date);
+        var end_date = moment(e.date).endOf('day');
+
+        if (end_picker.date() === null) {
+            end_picker.date(start_date);
+        } else {
+            if (end_picker.date() < start_date || end_picker.date() > end_date) {
+                end_picker.date(start_date);
+            }
+        }
+
+        end_picker.minDate(start_date);
+        end_picker.maxDate(end_date);
+
     });
     $("#end_date").on("dp.change", function (e) {
-        $('#start_date').data("DateTimePicker").maxDate(e.date);
+        // $('#start_date').data("DateTimePicker").maxDate(e.date);
     });
 
 });
