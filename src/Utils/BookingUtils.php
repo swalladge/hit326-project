@@ -38,7 +38,25 @@ class BookingUtils
             return [false, 'Another booking conflicts with this.'];
         }
 
-        // during a weekly closed time
+        // make sure it's during opening hours
+
+        $d = date_create_from_format('Y-m-d H:i', $start);
+        $weekday = $d->format('w'); // sunday = 0, ..., saturday = 6
+
+        $in_opening_hours = $connection->execute('
+            select * from opening_hours
+            where
+                weekday = :weekday
+                and :end <= end_time
+                and :start >= start_time
+            ', ['weekday' => $weekday, 'start' => explode(' ', $start)[1], 'end' => explode(' ', $end)[1]])->fetchAll('assoc');
+
+        if (count($in_opening_hours) < 1) {
+            return [false, 'Time not within opening hours.'];
+        }
+
+        return [true, null];
+
 
         // during a once-off closed time
         $overlaps = $connection->execute('
@@ -50,7 +68,6 @@ class BookingUtils
                 )
             ', ['equipment_id' => $equipment_id, 'start' => $start, 'end' => $end])->fetchAll('assoc');
 
-        Log::write('debug', $overlaps);
         if (count($overlaps) > 0) {
             $reason = '';
             $first = $overlaps[0];

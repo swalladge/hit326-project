@@ -108,12 +108,19 @@ Router::scope('/admin/', function (RouteBuilder $routes) {
     $routes->connect('/closed-times/:id/edit', ['controller' => 'AdminClosedTimes', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/closed-times/:id/delete', ['controller' => 'AdminClosedTimes', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
-    // admin weekly closed-days management
-    $routes->connect('/weekly-closed-times', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'index']);
-    $routes->connect('/weekly-closed-times/new', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'add' ]);
-    $routes->connect('/weekly-closed-times/:id', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/weekly-closed-times/:id/edit', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/weekly-closed-times/:id/delete', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+    // admin opening hours managament
+    $routes->connect('/opening-hours', ['controller' => 'AdminOpeningHours', 'action' => 'index']);
+    $routes->connect('/opening-hours/new', ['controller' => 'AdminOpeningHours', 'action' => 'add' ]);
+    $routes->connect('/opening-hours/:id', ['controller' => 'AdminOpeningHours', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/opening-hours/:id/edit', ['controller' => 'AdminOpeningHours', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/opening-hours/:id/delete', ['controller' => 'AdminOpeningHours', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
+
+    // // admin weekly closed-days management
+    // $routes->connect('/weekly-closed-times', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'index']);
+    // $routes->connect('/weekly-closed-times/new', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'add' ]);
+    // $routes->connect('/weekly-closed-times/:id', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
+    // $routes->connect('/weekly-closed-times/:id/edit', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
+    // $routes->connect('/weekly-closed-times/:id/delete', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
     // admin bookings management
     $routes->connect('/bookings', ['controller' => 'AdminBookings', 'action' => 'index']);

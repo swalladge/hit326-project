@@ -1,25 +1,21 @@
 
 $(function () {
-    $('.date-picker').datetimepicker({
-        viewMode: 'days',
-        format: 'YYYY-MM-DD',
-        showClear: true
-    });
 
-    $('#start_time').datetimepicker({
+    // general linked pickers for times
+    $('#start_time_picker').datetimepicker({
         format: 'HH:mm',
         showClear: true
     });
-    $('#end_time').datetimepicker({
+    $('#end_time_picker').datetimepicker({
         format: 'HH:mm',
         useCurrent: false, //Important! See issue #1075
         showClear: true
     });
-    $("#start_time").on("dp.change", function (e) {
-        $('#end_time').data("DateTimePicker").minDate(e.date);
+    $("#start_time_picker").on("dp.change", function (e) {
+        $('#end_time_picker').data("DateTimePicker").minDate(e.date);
     });
-    $("#end_time").on("dp.change", function (e) {
-        $('#start_time').data("DateTimePicker").maxDate(e.date);
+    $("#end_time_picker").on("dp.change", function (e) {
+        $('#start_time_picker').data("DateTimePicker").maxDate(e.date);
     });
 
 

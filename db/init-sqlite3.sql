@@ -4,7 +4,7 @@
 drop table if exists notices;
 drop table if exists bookings;
 drop table if exists closed_times;
-drop table if exists weekly_closed_times;
+drop table if exists opening_hours;
 drop table if exists timeslots;
 drop table if exists equipment;
 drop table if exists users;
@@ -41,14 +41,12 @@ create table location (
 );
 
 
--- recurring weekly closed times/dates - night time, weekends, etc.
-create table weekly_closed_times (
+-- recurring weekly opening hours
+create table opening_hours (
     id integer primary key,
     weekday integer not null,
     start_time text not null,
-    end_time text not null,
-    reason text not null default '',
-    equipment_id integer references equipment(id) on delete cascade -- optionally reference equipment to have specific equipment unavailable at times
+    end_time text not null
 );
 
 -- once-off closed times/dates

@@ -19,6 +19,42 @@ class BookController extends AppController
         $this->Bookings = TableRegistry::get('Bookings');
     }
 
+    // handle the second page of the booking form - once a piece of equipment
+    // to book has been selected
+    // $id is the id of the thing to book
+    public function book2($id)
+    {
+        $booking = $this->Bookings->newEntity();
+
+        $equipmentTable = TableRegistry::get('Equipment');
+        $equipment = $equipmentTable->get($id);
+
+        // post - handle form submission (add new booking)
+        if ($this->request->is('post')) {
+            $ok = $this->handlePostData($booking, $equipment);
+            if ($ok) {
+                $this->Flash->success('Your booking has been submitted succesfully!');
+                return $this->redirect('/bookings');
+            }
+        }
+
+        $this->set('booking', $booking);
+        $this->set('equipment', $equipment);
+
+    }
+
+    // first page of the booking process/form - allows selecting a thing to
+    // book - NOTE: probably not going to be used - using /equipment to select
+    // things to book
+    public function book1()
+    {
+        // TODO
+        $equipmentTable = TableRegistry::get('Equipment');
+        $equipment = $equipmentTable->find('all');
+        $this->set(compact('equipment'));
+    }
+
+
     private function handlePostData($booking, $equipment)
     {
             $data = $this->request->getData();
@@ -58,6 +94,7 @@ class BookController extends AppController
 
             if (isset($data['end_date'])) {
                 $end_date = $data['end_date'];
+                $booking->set('end_date', $end_date);
                 $d = date_parse_from_format('Y-m-d H:i', $end_date);
                 if ($d['error_count'] > 0) {
                     $this->Flash->error('Invalid end time!');
@@ -71,8 +108,6 @@ class BookController extends AppController
                     return false;
                 }
 
-
-                $booking->set('end_date', $end_date);
             }
 
             list($datesOk, $reason) = BookingUtils::validateBookingDates($booking);
@@ -89,40 +124,4 @@ class BookController extends AppController
             $this->Flash->error('The booking could not be saved. Please, try again.');
             return false;
     }
-
-    // handle the second page of the booking form - once a piece of equipment
-    // to book has been selected
-    // $id is the id of the thing to book
-    public function book2($id)
-    {
-        $booking = $this->Bookings->newEntity();
-
-        $equipmentTable = TableRegistry::get('Equipment');
-        $equipment = $equipmentTable->get($id);
-
-        // post - handle form submission (add new booking)
-        if ($this->request->is('post')) {
-            $ok = $this->handlePostData($booking, $equipment);
-            if ($ok) {
-                $this->Flash->success('Your booking has been submitted succesfully!');
-                return $this->redirect('/bookings');
-            }
-        }
-
-        $this->set('booking', $booking);
-        $this->set('equipment', $equipment);
-
-    }
-
-    // first page of the booking process/form - allows selecting a thing to
-    // book - NOTE: probably not going to be used - using /equipment to select
-    // things to book
-    public function book1()
-    {
-        // TODO
-        $equipmentTable = TableRegistry::get('Equipment');
-        $equipment = $equipmentTable->find('all');
-        $this->set(compact('equipment'));
-    }
-
 }
