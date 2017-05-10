@@ -75,10 +75,10 @@ class BookController extends AppController
                 $booking->set('end_date', $end_date);
             }
 
-            $datesOk = BookingUtils::validateBookingDates($booking);
+            list($datesOk, $reason) = BookingUtils::validateBookingDates($booking);
 
             if (! $datesOk) {
-                $this->Flash->error('Booking dates conflict or invalid.');
+                $this->Flash->error($reason);
                 return false;
             }
 

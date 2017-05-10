@@ -35,14 +35,32 @@ class BookingUtils
             ', ['equipment_id' => $equipment_id, 'start' => $start, 'end' => $end])->fetchAll('assoc');
 
         if (count($overlaps) > 0) {
-            return false;
+            return [false, 'Another booking conflicts with this.'];
         }
 
         // during a weekly closed time
 
         // during a once-off closed time
+        $overlaps = $connection->execute('
+            select * from closed_times
+            where (equipment_id = :equipment_id or equipment_id is null)
+            and ((start_time >= :start and start_time <= :end)
+                 or (end_time >= :start and end_time <= :end)
+                 or (start_time <= :start and end_time >= :end)
+                )
+            ', ['equipment_id' => $equipment_id, 'start' => $start, 'end' => $end])->fetchAll('assoc');
 
-        return true;
+        Log::write('debug', $overlaps);
+        if (count($overlaps) > 0) {
+            $reason = '';
+            $first = $overlaps[0];
+            if ($first['reason'] != null && strlen($first['reason']) > 0) {
+                $reason = ' ' . $first['reason'];
+            }
+            return [false, 'Not available during this time.' . $reason];
+        }
+
+        return [true, null];
 
     }
 
