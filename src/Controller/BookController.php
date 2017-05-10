@@ -38,11 +38,13 @@ class BookController extends AppController
                 $booking->set('user_notes', $data['notes']);
             }
 
-            // TODO: use timeslots properly
-            if (isset($data['timeslot'])) {
-                $booking->set('start_date', $data['timeslot']);
+            if (isset($data['start_date'])) {
+                $booking->set('start_date', $data['start_date']);
             }
-            $booking->set('duration', 60);
+
+            if (isset($data['end_date'])) {
+                $booking->set('end_date', $data['end_date']);
+            }
 
             if ($Bookings->save($booking)) {
                 $this->Flash->success('Your booking has been submitted succesfully!');

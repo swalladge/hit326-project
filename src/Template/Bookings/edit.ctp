@@ -15,10 +15,8 @@ $this->layout = 'default';
     edit booking id <?= $this->request->params['id'] ?>
 </p>
 
-<form action="/bookings/1" method="post">
+<form method="post">
     edit form
-    <!-- need this hidden input to make cakephp send to the PUT handler -->
-    <input type="hidden" name="_method" value="PUT">
     <input type="submit" value="Save">
 </form>
 

@@ -19,8 +19,8 @@
 
         <div class="form-group">
             <label for="start_time">Select start time</label>
-            <div class='input-group date-picker' >
-            <input name="start_time" id="start_time" type='text' class="form-control" value=""/>
+            <div class="input-group" id="start_time" >
+            <input name="start_time" type='text' class="form-control" value=""/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -34,8 +34,8 @@
 
         <div class="form-group">
             <label for="end_time">Select end time</label>
-            <div class='input-group date-picker' >
-            <input name="end_time" id="end_time" type='text' class="form-control" value=""/>
+            <div class="input-group" id="end_time" >
+            <input name="end_time" type='text' class="form-control" value=""/>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
