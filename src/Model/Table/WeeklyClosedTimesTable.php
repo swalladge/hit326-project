@@ -59,21 +59,13 @@ class WeeklyClosedTimesTable extends Table
             ->notEmpty('weekday');
 
         $validator
-            ->requirePresence('start_time', 'create')
-            ->notEmpty('start_time');
+            ->allowEmpty('start_time', 'create');
 
         $validator
-            ->requirePresence('end_time', 'create')
-            ->notEmpty('end_time');
+            ->allowEmpty('end_time', 'create');
 
         $validator
-            ->integer('entire_day')
-            ->requirePresence('entire_day', 'create')
-            ->notEmpty('entire_day');
-
-        $validator
-            ->requirePresence('reason', 'create')
-            ->notEmpty('reason');
+            ->allowEmpty('reason', 'create');
 
         return $validator;
     }

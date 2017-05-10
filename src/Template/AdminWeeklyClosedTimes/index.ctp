@@ -16,7 +16,6 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('weekday') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('entire_day') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('equipment_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -26,7 +25,6 @@
             <tr>
                 <td><?= $this->Number->format($weeklyClosedTime->id) ?></td>
                 <td><?= $this->Number->format($weeklyClosedTime->weekday) ?></td>
-                <td><?= $this->Number->format($weeklyClosedTime->entire_day) ?></td>
                 <td><?= $weeklyClosedTime->has('equipment') ? $this->Html->link($weeklyClosedTime->equipment->name, ['controller' => 'AdminEquipment', 'action' => 'view', $weeklyClosedTime->equipment->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $weeklyClosedTime->id]) ?>

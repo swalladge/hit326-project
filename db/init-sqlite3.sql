@@ -3,7 +3,8 @@
 -- drop all the tables!
 drop table if exists notices;
 drop table if exists bookings;
-drop table if exists closed_days;
+drop table if exists closed_times;
+drop table if exists weekly_closed_times;
 drop table if exists timeslots;
 drop table if exists equipment;
 drop table if exists users;
@@ -45,7 +46,6 @@ create table weekly_closed_times (
     weekday integer not null,
     start_time text not null,
     end_time text not null,
-    entire_day integer not null default 0,
     reason text not null default '',
     equipment_id integer references equipment(id) on delete cascade -- optionally reference equipment to have specific equipment unavailable at times
 );

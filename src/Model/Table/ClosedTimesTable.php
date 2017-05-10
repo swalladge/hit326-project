@@ -62,8 +62,7 @@ class ClosedTimesTable extends Table
             ->notEmpty('end_time');
 
         $validator
-            ->requirePresence('reason', 'create')
-            ->notEmpty('reason');
+            ->allowEmpty('reason');
 
         return $validator;
     }

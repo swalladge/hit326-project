@@ -10,7 +10,6 @@ use Cake\ORM\Entity;
  * @property int $weekday
  * @property string $start_time
  * @property string $end_time
- * @property int $entire_day
  * @property string $reason
  * @property int $equipment_id
  *

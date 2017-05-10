@@ -23,7 +23,6 @@
             echo $this->Form->control('weekday');
             echo $this->Form->control('start_time');
             echo $this->Form->control('end_time');
-            echo $this->Form->control('entire_day');
             echo $this->Form->control('reason');
             echo $this->Form->control('equipment_id', ['options' => $equipment, 'empty' => true]);
         ?>

@@ -27,10 +27,6 @@
             <th scope="row"><?= __('Weekday') ?></th>
             <td><?= $this->Number->format($weeklyClosedTime->weekday) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Entire Day') ?></th>
-            <td><?= $this->Number->format($weeklyClosedTime->entire_day) ?></td>
-        </tr>
     </table>
     <div class="row">
         <h4><?= __('Start Time') ?></h4>
