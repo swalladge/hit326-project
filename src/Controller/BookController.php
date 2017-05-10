@@ -29,6 +29,9 @@ class BookController extends AppController
         $equipmentTable = TableRegistry::get('Equipment');
         $equipment = $equipmentTable->get($id);
 
+        $this->set('start_date', '');
+        $this->set('end_date', '');
+
         // post - handle form submission (add new booking)
         if ($this->request->is('post')) {
             $ok = $this->handlePostData($booking, $equipment);
@@ -60,6 +63,11 @@ class BookController extends AppController
             $data = $this->request->getData();
             $user = $this->Auth->user();
 
+
+            // TODO: catch null
+            $this->set('start_date', $data['start_date']);
+            $this->set('end_date', $data['end_date']);
+
             $booking->set('user_id', $user['id']);
 
             $booking->set('equipment_id', $equipment->id);
@@ -70,9 +78,10 @@ class BookController extends AppController
                 $booking->set('user_notes', $data['notes']);
             }
 
+            $day = $data['day'];
             $start_date_parsed = null;
             if (isset($data['start_date'])) {
-                $start_date = $data['start_date'];
+                $start_date = $day . ' ' . $data['start_date'];
                 $booking->set('start_date', $start_date);
                 $d = date_parse_from_format('Y-m-d H:i', $start_date);
                 $start_date_parsed = $d;
@@ -93,7 +102,7 @@ class BookController extends AppController
             }
 
             if (isset($data['end_date'])) {
-                $end_date = $data['end_date'];
+                $end_date = $day . ' ' . $data['end_date'];
                 $booking->set('end_date', $end_date);
                 $d = date_parse_from_format('Y-m-d H:i', $end_date);
                 if ($d['error_count'] > 0) {

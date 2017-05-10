@@ -18,33 +18,33 @@ $this->layout = 'default';
 <form class="form" method="post">
 
 <div class="form-group">
-    <label for="start_date">Select start_date</label>
-    <div class="input-group" id="booking_start_date" >
-    <input name="start_date" type='text' class="form-control" value="<?= $booking->start_date ?>"/>
+    <label for="start_date">Select day</label>
+    <div class="input-group" id="booking-day" >
+    <input name="day" type='text' class="form-control" value="<?= explode(' ', $booking->start_date)[0] ?>"/>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
     </div>
-    <?php
-    if ($this->Form->isFieldError('start_date')) {
-        echo $this->Form->error('start_date');
-    }
-    ?>
 </div>
 
 <div class="form-group">
-    <label for="end_date">Select end_date</label>
-    <div class="input-group" id="booking_end_date" >
-    <input name="end_date" type='text' class="form-control" value="<?= $booking->start_date ?>"/>
+    <label for="end_date">Select start time</label>
+    <div class="input-group" id="booking-start-time" >
+    <input name="start_date" type='text' class="form-control" value="<?= $start_date ?>"/>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
     </div>
-    <?php
-    if ($this->Form->isFieldError('end_date')) {
-        echo $this->Form->error('end_date');
-    }
-    ?>
+</div>
+
+<div class="form-group">
+    <label for="end_date">Select end time</label>
+    <div class="input-group" id="booking-end-time" >
+    <input name="end_date" type='text' class="form-control" value="<?= $end_date ?>"/>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
 </div>
 
     <div class="form-group">
