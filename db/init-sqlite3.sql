@@ -39,20 +39,25 @@ create table location (
 );
 
 
--- tables for storing timeslot info
-create table timeslots (
+-- recurring weekly closed times/dates - night time, weekends, etc.
+create table weekly_closed_times (
     id integer primary key,
-    weekday integer not null,    -- or a better type? if int, then it should be 1-7
-    start_time text not null, -- datetime string (with only the hh:mm set)
-    duration integer not null -- duration in minutes
+    weekday integer not null,
+    start_time text not null,
+    end_time text not null,
+    entire_day integer not null default 0,
+    reason text not null default '',
+    equipment_id integer references equipment(id) on delete cascade -- optionally reference equipment to have specific equipment unavailable at times
 );
 
-create table closed_days (
+-- once-off closed times/dates
+create table closed_times (
     id integer primary key,
-    date integer not null,       -- datetime with only yyyy-mm-dd set
-    reason text not null default ''   -- optional notes about why this is closed
+    start_time text not null,
+    end_time text not null,
+    reason text not null default '',
+    equipment_id integer references equipment(id) on delete cascade
 );
-
 
 
 create table bookings (
@@ -62,7 +67,7 @@ create table bookings (
     state text not null default 'pending',
     user_notes text not null default '',
     start_date text not null, -- store as date string
-    duration integer not null -- duration in minutes
+    end_date text not null -- store as date string
 );
 --removed Duration
 

@@ -23,7 +23,8 @@ $this->layout = 'default';
     <li><a href="/admin/equipment">Equipment</a></li>
     <li><a href="/admin/notices">Notices</a></li>
     <li><a href="/admin/bookings">Bookings</a></li>
-    <li><a href="/admin/closed-days">Closed Days</a></li>
+    <li><a href="/admin/weekly-closed-times">Weekly Closed Times</a></li>
+    <li><a href="/admin/closed-times">Once-Off Closed Times</a></li>
     <li><a href="/admin/timeslots">Timeslots</a></li>
     <li><a href="/admin/users">Users</a></li>
 </ul>
