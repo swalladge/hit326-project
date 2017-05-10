@@ -90,11 +90,11 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 - `/admin/notices/:id` GET - view a notice
 - `/admin/notices/:id/edit` GET, POST - edit a notice
 - `/admin/notices/:id/delete` DELETE, POST - delete a notice
-- `/admin/timeslots` GET - table of timeslots
-- `/admin/timeslots/new` GET, POST - create new notice
-- `/admin/timeslots/:id` GET - view a notice
-- `/admin/timeslots/:id/edit` GET, POST - edit a notice
-- `/admin/timeslots/:id/delete` DELETE, POST - delete a notice
+- `/admin/opening-hours` GET - table of opening hours
+- `/admin/opening-hours/new` GET, POST - create new opening hours
+- `/admin/opening-hours/:id` GET - view an opening hours entry
+- `/admin/opening-hours/:id/edit` GET, POST - edit an opening hours entry
+- `/admin/opening-hours/:id/delete` DELETE, POST - delete an opening hours entry
 - `/admin/closed-days` GET - table of closed days
 - `/admin/closed-days/new` GET, POST - create new closed day
 - `/admin/closed-days/:id` GET - view a closed day
