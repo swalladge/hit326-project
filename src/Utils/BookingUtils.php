@@ -12,7 +12,7 @@ class BookingUtils
     // separate function to validate a booking date
     // here so that admins can manually save without fighting the system, but
     // users are blocked from booking when overlap
-    public static function validateBookingDates($booking)
+    public static function validateBookingDates($booking, $equipment)
     {
         $Bookings = TableRegistry::get('Bookings');
         $ClosedTimes = TableRegistry::get('ClosedTimes');
@@ -34,7 +34,9 @@ class BookingUtils
             and (state != \'rejected\')
             ', ['equipment_id' => $equipment_id, 'start' => $start, 'end' => $end])->fetchAll('assoc');
 
-        if (count($overlaps) > 0) {
+        // only valid if there are more of this equipment available than bookings for it
+        $quantity = $equipment->quantity;
+        if (count($overlaps) >= $quantity) {
             return [false, 'Another booking conflicts with this.'];
         }
 

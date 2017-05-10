@@ -24,7 +24,7 @@
             <b>User</b>: <a href="/admin/users/<?= $booking->user['id'] ?>"><?= h($booking->user['email']) ?></a>
         </div>
         <?php
-            echo $this->Form->control('equipment_id', ['class' => 'form-control', 'options' => $equipment, 'empty' => true]);
+            echo $this->Form->control('equipment_id', ['class' => 'form-control', 'options' => $equipment]);
             echo $this->Form->control('state',['options' => $stateOptions, 'class' => 'form-control']);
         ?>
 

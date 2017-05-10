@@ -119,7 +119,7 @@ class BookController extends AppController
 
             }
 
-            list($datesOk, $reason) = BookingUtils::validateBookingDates($booking);
+            list($datesOk, $reason) = BookingUtils::validateBookingDates($booking, $equipment);
 
             if (! $datesOk) {
                 $this->Flash->error($reason);
