@@ -3,17 +3,19 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Bookings'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
 
-<div class="bookings form large-9 medium-8 columns content">
-    <?= $this->Form->create($booking) ?>
-    <fieldset>
-        <legend><?= __('Edit Booking') ?></legend>
+<div>
+<h2>Actions</h2>
+<div class="btn-group">
+<?= $this->Html->link('List Bookings', ['action' => 'index'], ['class' => 'btn btn-default']) ?>
+</div>
+</div>
+
+
+
+<h2><?= 'Create Booking' ?></h2>
+
+<?= $this->Form->create($booking) ?>
 
         <?php
             echo $this->Form->control('user_id', ['class' => 'form-control', 'options' => $user, 'empty' => true]);
@@ -50,7 +52,5 @@
     }
     ?>
 </div>
-    </fieldset>
-    <?= $this->Form->button('Save', ['class' => 'btn btn-primary']) ?>
-    <?= $this->Form->end() ?>
-</div>
+<?= $this->Form->button('Save', ['class' => 'btn btn-primary']) ?>
+<?= $this->Form->end() ?>

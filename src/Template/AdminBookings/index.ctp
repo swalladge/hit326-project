@@ -14,7 +14,7 @@
             <th scope="col"><?= $this->Paginator->sort('state') ?></th>
             <th scope="col"><?= $this->Paginator->sort('start_date') ?></th>
             <th scope="col"><?= $this->Paginator->sort('end_date') ?></th>
-            <th scope="col" class="actions"><?= __('Actions') ?></th>
+            <th scope="col" class="actions"><?= 'Actions' ?></th>
         </tr>
     </thead>
     <tbody>
@@ -22,14 +22,16 @@
         <tr>
             <td><?= $booking->has('user') ? $this->Html->link($booking->user->email, ['controller' => 'AdminUsers', 'action' => 'view', $booking->user->id]) : '' ?></td>
             <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
-            <td><?= h($booking->state) ?></td>
-            <td><?= h($booking->start_date) ?></td>
-            <td><?= h($booking->end_date) ?></td>
+            <td><?= $booking->state ?></td>
+            <td><?= $booking->start_date ?></td>
+            <td><?= $booking->end_date ?></td>
             <td class="actions">
+            <div class="btn-group">
                 <?php // TODO: quick button to confirm/reject booking? ?>
-                <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?>
+                <?= $this->Html->link('View', ['action' => 'view', $booking->id], ['class' => 'btn btn-primary']) ?>
+                <?= $this->Html->link('Edit', ['action' => 'edit', $booking->id], ['class' => 'btn btn-warning']) ?>
+                <?= $this->Form->postLink('Delete', ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to delete # {0}?', $booking->id, 'class' => 'btn btn-danger']) ?>
+                </div>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -37,12 +39,12 @@
 </table>
 <div class="paginator">
     <ul class="pagination">
-        <?= $this->Paginator->first('<< ' . __('first')) ?>
-        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->first('<< ' . 'first') ?>
+        <?= $this->Paginator->prev('< ' . 'previous') ?>
         <?= $this->Paginator->numbers() ?>
-        <?= $this->Paginator->next(__('next') . ' >') ?>
-        <?= $this->Paginator->last(__('last') . ' >>') ?>
+        <?= $this->Paginator->next('next' . ' >') ?>
+        <?= $this->Paginator->last('last' . ' >>') ?>
     </ul>
-    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    <p><?= $this->Paginator->counter(['format' => 'Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total']) ?></p>
 </div>
 

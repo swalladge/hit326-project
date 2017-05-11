@@ -36,8 +36,10 @@ $this->layout = 'default';
             <td><?= h($booking->start_date) ?></td>
             <td><?= h($booking->end_date) ?></td>
             <td class="actions">
-                <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
-                <?= $this->Form->postLink(__('Cancel'), ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to cancel this booking?']) ?>
+            <div class="btn-group">
+                <?= $this->Html->link('View', ['action' => 'view', $booking->id], ['class' => 'btn btn-primary']) ?>
+                <?= $this->Form->postLink('Cancel', ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to cancel this booking?', 'class' => 'btn btn-danger']) ?>
+            </div>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -45,12 +47,12 @@ $this->layout = 'default';
 </table>
 <div class="paginator">
     <ul class="pagination">
-        <?= $this->Paginator->first('<< ' . __('first')) ?>
-        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->first('<< ' . 'first') ?>
+        <?= $this->Paginator->prev('< ' . 'previous') ?>
         <?= $this->Paginator->numbers() ?>
-        <?= $this->Paginator->next(__('next') . ' >') ?>
-        <?= $this->Paginator->last(__('last') . ' >>') ?>
+        <?= $this->Paginator->next('next' . ' >') ?>
+        <?= $this->Paginator->last('last' . ' >>') ?>
     </ul>
-    <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+    <p><?= $this->Paginator->counter(['format' => 'Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total']) ?></p>
 </div>
 

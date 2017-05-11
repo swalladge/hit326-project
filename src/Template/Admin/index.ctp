@@ -11,20 +11,16 @@ $this->layout = 'default';
 
 ?>
 
+<h1>Admin Dashboard</h1>
 
 
-<p>
-    admin page - more stuff goes here
-</p>
+<h2>Content management categories</h2>
 
-<h3>List of things to edit</h3>
-
-<ul>
-    <li><a href="/admin/equipment">Equipment</a></li>
-    <li><a href="/admin/notices">Notices</a></li>
-    <li><a href="/admin/bookings">Bookings</a></li>
-    <li><a href="/admin/opening-hours">Opening Hours</a></li>
-    <li><a href="/admin/closed-times">Once-Off Closed Times</a></li>
-    <li><a href="/admin/users">Users</a></li>
-</ul>
-
+<div class="list-group">
+    <a class="list-group-item" href="/admin/bookings">Bookings</a>
+    <a class="list-group-item" href="/admin/notices">System Notices</a>
+    <a class="list-group-item" href="/admin/equipment">Equipment</a>
+    <a class="list-group-item" href="/admin/opening-hours">Opening Hours</a>
+    <a class="list-group-item" href="/admin/closed-times">Once-Off Closed Times</a>
+    <a class="list-group-item" href="/admin/users">Users</a>
+</div>

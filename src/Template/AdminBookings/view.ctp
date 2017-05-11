@@ -3,15 +3,22 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Booking'), ['action' => 'edit', $booking->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Booking'), ['action' => 'delete', $booking->id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Bookings'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Booking'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
+<div>
+<h2>Actions</h2>
+<div class="btn-group">
+<?= $this->Html->link('List Bookings', ['action' => 'index'], ['class' => 'btn btn-default']) ?>
+<?= $this->Html->link('New Booking', ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
+<?= $this->Html->link('Edit', ['action' => 'edit', $booking->id], ['class' => 'btn btn-warning']) ?>
+<?= $this->Form->postLink(
+    __('Delete'),
+    ['action' => 'delete', $booking->id],
+    ['confirm' => 'Are you sure you want to delete this booking?', 'class' => 'btn btn-danger']
+)
+?>
+</div>
+</div>
+
+
 <div>
     <h3>Viewing booking id <?= h($booking->id) ?></h3>
     <table class="table">
@@ -30,6 +37,10 @@
         <tr>
             <th scope="row">End Date</th>
             <td><?= h($booking->end_date) ?></td>
+        </tr>
+        <tr>
+            <th scope="row">Duration</th>
+            <td><?= $duration ?></td>
         </tr>
         <tr>
             <th scope="row">State</th>

@@ -55,7 +55,12 @@ class AdminBookingsController extends AdminAppController
             'contain' => ['Equipment', 'Users']
         ]);
 
-        $this->set('booking', $booking);
+        // calculate and format the duration for display in the view
+        $start = date_create($booking->start_date);
+        $end =  date_create($booking->end_date);
+        $duration = $end->diff($start)->format('%h:%I');
+
+        $this->set(compact('booking', 'duration'));
         $this->set('_serialize', ['booking']);
     }
 
