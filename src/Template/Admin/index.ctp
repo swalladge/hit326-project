@@ -25,7 +25,6 @@ $this->layout = 'default';
     <li><a href="/admin/bookings">Bookings</a></li>
     <li><a href="/admin/opening-hours">Opening Hours</a></li>
     <li><a href="/admin/closed-times">Once-Off Closed Times</a></li>
-    <li><a href="/admin/timeslots">Timeslots</a></li>
     <li><a href="/admin/users">Users</a></li>
 </ul>
 

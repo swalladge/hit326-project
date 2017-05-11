@@ -68,7 +68,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     // CRUD for user bookings
     $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'index']);
     $routes->connect('/bookings/:id', ['controller' => 'Bookings', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/bookings/:id/edit', ['controller' => 'Bookings', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/bookings/:id/delete', ['controller' => 'Bookings', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
     // user view equipment
@@ -94,13 +93,6 @@ Router::scope('/admin/', function (RouteBuilder $routes) {
     $routes->connect('/notices/:id/edit', ['controller' => 'Notices', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/notices/:id/delete', ['controller' => 'Notices', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
-    // admin timeslots management
-    $routes->connect('/timeslots', ['controller' => 'Timeslots', 'action' => 'index']);
-    $routes->connect('/timeslots/new', ['controller' => 'Timeslots', 'action' => 'add' ]);
-    $routes->connect('/timeslots/:id', ['controller' => 'Timeslots', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/timeslots/:id/edit', ['controller' => 'Timeslots', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
-    $routes->connect('/timeslots/:id/delete', ['controller' => 'Timeslots', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
-
     // admin closed-days management
     $routes->connect('/closed-times', ['controller' => 'AdminClosedTimes', 'action' => 'index']);
     $routes->connect('/closed-times/new', ['controller' => 'AdminClosedTimes', 'action' => 'add' ]);
@@ -114,13 +106,6 @@ Router::scope('/admin/', function (RouteBuilder $routes) {
     $routes->connect('/opening-hours/:id', ['controller' => 'AdminOpeningHours', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/opening-hours/:id/edit', ['controller' => 'AdminOpeningHours', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/opening-hours/:id/delete', ['controller' => 'AdminOpeningHours', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
-
-    // // admin weekly closed-days management
-    // $routes->connect('/weekly-closed-times', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'index']);
-    // $routes->connect('/weekly-closed-times/new', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'add' ]);
-    // $routes->connect('/weekly-closed-times/:id', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
-    // $routes->connect('/weekly-closed-times/:id/edit', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'edit'], ['id' => '\d+', 'pass' => ['id']]);
-    // $routes->connect('/weekly-closed-times/:id/delete', ['controller' => 'AdminWeeklyClosedTimes', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
     // admin bookings management
     $routes->connect('/bookings', ['controller' => 'AdminBookings', 'action' => 'index']);

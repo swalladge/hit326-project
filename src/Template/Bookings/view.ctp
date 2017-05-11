@@ -15,15 +15,18 @@ $this->layout = 'default';
 
 <h3>Viewing booking id <?= h($booking->id) ?></h3>
 
+
 <div class="btn-group">
-<?= $this->Html->link('Edit', ['action' => 'edit', $booking->id], ['class' => 'btn btn-warning']) ?>
+<?= $this->Html->link('View all bookings', ['action' => 'index'], ['class' => 'btn btn-primary']) ?>
 <?= $this->Form->postLink(
-    'Delete',
-    ['action' => 'delete', $booking->id],
-    ['confirm' => 'Are you sure you want to delete this booking?', 'class' => 'btn btn-danger']
+'Cancel booking',
+['action' => 'delete', $booking->id],
+['confirm' => 'Are you sure you want to cancel this booking?', 'class' => 'btn btn-danger']
 )
 ?>
 </div>
+
+<hr>
 
 
 <table class="table">
@@ -38,6 +41,10 @@ $this->layout = 'default';
     <tr>
         <th scope="row">End Date</th>
         <td><?= h($booking->end_date) ?></td>
+    </tr>
+    <tr>
+        <th scope="row">Duration</th>
+        <td><?= $duration ?></td>
     </tr>
     <tr>
         <th scope="row">State</th>

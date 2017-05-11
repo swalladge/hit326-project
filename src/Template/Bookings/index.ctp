@@ -37,8 +37,7 @@ $this->layout = 'default';
             <td><?= h($booking->end_date) ?></td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
-                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id]) ?>
-                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to delete this booking?']) ?>
+                <?= $this->Form->postLink(__('Cancel'), ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to cancel this booking?']) ?>
             </td>
         </tr>
         <?php endforeach; ?>

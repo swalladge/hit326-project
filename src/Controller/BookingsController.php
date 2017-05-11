@@ -32,26 +32,12 @@ class BookingsController extends AppController
             'contain' => ['Equipment']
         ]);
 
-        $this->set('booking', $booking);
-        $this->set('_serialize', ['booking']);
-    }
+        // calculate and format the duration for display in the view
+        $start = date_create($booking->start_date);
+        $end =  date_create($booking->end_date);
+        $duration = $end->diff($start)->format('%h:%I');
 
-    // update a single booking
-    public function edit($id) {
-        $booking = $this->Bookings->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
-            $booking->set('state', 'pending');
-            if ($this->Bookings->save($booking)) {
-                $this->Flash->success(__('The booking has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The booking could not be saved. Please, try again.'));
-        }
-        $this->set(compact('booking'));
+        $this->set(compact('booking', 'duration'));
         $this->set('_serialize', ['booking']);
     }
 
