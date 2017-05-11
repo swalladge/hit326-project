@@ -18,8 +18,10 @@ class BookingsController extends AppController
         $this->paginate = [
             'contain' => ['Equipment']
         ];
-        $bookings = $this->paginate($this->Bookings);
-        // TODO: limit to user bookings
+
+        $user = $this->Auth->user();
+        $query = $this->Bookings->find()->where(['user_id' => $user['id']]);
+        $bookings = $this->paginate($query);
 
         $this->set(compact('bookings'));
         $this->set('_serialize', ['bookings']);
