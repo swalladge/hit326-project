@@ -28,9 +28,9 @@ create table equipment (
     name text not null,
     description text not null default '',
     location text not null default '', -- TODO: make this reference location table
-    is_portable boolean not null,
+    is_portable boolean not null default 0,
     quantity integer not null default 1,
-    is_active integer not null default 1
+    is_active boolean not null default 1
 );
 
  -- Currently not implemented, will be added with equipment table

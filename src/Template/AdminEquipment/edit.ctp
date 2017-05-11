@@ -3,31 +3,31 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $equipment->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $equipment->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Equipment'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="equipment form large-9 medium-8 columns content">
-    <?= $this->Form->create($equipment) ?>
-    <fieldset>
-        <legend><?= __('Edit Equipment') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('description');
-            echo $this->Form->control('location');
-            echo $this->Form->control('is_portable');
-            echo $this->Form->control('quantity');
-            echo $this->Form->control('is_active');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+<div>
+<h2>Actions</h2>
+<div class="btn-group">
+<?= $this->Html->link(__('List Equipment'), ['action' => 'index'], ['class' => 'btn btn-default']) ?>
+<?= $this->Form->postLink(
+    __('Delete'),
+    ['action' => 'delete', $equipment->id],
+    ['confirm' => __('Are you sure you want to delete "{0}"?', $equipment->name), 'class' => 'btn btn-danger']
+)
+?>
 </div>
+</div>
+
+
+<h2>Edit Equipment</h2>
+
+<?= $this->Form->create($equipment) ?>
+    <?php
+        echo $this->Form->control('name', ['type' => 'text', 'class' => 'form-control']);
+        echo $this->Form->control('description', ['class' => 'form-control']);
+        echo $this->Form->control('location', ['type' => 'text', 'class' => 'form-control']);
+        echo $this->Form->control('is_portable', ['class' => 'form-control']);
+        echo $this->Form->control('quantity', ['class' => 'form-control']);
+        echo $this->Form->control('is_active', ['class' => 'form-control']);
+    ?>
+<?= $this->Form->button('Save', ['class' => 'btn btn-primary']) ?>
+<?= $this->Form->end() ?>

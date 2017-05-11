@@ -4,8 +4,19 @@
   */
 ?>
 
+<h1>Admin Bookings Management</h1>
 
-<h3>Bookings</h3>
+<p>From here, you can manage all the bookings.</p>
+
+<div>
+<h2>Actions</h2>
+<div class="btn-group">
+<?= $this->Html->link('New Booking', ['action' => 'add'], ['class' => 'btn btn-primary']) ?>
+</div>
+</div>
+
+
+<h2>Bookings</h2>
 <table class="table">
     <thead>
         <tr>

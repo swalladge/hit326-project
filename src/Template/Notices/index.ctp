@@ -5,7 +5,7 @@
 
 ?>
 
-<h3><?= 'Notices Admin' ?></h3>
+<h1>Admin Notices Management</h1>
 
 <p>
     Notices are system notices that can be configured to display within certain
@@ -21,6 +21,7 @@ events, import information, etc.
 </div>
 
 
+<h2>Notices</h2>
 
 <table class="table">
     <thead>

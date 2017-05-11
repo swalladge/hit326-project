@@ -4,6 +4,8 @@
   */
 ?>
 
+<h1>Admin User Management</h1>
+
 <div>
 <h2>Actions</h2>
 <div class="btn-group">
