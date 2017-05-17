@@ -15,6 +15,7 @@ $this->layout = 'default';
 
 
 <?= $this->Form->create($user) ?>
+<?= $this->Form->control('name', ['type' => 'text', 'class' => 'form-control']) ?>
 <?= $this->Form->control('email', ['class' => 'form-control']) ?>
 <?= $this->Form->control('password', ['class' => 'form-control']) ?>
 <?= $this->Form->control('phone', ['class' => 'form-control']) ?>

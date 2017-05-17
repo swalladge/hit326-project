@@ -57,7 +57,12 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->getData();
 
+
             $user = $Users->patchEntity($user, $data);
+            $user->set('role', 'user');
+            if (isset($data['password'])) {
+                $user->set('password', $data['password']);
+            }
 
             if ($Users->save($user)) {
                 $this->Flash->success(__('Your account has been created successfully! You may now make a booking.'));
