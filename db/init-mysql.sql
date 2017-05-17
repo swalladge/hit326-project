@@ -1,6 +1,5 @@
 -- init the database tables - sqlite version
 
-use HIT326_DB;
 
 -- drop all the tables!
 drop table if exists notices;

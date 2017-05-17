@@ -109,7 +109,16 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 
 ## Deploying
 
-TODO
+### set up the database
+
+To init the cdunit_HIT326_DB1 database:
+
+```
+mysql -h spinetail.cdu.edu.au -u cdunit -p'PASSWORD' cdunit_HIT326_DB1 <
+db/init-mysql.sql
+```
+
+Then copy everything over to the public_html folder.
 
 
 ## Configuration
