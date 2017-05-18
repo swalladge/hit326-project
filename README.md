@@ -118,7 +118,25 @@ mysql -h spinetail.cdu.edu.au -u cdunit -p'PASSWORD' cdunit_HIT326_DB1 <
 db/init-mysql.sql
 ```
 
-Then copy everything over to the public_html folder.
+### create a production config file
+
+```
+cp config/app.default.php config/app.production.php
+```
+
+then edit app.production.php to your liking (disable debug mode, add db passwords, etc.
+
+
+### run the deploy script
+
+```
+./deploy.sh
+```
+
+Note that this has only been tested on linux, and requires `lftp`, `rsync`, and `composer` to be installed.
+Also, you will need to run `composer install` afterwards to continue
+development, since this removes the require-dev php dependencies (required for
+debug mode and testing).
 
 
 ## Configuration
