@@ -1,7 +1,9 @@
 /vendor/*
 /config/app.php
+/config/app.production.php
 /tmp/*
 /logs/*
+/deploy_files/*
 
 # testing databases
 *.db
