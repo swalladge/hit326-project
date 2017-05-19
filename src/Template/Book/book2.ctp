@@ -38,9 +38,6 @@ None
 
 <hr>
 
-<p>
-    <b>Opening hours</b>
-</p>
 <div id="opening-hours"></div>
 
 <hr>
@@ -74,3 +71,14 @@ None
     <input class="btn btn-primary" type="submit" value="Submit Booking">
 </form>
 
+<!-- handlebars templates -->
+
+<script id="opening-hours-template" type="text/x-handlebars-template">
+    <h3>Opening hours</h3>
+    {{#if msg}}
+    <div class="bold">{{msg}}</div>
+    {{/if}}
+    {{#opening_hours}}
+        <p>{{start}} to {{end}}</p>
+    {{/opening_hours}}
+</script>

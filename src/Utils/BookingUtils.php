@@ -124,6 +124,10 @@ class BookingUtils
         }
 
 
+        // TODO: get other bookings
+        //       merge all the results
+        //       calculate contiguous times when available
+
 
         $times = [['start' => '09:00', 'end' => '12:00'],
                   ['start' => '13:00', 'end' => '15:00']];

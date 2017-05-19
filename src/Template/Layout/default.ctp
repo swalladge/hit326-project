@@ -30,6 +30,7 @@ $siteTitle = 'HIT326 Booking';
     <?= $this->Html->script('/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>
     <?= $this->Html->script('/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>
     <?= $this->Html->script('/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') ?>
+    <?= $this->Html->script('/bower_components/handlebars/handlebars.min.js') ?>
     <?= $this->Html->script('main') ?>
 
 

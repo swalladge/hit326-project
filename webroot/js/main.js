@@ -51,7 +51,7 @@ $(function () {
     // TODO: on change, ajax retrieve available time ranges for this day
     $('#booking-day').datetimepicker({
         format: 'YYYY-MM-DD',
-        minDate: moment()
+        minDate: moment({hour: 0})
     });
     $('#booking-day').on("dp.change", function(e) {
         updateAvailableTimes(e);
@@ -114,15 +114,17 @@ function updateAvailableTimes(e) {
         var container = $('#available-times');
         container.html(html);
 
-        var opening_hours = '';
+        // display opening hours on the day
+        var hours_template = Handlebars.compile($('#opening-hours-template').html());
+        var msg = null;
         if (data.opening_hours.length === 0) {
-            opening_hours = 'Not open today.';
+            msg = 'Not open on ' + data.date;
         }
-        for (var i = 0; i < data.opening_hours.length; i++) {
-            opening_hours += '<p>' + data.opening_hours[i].start + ' to ' + data.opening_hours[i].end + '</p>';
-        }
-
-        $('#opening-hours').html(opening_hours);
+        var context = {
+            opening_hours: data.opening_hours,
+            msg: msg
+        };
+        $('#opening-hours').html(hours_template(context));
 
     })
       .fail( function(e) {
