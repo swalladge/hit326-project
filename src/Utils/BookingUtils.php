@@ -83,4 +83,50 @@ class BookingUtils
 
     }
 
+    // query the database and calculate available times for booking
+    public static function getAvailableTimes(&$data, $equip_id, $date_str) {
+        $times = [];
+        $Bookings = TableRegistry::get('Bookings');
+        $ClosedTimes = TableRegistry::get('ClosedTimes');
+        $WeeklyClosedTimes = TableRegistry::get('WeeklyClosedTimes');
+        $connection = ConnectionManager::get('default');
+
+        // setup date variables
+        $today_str = $date_str;
+        $today = date_create_from_format('Y-m-d', $date_str);
+        $tomorrow = date_add(date_create_from_format('Y-m-d', $date_str), date_interval_create_from_date_string('1 day'));
+        $tomorrow_str = $tomorrow->format('Y-m-d');
+
+
+        // get closed times
+        $closed_times = $connection->execute('
+            select * from closed_times
+            where (equipment_id = :equipment_id or equipment_id is null)
+            and ((start_time >= :start and start_time <= :end)
+                 or (end_time >= :start and end_time <= :end)
+                 or (start_time <= :start and end_time >= :end)
+                )
+            ', ['equipment_id' => $equip_id, 'start' => $today_str, 'end' => $tomorrow_str])->fetchAll('assoc');
+        Log::write('debug', $closed_times);
+
+        // get opening hours
+        $opening_hours = $connection->execute('
+            select * from opening_hours
+            where
+                weekday = :weekday
+            ', ['weekday' => $today->format('w')])->fetchAll('assoc');
+        Log::write('debug', $opening_hours);
+
+        // add opening hours to response
+        $data['opening_hours'] = [];
+        foreach ($opening_hours as $o) {
+            $data['opening_hours'][] = ['start' => $o['start_time'], 'end' => $o['end_time']];
+        }
+
+
+
+        $times = [['start' => '09:00', 'end' => '12:00'],
+                  ['start' => '13:00', 'end' => '15:00']];
+        $data['times'] = $times;
+    }
 }

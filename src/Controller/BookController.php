@@ -57,6 +57,20 @@ class BookController extends AppController
         $this->set(compact('equipment'));
     }
 
+    // note: $date_str in format of 'yyyy-mm-dd'
+    public function getAvailableTimes($equip_id, $date_str) {
+        $this->viewBuilder()->className('Json');
+
+        $data = [];
+        $data['date'] = $date_str;
+        $data['id'] = $equip_id;
+
+        $times = BookingUtils::getAvailableTimes($data, $equip_id, $date_str);
+
+
+        $this->set(compact('data'));
+        $this->set('_serialize', ['data']);
+    }
 
     private function handlePostData($booking, $equipment)
     {

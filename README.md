@@ -106,6 +106,10 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 - `/admin/users/:id/edit` GET, POST - edit a user
 - `/admin/users/:id/delete` DELETE, POST - delete a user
 
+## Ajax
+
+- `/book/:id/available/:date` GET - retrieve json data for times equipment (:id) is available on a day (:date)
+
 
 ## Deploying
 

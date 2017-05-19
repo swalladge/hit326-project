@@ -27,6 +27,24 @@ $this->layout = 'default';
     </div>
 </div>
 
+<hr>
+
+<p>
+    <b>Available times on date:</b>
+</p>
+<div id="available-times">
+None
+</div>
+
+<hr>
+
+<p>
+    <b>Opening hours</b>
+</p>
+<div id="opening-hours"></div>
+
+<hr>
+
 <div class="form-group">
     <label for="end_date">Select start time</label>
     <div class="input-group" id="booking-start-time" >
@@ -52,7 +70,7 @@ $this->layout = 'default';
         <textarea class="form-control" name="notes" id="notes-input"><?= $booking->user_notes ?></textarea>
     </div>
 
-    <input type="hidden" name="id" value="<?= $equipment->id ?>">
+    <input type="hidden" name="id" id="equip_id" value="<?= $equipment->id ?>">
     <input class="btn btn-primary" type="submit" value="Submit Booking">
 </form>
 

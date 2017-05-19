@@ -50,7 +50,11 @@ $(function () {
     // TODO: on initial load, set disabled days
     // TODO: on change, ajax retrieve available time ranges for this day
     $('#booking-day').datetimepicker({
-        format: 'YYYY-MM-DD'
+        format: 'YYYY-MM-DD',
+        minDate: moment()
+    });
+    $('#booking-day').on("dp.change", function(e) {
+        updateAvailableTimes(e);
     });
 
     $('#booking-start-time').datetimepicker({
@@ -86,3 +90,43 @@ $(function () {
 });
 
 
+// function to retrieve available times for booking equipment on a particular
+// day
+function updateAvailableTimes(e) {
+    var date = e.date;
+
+    var equip_id = $('#equip_id').val();
+    var query_date = date.format('YYYY-MM-DD');
+
+    $.getJSON('/book/' + equip_id + '/available/' + query_date, function (obj) {
+        var data = obj.data;
+        console.log(data);
+        var times = data.times;
+
+        // TODO: format data for display
+
+        var html = '';
+        for (var i = 0; i < times.length; i++) {
+            var time = times[i];
+            html += '<p>' + time.start + ' to ' + time.end + '</p>';
+        }
+
+        var container = $('#available-times');
+        container.html(html);
+
+        var opening_hours = '';
+        if (data.opening_hours.length === 0) {
+            opening_hours = 'Not open today.';
+        }
+        for (var i = 0; i < data.opening_hours.length; i++) {
+            opening_hours += '<p>' + data.opening_hours[i].start + ' to ' + data.opening_hours[i].end + '</p>';
+        }
+
+        $('#opening-hours').html(opening_hours);
+
+    })
+      .fail( function(e) {
+          console.log('request failed!');
+          console.log(e);
+      });
+}

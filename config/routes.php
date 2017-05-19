@@ -64,6 +64,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     // pages to display the create booking form
     // $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1']); // replaced with /equipment
     $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2'], ['id' => '\d+', 'pass' => ['id']]);
+    $routes->connect('/book/:id/available/:date', ['controller' => 'Book', 'action' => 'getAvailableTimes'],
+        ['id' => '\d+', 'date' => '\d{4}-\d\d-\d\d', 'pass' => ['id', 'date']]);
 
     // CRUD for user bookings
     $routes->connect('/bookings', ['controller' => 'Bookings', 'action' => 'index']);
