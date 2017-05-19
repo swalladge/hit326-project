@@ -48,17 +48,22 @@ $siteTitle = 'HIT326 Booking';
             <?php if ($userRole == 'admin'): ?>
             <li><a href="/admin">Admin</a></li>
             <?php endif; ?>
-            <li><a href="/equipment">New Booking</a></li>
+
             <li><a href="/bookings">My Bookings</a></li>
-            <li><a href="/account">My Account</a></li>
-            <li>
-                <form action="/logout" method="post">
-                    <input class="btn btn-default navbar-btn" type="submit" value="logout">
-                </form>
-            </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+               <li>
+                    <a href="#" id="menu1" data-toggle="dropdown"><span class="glyphicon glyphicon-user dropdown-toggle" ></span></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="/account"><span class="glyphicon glyphicon-user"></span>UserAccount</a></li>
+                          <li role="presentation" class="divider"></li>
+                          <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+
+               </li>
             <?php else: ?>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+            <li><a href="/register"><span class="glyphicon glyphicon-log-user"></span> Register</a></li>
             <?php endif; ?>
         </ul>
         </div>
