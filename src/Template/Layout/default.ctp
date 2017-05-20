@@ -42,39 +42,37 @@ $siteTitle = 'HIT326 Booking';
 <body>
     <nav class="navbar navbar-inverse">
         <div class="container">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <?php if ($loggedIn): ?>
             <li><a href="/">Home</a></li>
-            <?php if ($userRole == 'admin'): ?>
-            <li><a href="/admin">Admin</a></li>
-            <?php endif; ?>
-
-            <li><a href="/bookings">My Bookings</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-               <li>
-                    <a href="#" id="menu1" data-toggle="dropdown"><span class="glyphicon glyphicon-user dropdown-toggle" ></span></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                          <li role="presentation">
-                             <form action="" method="get" id="">
-                                <a role="menuitem" tabindex="-1" href="/account" ><span class="glyphicon glyphicon-user"> UserAccount</span></a></li>
-                             </form>
-                          <li role="presentation" class="divider"></li>
-                          <li role="presentation">
-                                   <form action="/logout" method="post" id="logoutLink">
-                                        <a onclick="document.getElementById('logoutLink').submit();" role="menuitem">
-                                        <span class="glyphicon glyphicon-log-out"> Logout</span>
-                                        </a>
-                                   </form>
-                          </li>
-                    </ul>
-
-               </li>
-            <?php else: ?>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
-            <li><a href="/register"><span class="glyphicon glyphicon-log-user"></span> Register</a></li>
-            <?php endif; ?>
         </ul>
+        <?php if ($loggedIn): ?>
+            <form action="/logout" method="post">
+            <ul class="nav navbar-nav navbar-right">
+                <?php if ($userRole == 'admin'): ?>
+                <li><a href="/admin">Admin</a></li>
+                <?php endif; ?>
+                <li><a href="/equipment">New Booking</a></li>
+                <li><a href="/bookings">My Bookings</a></li>
+                <li><a href="/account">My Account</a></li>
+                <li>
+                    <input class="btn navbar-btn logout-btn" type="submit" value="logout">
+                </li>
+            </ul>
+            </form>
+        <?php else: ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+                <li><a href="/register"><span class="glyphicon glyphicon-log-user"></span> Register</a></li>
+            </ul>
+        <?php endif; ?>
+        </div>
         </div>
     </nav>
 
