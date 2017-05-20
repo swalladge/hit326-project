@@ -55,9 +55,18 @@ $siteTitle = 'HIT326 Booking';
                <li>
                     <a href="#" id="menu1" data-toggle="dropdown"><span class="glyphicon glyphicon-user dropdown-toggle" ></span></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="/account"><span class="glyphicon glyphicon-user"></span>UserAccount</a></li>
+                          <li role="presentation">
+                             <form action="" method="get" id="">
+                                <a role="menuitem" tabindex="-1" href="/account" ><span class="glyphicon glyphicon-user"> UserAccount</span></a></li>
+                             </form>
                           <li role="presentation" class="divider"></li>
-                          <li role="presentation"><a role="menuitem" tabindex="-1" href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                          <li role="presentation">
+                                   <form action="/logout" method="post" id="logoutLink">
+                                        <a onclick="document.getElementById('logoutLink').submit();" role="menuitem">
+                                        <span class="glyphicon glyphicon-log-out"> Logout</span>
+                                        </a>
+                                   </form>
+                          </li>
                     </ul>
 
                </li>
