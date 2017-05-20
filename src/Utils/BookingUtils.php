@@ -27,8 +27,8 @@ class BookingUtils
         $overlaps = $connection->execute('
             select * from bookings
             where (equipment_id = :equipment_id)
-            and ((start_date >= :start and start_date <= :end)
-                 or (end_date >= :start and end_date <= :end)
+            and ((start_date >= :start and start_date < :end)
+                 or (end_date > :start and end_date <= :end)
                  or (start_date <= :start and end_date >= :end)
                 )
             and (state != \'rejected\')
@@ -64,8 +64,8 @@ class BookingUtils
         $overlaps = $connection->execute('
             select * from closed_times
             where (equipment_id = :equipment_id or equipment_id is null)
-            and ((start_time >= :start and start_time <= :end)
-                 or (end_time >= :start and end_time <= :end)
+            and ((start_time >= :start and start_time < :end)
+                 or (end_time > :start and end_time <= :end)
                  or (start_time <= :start and end_time >= :end)
                 )
             ', ['equipment_id' => $equipment_id, 'start' => $start, 'end' => $end])->fetchAll('assoc');
@@ -89,7 +89,10 @@ class BookingUtils
         $Bookings = TableRegistry::get('Bookings');
         $ClosedTimes = TableRegistry::get('ClosedTimes');
         $WeeklyClosedTimes = TableRegistry::get('WeeklyClosedTimes');
+        $equipmentTable = TableRegistry::get('Equipment');
         $connection = ConnectionManager::get('default');
+
+        $equipment = $equipmentTable->get($equip_id);
 
         // setup date variables
         $today_str = $date_str;
@@ -97,25 +100,48 @@ class BookingUtils
         $tomorrow = date_add(date_create_from_format('Y-m-d', $date_str), date_interval_create_from_date_string('1 day'));
         $tomorrow_str = $tomorrow->format('Y-m-d');
 
+        $s = 0;
+        $e = 1;
+        $timeSorter = function($a, $b) {
+            // note: breaks ties on start/end - starts come before ends
+            return strcmp($a[0] . $a[1], $b[0] . $b[1]);
+        };
+
+        $existing_bookings = $connection->execute('
+            select * from bookings
+            where (equipment_id = :equipment_id)
+            and ((start_date >= :start and start_date < :end)
+                 or (end_date > :start and end_date <= :end)
+                 or (start_date <= :start and end_date >= :end)
+                )
+            and (state != \'rejected\')
+            order by start_date
+            ', ['equipment_id' => $equip_id, 'start' => $today_str . ' 00:00', 'end' => $today_str . ' 23:59'])->fetchAll('assoc');
 
         // get closed times
         $closed_times = $connection->execute('
             select * from closed_times
             where (equipment_id = :equipment_id or equipment_id is null)
-            and ((start_time >= :start and start_time <= :end)
-                 or (end_time >= :start and end_time <= :end)
+            and ((start_time >= :start and start_time < :end)
+                 or (end_time > :start and end_time <= :end)
                  or (start_time <= :start and end_time >= :end)
                 )
             ', ['equipment_id' => $equip_id, 'start' => $today_str, 'end' => $tomorrow_str])->fetchAll('assoc');
-        Log::write('debug', $closed_times);
+
+        // process bookings for equipment to take into account quantity > 1
+        $closed_times_processed = [];
+        foreach ($closed_times as $b) {
+            $closed_times_processed[] = [explode(' ', $b['start_time'])[1], $s];
+            $closed_times_processed[] = [explode(' ', $b['end_time'])[1], $e];
+        }
 
         // get opening hours
         $opening_hours = $connection->execute('
             select * from opening_hours
             where
                 weekday = :weekday
+            order by start_time
             ', ['weekday' => $today->format('w')])->fetchAll('assoc');
-        Log::write('debug', $opening_hours);
 
         // add opening hours to response
         $data['opening_hours'] = [];
@@ -123,14 +149,90 @@ class BookingUtils
             $data['opening_hours'][] = ['start' => $o['start_time'], 'end' => $o['end_time']];
         }
 
+        // invert opening hours
+        $closed_hours = [];
+        $previous = '00:00';
+        foreach ($opening_hours as $o) {
+            $closed_hours[] = [$previous, $s];
+            $closed_hours[] = [$o['start_time'], $e];
+            $previous = $o['end_time'];
+        }
+        $closed_hours[] = [$previous, $s];
+        $closed_hours[] = ['23:59', $e];
 
-        // TODO: get other bookings
-        //       merge all the results
-        //       calculate contiguous times when available
+        // process bookings for equipment to take into account quantity > 1
+        $quantity = $equipment->quantity;
+        $start_ends = [];
+        foreach ($existing_bookings as $b) {
+            $start_ends[] = [explode(' ', $b['start_date'])[1], $s];
+            $start_ends[] = [explode(' ', $b['end_date'])[1], $e];
+        }
 
+        usort($start_ends, $timeSorter);
 
-        $times = [['start' => '09:00', 'end' => '12:00'],
-                  ['start' => '13:00', 'end' => '15:00']];
-        $data['times'] = $times;
+        // merge the overlapping bookings into bookings where equipment is
+        // totally booked out
+        $starts_seen = 0;
+        $merged_bookings = [];
+        foreach ($start_ends as $item) {
+            if ($item[1] == $s) {
+                $starts_seen += 1;
+                if ($starts_seen >= $quantity) {
+                    $merged_bookings[] = $item;
+                }
+            } else {
+                if ($starts_seen == $quantity) {
+                    $merged_bookings[] = $item;
+                }
+                $starts_seen -= 1;
+            }
+
+        }
+
+        // $merged_bookings is a list of [time, start/end] pairs of bookings
+        // $closed_hours is a similar list built from opening_hours
+        // $closed_times_processed also similar list from once-off closed_times
+        Log::write('debug', $merged_bookings);
+        Log::write('debug', $closed_hours);
+        Log::write('debug', $closed_times_processed);
+
+        $merged_times = array_merge($merged_bookings, $closed_hours, $closed_times_processed);
+        Log::write('debug', $merged_times);
+
+        usort($merged_times, $timeSorter);
+
+        // merge the overlapping times so nothing is overlapping
+        $starts_seen = 0;
+        $closed = [];
+        foreach ($merged_times as $item) {
+            if ($item[1] == $s) {
+                if ($starts_seen == 0) {
+                    $closed[] = $item;
+                }
+                $starts_seen += 1;
+            } else {
+                $starts_seen -= 1;
+                if ($starts_seen == 0) {
+                    $closed[] = $item;
+                }
+            }
+        }
+
+        // invert to get open times
+        $opens = [];
+        $start_seen = false;
+        $previous_end = '00:00';
+        foreach ($closed as $item) {
+            if ($item[1] == $e) {
+                $previous_end = $item[0];
+                $start_seen = true;
+            } else if ($start_seen) {
+                $opens[] = ['start' => $previous_end, 'end' => $item[0]];
+            }
+
+        }
+
+        // TODO: strip out times or move times where < current time
+        $data['times'] = $opens;
     }
 }
