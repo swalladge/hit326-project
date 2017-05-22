@@ -9,6 +9,9 @@ $siteTitle = 'HIT326 Booking';
     <?= $this->Html->charset() ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mrinalini Padmanabhan, Jarrod O'Callaghan, Samuel Walladge">
+    <meta name="keywords" content="booking, equipment">
+    <meta name="description" content="Room and equipment booking application">
     <title>
         <?= $siteTitle ?>:
         <?= $this->fetch('title') ?>
