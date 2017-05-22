@@ -32,7 +32,7 @@
                 <td><?= h($user->role) ?></td>
                 <td class="actions">
                     <div class="btn-group">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id], ['class' => 'btn btn-default']) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id], ['class' => 'btn btn-primary']) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id], ['class' => 'btn btn-warning']) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete "{0}"?', $user->email), 'class' => 'btn btn-danger']) ?>
                     </div>
