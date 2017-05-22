@@ -77,6 +77,17 @@ $siteTitle = 'HIT326 Booking';
     </nav>
 
     <div class="container flashes clearfix">
+
+        <noscript>
+            <div class="alert alert-danger" role="alert">
+                <p class="lead">
+                    Javascript is disabled or not supported in your browser.
+                    It is required for this site to function correctly.
+                    Please enable javascript or upgrade your browser.
+                </p>
+            </div>
+        </noscript>
+
         <?= $this->Flash->render() ?>
     </div>
 
