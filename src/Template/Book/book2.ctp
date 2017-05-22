@@ -18,7 +18,7 @@ $this->layout = 'default';
 <p>Please note that all times are in the server's timezone: <?= $serverTime['timezone'] . ' (' . $serverTime['offset'] . ')' ?></p>
 
 
-<form class="form" method="post">
+<?= $this->Form->create(null, ['type' => 'post']) ?>
 
 <div class="form-group">
     <label for="start_date">Select day</label>
@@ -66,7 +66,8 @@ $this->layout = 'default';
 
     <input type="hidden" name="id" id="equip_id" value="<?= $equipment->id ?>">
     <input class="btn btn-primary" type="submit" value="Submit Booking">
-</form>
+
+<?= $this->Form->end() ?>
 
 <!-- handlebars templates -->
 

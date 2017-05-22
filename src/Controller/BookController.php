@@ -18,6 +18,7 @@ class BookController extends AppController
     {
         parent::beforeFilter($event);
         $this->Bookings = TableRegistry::get('Bookings');
+        $this->Security->config('unlockedActions', ['book2']);
     }
 
     // handle the second page of the booking form - once a piece of equipment
@@ -47,18 +48,8 @@ class BookController extends AppController
 
     }
 
-    // first page of the booking process/form - allows selecting a thing to
-    // book - NOTE: probably not going to be used - using /equipment to select
-    // things to book
-    public function book1()
-    {
-        // TODO
-        $equipmentTable = TableRegistry::get('Equipment');
-        $equipment = $equipmentTable->find('all');
-        $this->set(compact('equipment'));
-    }
-
     // note: $date_str in format of 'yyyy-mm-dd'
+    // designed to be called with ajax from the new booking page
     public function getAvailableTimes($equip_id, $date_str) {
         $this->viewBuilder()->className('Json');
 
