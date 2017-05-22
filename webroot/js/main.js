@@ -47,7 +47,6 @@ $(function () {
 
 
     // select the day for the booking
-    // TODO: on initial load, set disabled days
     $('#booking-day').datetimepicker({
         format: 'YYYY-MM-DD',
         minDate: moment({hour: 0})

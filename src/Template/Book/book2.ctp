@@ -15,6 +15,9 @@ $this->layout = 'default';
     Booking  <?= $this->Html->link($equipment->name, ['controller' => 'Equipment', 'action' => 'view', $equipment->id]) ?>
 </h1>
 
+<p>Please note that all times are in the server's timezone: <?= $serverTime['timezone'] . ' (' . $serverTime['offset'] . ')' ?></p>
+
+
 <form class="form" method="post">
 
 <div class="form-group">

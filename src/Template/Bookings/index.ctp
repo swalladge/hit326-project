@@ -15,6 +15,7 @@ $this->layout = 'default';
     <a href="/equipment" role="button" class="btn btn-primary">New booking</a>
 </p>
 
+<p>Please note that all times are in the server's timezone: <?= $serverTime['timezone'] . ' (' . $serverTime['offset'] . ')' ?></p>
 
 <!-- TODO: this should be a mobile friendly list, not a table -->
 <h3>Bookings</h3>

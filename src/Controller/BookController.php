@@ -6,6 +6,7 @@ use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use Cake\Log\Log;
 use App\Utils\BookingUtils;
+use Cake\Core\Configure;
 
 /**
  * Book Controller
@@ -118,21 +119,26 @@ class BookController extends AppController
             if (isset($data['end_date'])) {
                 $end_date = $day . ' ' . $data['end_date'];
                 $booking->set('end_date', $end_date);
-                $d = date_parse_from_format('Y-m-d H:i', $end_date);
-                if ($d['error_count'] > 0) {
+                $end_date_parsed = date_parse_from_format('Y-m-d H:i', $end_date);
+                if ($end_date_parsed['error_count'] > 0) {
                     $this->Flash->error('Invalid end time!');
                     return false;
                 }
-
-                if ($start_date_parsed['month'] != $d['month'] ||
-                  $start_date_parsed['day'] != $d['day'] ||
-                  $start_date_parsed['year'] != $d['year']) {
-                    $this->Flash->error('End time must be same day!');
-                    return false;
-                }
-
             }
 
+            if ($start_date >= $end_date) {
+                $this->Flash->error('Start time must be before end time!');
+                return false;
+            }
+
+            $now = date('Y-m-d H:i');
+            if ($start_date < $now) {
+                $this->Flash->error('Start time cannot be in the past!');
+                return false;
+            }
+
+
+            // check for conflicts
             list($datesOk, $reason) = BookingUtils::validateBookingDates($booking, $equipment);
 
             if (! $datesOk) {

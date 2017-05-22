@@ -81,5 +81,15 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+
+        // put the current server time info in the view
+        $now = date_create();
+        $serverTime = [
+            'time' => $now->format('H:m'),
+            'timezone' => $now->getTimezone()->getName(),
+            'offset' => 'UTC '. $now->format('P')
+        ];
+        $this->set('serverTime', $serverTime);
+
     }
 }

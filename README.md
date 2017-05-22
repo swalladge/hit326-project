@@ -148,6 +148,14 @@ debug mode and testing).
 Read and edit `config/app.php` and setup the `'Datasources'` and any other
 configuration relevant for your application.
 
+Useful variables to set in the configuration:
+
+- 'timezone' should be set to the human readable format of the timezone you
+  wish the app to be in by default - eg. `'Australia/Darwin'`
+
+- 'debug' should be set to false in a production environment. This is important
+  for security reasons.
+
 
 ## License
 

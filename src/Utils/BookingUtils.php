@@ -235,4 +235,5 @@ class BookingUtils
         // TODO: strip out times or move times where < current time
         $data['times'] = $opens;
     }
+
 }
