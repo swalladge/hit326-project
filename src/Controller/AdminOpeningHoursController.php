@@ -51,6 +51,7 @@ class AdminOpeningHoursController extends AppController
         ]);
 
         $this->set('openingHour', $openingHour);
+        $this->set('weekdays', $this->weekdayOptions);
         $this->set('_serialize', ['openingHour']);
     }
 
