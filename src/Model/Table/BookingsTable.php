@@ -60,24 +60,23 @@ class BookingsTable extends Table
             ->integer('user_id')
             ->allowEmpty('user_id');
 
+        // TODO: ensure in [pending, confirmed, rejected] - work out where to
+        // put it for maximum DRY
         $validator
             ->requirePresence('state', 'create')
             ->notEmpty('state');
 
         $validator
-            ->integer('date')
-            ->requirePresence('date', 'create')
-            ->notEmpty('date');
+            ->maxLength('user_notes', 1000);
+
+        // TODO: ensure these are valid datetimes
+        $validator
+            ->requirePresence('start_date', 'create')
+            ->notEmpty('start_date');
 
         $validator
-            ->integer('start_time')
-            ->requirePresence('start_time', 'create')
-            ->notEmpty('start_time');
-
-        $validator
-            ->integer('duration')
-            ->requirePresence('duration', 'create')
-            ->notEmpty('duration');
+            ->requirePresence('end_date', 'create')
+            ->notEmpty('start_date');
 
         return $validator;
     }
