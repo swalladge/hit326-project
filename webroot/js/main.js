@@ -48,7 +48,6 @@ $(function () {
 
     // select the day for the booking
     // TODO: on initial load, set disabled days
-    // TODO: on change, ajax retrieve available time ranges for this day
     $('#booking-day').datetimepicker({
         format: 'YYYY-MM-DD',
         minDate: moment({hour: 0})
@@ -58,11 +57,13 @@ $(function () {
     });
 
     $('#booking-start-time').datetimepicker({
-        format: 'HH:mm'
+        format: 'HH:mm',
+        useCurrent: false
     });
 
     $('#booking-end-time').datetimepicker({
-        format: 'HH:mm'
+        format: 'HH:mm',
+        useCurrent: false
     });
 
 
@@ -86,6 +87,13 @@ $(function () {
         end_picker.minDate(start_date);
     });
 
+    // if the booking-day date picker is on the page, then display today by
+    // default and retrieve the available times for equipment
+    if ($('#booking-day').length) {
+        var date = moment();
+        $('#booking-day').data("DateTimePicker").date(date);
+        updateAvailableTimes({date: date});
+    }
 
 });
 
@@ -101,26 +109,29 @@ function updateAvailableTimes(e) {
     $.getJSON('/book/' + equip_id + '/available/' + query_date, function (obj) {
         var data = obj.data;
         console.log(data);
+
+
+        // display available times to book equipment
         var times = data.times;
-
-        // TODO: format data for display
-
-        var html = '';
-        for (var i = 0; i < times.length; i++) {
-            var time = times[i];
-            html += '<p>' + time.start + ' to ' + time.end + '</p>';
+        var times_template = Handlebars.compile($('#available-times-template').html());
+        var msg = null;
+        if (times.length === 0) {
+            msg = 'Unavailable on this day.';
         }
+        var context = {
+            times: times,
+            msg: msg
+        };
+        $('#available-times').html(times_template(context));
 
-        var container = $('#available-times');
-        container.html(html);
 
         // display opening hours on the day
         var hours_template = Handlebars.compile($('#opening-hours-template').html());
-        var msg = null;
+        msg = null;
         if (data.opening_hours.length === 0) {
             msg = 'Not open on ' + data.date;
         }
-        var context = {
+        context = {
             opening_hours: data.opening_hours,
             msg: msg
         };

@@ -29,18 +29,12 @@ $this->layout = 'default';
 
 <hr>
 
-<p>
-    <b>Available times on date:</b>
-</p>
-<div id="available-times">
-None
-</div>
+<h3>On selected date:</h3>
+<div id="opening-hours">not loaded</div>
+<div id="available-times">not loaded</div>
 
 <hr>
 
-<div id="opening-hours"></div>
-
-<hr>
 
 <div class="form-group">
     <label for="end_date">Select start time</label>
@@ -74,11 +68,29 @@ None
 <!-- handlebars templates -->
 
 <script id="opening-hours-template" type="text/x-handlebars-template">
-    <h3>Opening hours</h3>
+    <strong>Opening hours</strong>
     {{#if msg}}
-    <div class="bold">{{msg}}</div>
+    <p>{{msg}}</p>
     {{/if}}
+    {{#if opening_hours}}
+    <ul>
     {{#opening_hours}}
-        <p>{{start}} to {{end}}</p>
+        <li>{{start}} to {{end}}</li>
     {{/opening_hours}}
+    </ul>
+    {{/if}}
+</script>
+
+<script id="available-times-template" type="text/x-handlebars-template">
+    <strong>Available to book within following time intervals:</strong>
+    {{#if msg}}
+    <p>{{msg}}</p>
+    {{/if}}
+    {{#if times}}
+    <ul>
+    {{#times}}
+        <li>{{start}} to {{end}}</li>
+    {{/times}}
+    </ul>
+    {{/if}}
 </script>
