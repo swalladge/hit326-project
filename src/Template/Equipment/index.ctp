@@ -17,9 +17,8 @@
                  $this->Html->tag('b',$equipment->name)."   -   "
                  .$equipment->location
                  .$this->Html->tag('span',$equipment->quantity,array('class' => 'badge'))
-                 .$this->Html->tag('span',$equipment->is_portable ?  'P' : '',array('class' => 'badge'))  ."   "
-                 .$this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-primary','style' => 'height:inherit;']),
-             ['controller' => 'Equipment', 'action' => 'view', $equipment->id],
+                 .$this->Html->tag('span',$equipment->is_portable ?  'P' : '',array('class' => 'badge'))  ."   ",
+             ['controller' => 'Book', 'action' => 'book2', $equipment->id],
               ['class' => 'list-group-item list-group-item-info','style' => 'width:70%;display:inline-block;','escape'=>false]) ?>
          </div>
          <?php endforeach; ?>
