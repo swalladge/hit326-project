@@ -13,6 +13,7 @@ $this->layout = 'default';
 
 <h1>Register</h1>
 
+<p>Please supply your details to be registered in the system.</p>
 
 <?= $this->Form->create($user) ?>
 <?= $this->Form->control('name', ['type' => 'text', 'class' => 'form-control']) ?>

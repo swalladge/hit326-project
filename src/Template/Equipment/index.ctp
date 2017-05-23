@@ -31,8 +31,8 @@
             <td><?= h($equipment->location) ?></td>
             <td>
                 <div class="btn-group">
-                    <?= $this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-primary']) ?>
-                    <?= $this->Html->link('View', ['controller' => 'Equipment', 'action' => 'view', $equipment->id], ['class' => 'btn btn-warning']) ?>
+                    <?= $this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-warning']) ?>
+                    <?= $this->Html->link('View', ['controller' => 'Equipment', 'action' => 'view', $equipment->id], ['class' => 'btn btn-primary']) ?>
                 </div>
             </td>
         </tr>

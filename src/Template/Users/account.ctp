@@ -11,9 +11,9 @@ $this->layout = 'default';
 
 ?>
 
-<h1>Account</h1>
+<h1>My Account</h1>
 
-<h2>Info</h2>
+<h2>Account Details</h2>
 
 <p>
     email: <?= h($user['email']) ?>
@@ -31,6 +31,8 @@ $this->layout = 'default';
 
 <h2>Actions</h2>
 
-<a href="/book">New booking</a>
+<div class="btn-group">
+<a class="btn btn-warning" href="/equipment" role="button">New Booking</a>
+<a class="btn btn-primary" href="/bookings" role="button">View Bookings</a>
+</div>
 
-<a href="/bookings/">My bookings</a>

@@ -18,7 +18,19 @@ $this->layout = 'default';
 
 <div class="col-sm-6 col-md-8">
 
-main content when logged in
+<p class="lead">
+    Welcome to the equipment booking service!
+</p>
+
+
+<div class="btn-group">
+<a class="btn btn-default" href="/account" role="button">View Account</a>
+<a class="btn btn-warning" href="/equipment" role="button">New Booking</a>
+<a class="btn btn-primary" href="/bookings" role="button">View Bookings</a>
+</div>
+
+
+
 
 </div>
 
