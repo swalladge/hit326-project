@@ -16,6 +16,14 @@
 )
 ?>
 </div>
+<div class="btn-group">
+    <?php if (strcmp($booking->state, 'confirmed') != 0): ?>
+    <?= $this->Form->postLink('Confirm', ['action' => 'confirm', $booking->id], ['class' => 'btn btn-info']) ?>
+    <?php endif; ?>
+    <?php if (strcmp($booking->state, 'rejected') != 0): ?>
+        <?= $this->Form->postLink('Reject', ['action' => 'reject', $booking->id], ['class' => 'btn btn-danger']) ?>
+    <?php endif; ?>
+</div>
 </div>
 
 

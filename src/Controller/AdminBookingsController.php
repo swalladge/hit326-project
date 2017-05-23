@@ -150,7 +150,7 @@ class AdminBookingsController extends AdminAppController
             $this->Flash->error('The booking could not be confirmed. Please, try again.');
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
 
     /**
@@ -169,6 +169,6 @@ class AdminBookingsController extends AdminAppController
             $this->Flash->error('The booking could not be rejected. Please, try again.');
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
 }

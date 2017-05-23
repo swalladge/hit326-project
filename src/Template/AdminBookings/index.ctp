@@ -52,13 +52,13 @@
                 <?php if (strcmp($booking->state, 'rejected') != 0): ?>
                     <?= $this->Form->postLink('Reject', ['action' => 'reject', $booking->id], ['class' => 'btn btn-danger']) ?>
                 <?php endif; ?>
-                </div>
+            </div>
 
             <div class="btn-group">
                 <?= $this->Html->link('View', ['action' => 'view', $booking->id], ['class' => 'btn btn-primary']) ?>
                 <?= $this->Html->link('Edit', ['action' => 'edit', $booking->id], ['class' => 'btn btn-warning']) ?>
                 <?= $this->Form->postLink('Delete', ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to delete # {0}?', $booking->id, 'class' => 'btn btn-danger']) ?>
-                </div>
+            </div>
             </td>
         </tr>
         <?php endforeach; ?>
