@@ -72,7 +72,7 @@ class NoticesTable extends Table
 
         $validator
             ->allowEmpty('content')
-            ->maxLength('content', 10000);
+            ->maxLength('content', 2000);
 
         return $validator;
     }

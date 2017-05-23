@@ -84,23 +84,22 @@ class BookController extends AppController
             $user = $this->Auth->user();
 
 
-            // TODO: catch null
-            $this->set('start_date', $data['start_date']);
-            $this->set('end_date', $data['end_date']);
-
             $booking->set('user_id', $user['id']);
-
             $booking->set('equipment_id', $equipment->id);
-
             $booking->set('state', 'pending');
 
             if (isset($data['notes'])) {
+                if (strlen($data['notes']) > 1000) {
+                    $this->Flash->error('Notes must not be longer than 1000 characters!');
+                    return false;
+                }
                 $booking->set('user_notes', $data['notes']);
             }
 
             $day = $data['day'];
             $start_date_parsed = null;
             if (isset($data['start_date'])) {
+                $this->set('start_date', $data['start_date']);
                 $start_date = $day . ' ' . $data['start_date'];
                 $booking->set('start_date', $start_date);
                 $d = date_parse_from_format('Y-m-d H:i', $start_date);
@@ -122,6 +121,7 @@ class BookController extends AppController
             }
 
             if (isset($data['end_date'])) {
+                $this->set('end_date', $data['end_date']);
                 $end_date = $day . ' ' . $data['end_date'];
                 $booking->set('end_date', $end_date);
                 $end_date_parsed = date_parse_from_format('Y-m-d H:i', $end_date);

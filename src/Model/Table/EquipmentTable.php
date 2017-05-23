@@ -60,7 +60,7 @@ class EquipmentTable extends Table
 
         $validator
             ->allowEmpty('description')
-            ->maxLength('description', 10000);
+            ->maxLength('description', 2000);
 
         $validator
             ->allowEmpty('location')

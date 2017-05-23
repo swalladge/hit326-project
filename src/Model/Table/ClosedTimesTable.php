@@ -49,6 +49,8 @@ class ClosedTimesTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->setProvider('custom', 'App\Model\Validator');
+
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
@@ -73,7 +75,7 @@ class ClosedTimesTable extends Table
 
         $validator
             ->allowEmpty('reason')
-            ->maxLength('reason', 10000);
+            ->maxLength('reason', 1000);
 
         return $validator;
     }

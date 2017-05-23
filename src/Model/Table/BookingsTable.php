@@ -69,11 +69,11 @@ class BookingsTable extends Table
 
         $validator
             ->allowEmpty('user_notes')
-            ->maxLength('user_notes', 10000);
+            ->maxLength('user_notes', 1000);
 
         $validator
             ->allowEmpty('admin_notes')
-            ->maxLength('admin_notes', 10000);
+            ->maxLength('admin_notes', 1000);
 
         $validator
             ->requirePresence('start_date')
