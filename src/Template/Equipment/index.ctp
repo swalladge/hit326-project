@@ -15,9 +15,9 @@
          <a>
          <?=
          $this->Html->link(
-             $equipment->name." ".$equipment->location,
+             $this->Html->tag('b',$equipment->name)."   -   ".$equipment->location.$this->Html->tag('span',$equipment->quantity,array('class' => 'badge')),
              ['controller' => 'Equipment', 'action' => 'view', $equipment->id],
-              ['class' => 'list-group-item list-group-item-success']) ?>
+              ['class' => 'list-group-item list-group-item-success','escape'=>false]) ?>
     </a>
             <?php endforeach; ?>
   </div>
