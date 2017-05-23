@@ -45,11 +45,13 @@ class NoticesTable extends Table
     {
 
         $validator->setProvider('custom', 'App\Model\Validator');
+
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
 
         $validator
+            ->requirePresence('display_from')
             ->add('display_from', 'custom', [
                 'rule' => 'date',
                 'provider' => 'custom',
@@ -66,15 +68,11 @@ class NoticesTable extends Table
 
         $validator
             ->allowEmpty('title')
-            ->add('title', [
-                'length' => [
-                    'rule' => ['maxLength', 50],
-                    'message' => 'Title must be 50 characters or less.'
-                ]
-            ]);
+            ->maxLength('title', 50);
 
         $validator
-            ->allowEmpty('content');
+            ->allowEmpty('content')
+            ->maxLength('content', 10000);
 
         return $validator;
     }

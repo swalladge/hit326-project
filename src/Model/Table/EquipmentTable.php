@@ -54,26 +54,31 @@ class EquipmentTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('name', 'create')
+            ->requirePresence('name')
+            ->maxLength('name', 250)
             ->notEmpty('name');
 
         $validator
-            ->allowEmpty('description');
+            ->allowEmpty('description')
+            ->maxLength('description', 10000);
 
         $validator
-            ->allowEmpty('location');
+            ->allowEmpty('location')
+            ->maxLength('location', 250);
 
         $validator
             ->boolean('is_portable')
-            ->requirePresence('is_portable', 'create')
+            ->requirePresence('is_portable')
             ->notEmpty('is_portable');
 
         $validator
             ->integer('quantity')
-            ->allowEmpty('quantity');
+            ->requirePresence('quantity')
+            ->naturalNumber('quantity');
 
+        // XXX: currently the is_active field isn't used anywhere
         $validator
-            ->integer('is_active')
+            ->boolean('is_active')
             ->allowEmpty('is_active');
 
         return $validator;
