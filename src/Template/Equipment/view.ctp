@@ -4,14 +4,12 @@
   */
 ?>
 
+<h1>Equipment View</h1>
 
 <h2><?= h($equipment->name) ?></h2>
 
 
-<div class="btn-group">
-    <?= $this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-warning']) ?>
-    <?= $this->Html->link('List of equipment', ['controller' => 'Equipment', 'action' => 'index'], ['class' => 'btn btn-primary']) ?>
-</div>
+<?= $this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-warning']) ?>
 
 
 <p>
@@ -26,6 +24,7 @@ Portable: <?= $equipment->is_portable ? 'Yes' : 'No' ?>
     Location: <?= h($equipment->location) ?>
 </p>
 
+<?php if (strlen($equipment->description) > 0): ?>
 <h3><?= 'Description' ?></h3>
-
 <?= $this->Text->autoParagraph(h($equipment->description)); ?>
+<?php endif; ?>

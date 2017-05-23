@@ -61,7 +61,7 @@ $siteTitle = 'HIT326 Booking';
                 <?php if ($userRole == 'admin'): ?>
                 <li><a href="/admin">Admin</a></li>
                 <?php endif; ?>
-                <li><a href="/equipment">New Booking</a></li>
+                <li><a href="/book">New Booking</a></li>
                 <li><a href="/bookings">My Bookings</a></li>
                 <li><a href="/account">My Account</a></li>
                 <li>

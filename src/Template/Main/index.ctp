@@ -25,7 +25,7 @@ $this->layout = 'default';
 
 
 <div class="btn-group">
-<a class="btn btn-warning" href="/equipment" role="button">New Booking</a>
+<a class="btn btn-warning" href="/book" role="button">New Booking</a>
 <a class="btn btn-primary" href="/bookings" role="button">View Bookings</a>
 </div>
 

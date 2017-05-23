@@ -15,6 +15,25 @@ $this->layout = 'default';
     Booking  <?= $this->Html->link($equipment->name, ['controller' => 'Equipment', 'action' => 'view', $equipment->id]) ?>
 </h1>
 
+<p>
+Quantity: <?= $this->Number->format($equipment->quantity) ?>
+</p>
+
+<p>
+Portable: <?= $equipment->is_portable ? 'Yes' : 'No' ?>
+</p>
+
+<p>
+    Location: <?= h($equipment->location) ?>
+</p>
+
+<?php if (strlen($equipment->description) > 0): ?>
+<h3><?= 'Description' ?></h3>
+<?= $this->Text->autoParagraph(h($equipment->description)); ?>
+<?php endif; ?>
+
+<hr>
+
 <p>Please note that all times are in the server's timezone: <?= $serverTime['timezone'] . ' (' . $serverTime['offset'] . ')' ?></p>
 
 

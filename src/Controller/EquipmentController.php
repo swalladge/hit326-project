@@ -19,19 +19,6 @@ class EquipmentController extends AppController
     }
 
     /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $equipment = $this->paginate($this->Equipment);
-
-        $this->set(compact('equipment'));
-        $this->set('_serialize', ['equipment']);
-    }
-
-    /**
      * View method
      *
      * @param string|null $id Equipment id.

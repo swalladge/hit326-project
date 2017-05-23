@@ -18,7 +18,21 @@ class BookController extends AppController
     {
         parent::beforeFilter($event);
         $this->Bookings = TableRegistry::get('Bookings');
+        $this->Equipment = TableRegistry::get('Equipment');
         // $this->Security->config('unlockedActions', ['book2']);
+    }
+
+    /**
+     * Index method - list of equipment to book
+     *
+     * @return \Cake\Network\Response|null
+     */
+    public function index()
+    {
+        $equipment = $this->paginate($this->Equipment);
+
+        $this->set(compact('equipment'));
+        $this->set('_serialize', ['equipment']);
     }
 
     // handle the second page of the booking form - once a piece of equipment

@@ -62,7 +62,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/account', ['controller' => 'Users', 'action' => 'account']);
 
     // pages to display the create booking form
-    // $routes->connect('/book', ['controller' => 'Book', 'action' => 'book1']); // replaced with /equipment
+    $routes->connect('/book', ['controller' => 'Book', 'action' => 'index']);
     $routes->connect('/book/:id', ['controller' => 'Book', 'action' => 'book2'], ['id' => '\d+', 'pass' => ['id']]);
     $routes->connect('/book/:id/available/:date', ['controller' => 'Book', 'action' => 'getAvailableTimes'],
         ['id' => '\d+', 'date' => '\d{4}-\d\d-\d\d', 'pass' => ['id', 'date']]);
@@ -73,7 +73,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/bookings/:id/delete', ['controller' => 'Bookings', 'action' => 'delete'], ['id' => '\d+', 'pass' => ['id']]);
 
     // user view equipment
-    $routes->connect('/equipment', ['controller' => 'Equipment', 'action' => 'index']);
     $routes->connect('/equipment/:id', ['controller' => 'Equipment', 'action' => 'view'], ['id' => '\d+', 'pass' => ['id']]);
 
 });
