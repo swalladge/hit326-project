@@ -24,19 +24,18 @@ class AdminController extends AdminAppController
     }
 
     public function cleanOldBookings() {
-        if ($this->request->is('post')) {
+        $this->request->allowMethod(['post']);
 
+        $today = date('Y-m-d');
+        $num = $this->Bookings->deleteAll(['end_date < ' => $today]);
 
-            $today = date('Y-m-d');
-            $num = $this->Bookings->deleteAll(['end_date < ' => $today]);
-
-            if ($num > 0) {
-                $this->Flash->success($num + ' old bookings removed!');
-            } else {
-                $this->Flash->info('No old bookings to remove.');
-            }
-
+        if ($num > 0) {
+            $this->Flash->success($num + ' old bookings removed!');
+        } else {
+            $this->Flash->info('No old bookings to remove.');
         }
+
+
 
         return $this->redirect('/admin');
     }

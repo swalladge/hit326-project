@@ -133,4 +133,42 @@ class AdminBookingsController extends AdminAppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * confirm a booking
+     */
+    public function confirm($id)
+    {
+        $this->request->allowMethod(['post']);
+
+        $booking = $this->Bookings->get($id);
+        $booking->set('state', 'confirmed');
+
+        if ($this->Bookings->save($booking)) {
+            $this->Flash->success('The booking has been confirmed.');
+        } else {
+            $this->Flash->error('The booking could not be confirmed. Please, try again.');
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * reject a booking
+     */
+    public function reject($id)
+    {
+        $this->request->allowMethod(['post']);
+
+        $booking = $this->Bookings->get($id);
+        $booking->set('state', 'rejected');
+
+        if ($this->Bookings->save($booking)) {
+            $this->Flash->success('The booking has been rejected.');
+        } else {
+            $this->Flash->error('The booking could not be rejected. Please, try again.');
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
 }

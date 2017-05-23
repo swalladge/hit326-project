@@ -30,7 +30,15 @@
     </thead>
     <tbody>
         <?php foreach ($bookings as $booking): ?>
-        <tr>
+
+        <?php if (strcmp($booking->state, 'confirmed') == 0): ?>
+        <tr class="bg-success">
+        <?php elseif (strcmp($booking->state, 'rejected') == 0): ?>
+        <tr class="bg-danger">
+        <?php else: ?>
+        <tr class="bg-warning">
+        <?php endif; ?>
+
             <td><?= $booking->has('user') ? $this->Html->link($booking->user->email, ['controller' => 'AdminUsers', 'action' => 'view', $booking->user->id]) : '' ?></td>
             <td><?= $booking->has('equipment') ? $this->Html->link($booking->equipment->name, ['controller' => 'Equipment', 'action' => 'view', $booking->equipment->id]) : '' ?></td>
             <td><?= $booking->state ?></td>
@@ -38,7 +46,15 @@
             <td><?= $booking->end_date ?></td>
             <td class="actions">
             <div class="btn-group">
-                <?php // TODO: quick button to confirm/reject booking? ?>
+                <?php if (strcmp($booking->state, 'confirmed') != 0): ?>
+                <?= $this->Form->postLink('Confirm', ['action' => 'confirm', $booking->id], ['class' => 'btn btn-info']) ?>
+                <?php endif; ?>
+                <?php if (strcmp($booking->state, 'rejected') != 0): ?>
+                    <?= $this->Form->postLink('Reject', ['action' => 'reject', $booking->id], ['class' => 'btn btn-danger']) ?>
+                <?php endif; ?>
+                </div>
+
+            <div class="btn-group">
                 <?= $this->Html->link('View', ['action' => 'view', $booking->id], ['class' => 'btn btn-primary']) ?>
                 <?= $this->Html->link('Edit', ['action' => 'edit', $booking->id], ['class' => 'btn btn-warning']) ?>
                 <?= $this->Form->postLink('Delete', ['action' => 'delete', $booking->id], ['confirm' => 'Are you sure you want to delete # {0}?', $booking->id, 'class' => 'btn btn-danger']) ?>
