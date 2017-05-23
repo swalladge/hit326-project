@@ -10,35 +10,17 @@
 <p class="lead">Please select an item to view or book.</p>
 
 <!-- TODO: turn this into a mobile friendly list of equipment, rather than a table -->
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('is_portable') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('quantity') ?></th>
-            <th scope="col"><?= $this->Paginator->sort('location') ?></th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($equipment as $equipment): ?>
-        <tr>
-            <td>
-                <?= $this->Html->link(h($equipment->name), ['action' => 'view', $equipment->id]) ?>
-            </td>
-            <td><?= $equipment->is_portable ?  'yes' : 'no'  ?></td>
-            <td><?= $this->Number->format($equipment->quantity) ?></td>
-            <td><?= h($equipment->location) ?></td>
-            <td>
-                <div class="btn-group">
-                    <?= $this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-primary']) ?>
-                    <?= $this->Html->link('View', ['controller' => 'Equipment', 'action' => 'view', $equipment->id], ['class' => 'btn btn-warning']) ?>
-                </div>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+ <div class="list-group" >
+         <?php foreach ($equipment as $equipment): ?>
+         <a>
+         <?=
+         $this->Html->link(
+             $equipment->name." ".$equipment->location,
+             ['controller' => 'Equipment', 'action' => 'view', $equipment->id],
+              ['class' => 'list-group-item list-group-item-success']) ?>
+    </a>
+            <?php endforeach; ?>
+  </div>
 <div class="paginator">
     <ul class="pagination">
         <?= $this->Paginator->first('<< ' . __('first')) ?>
