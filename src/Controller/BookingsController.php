@@ -16,11 +16,12 @@ class BookingsController extends AppController
     //   admins?
     public function index() {
         $this->paginate = [
-            'contain' => ['Equipment']
+            'contain' => ['Equipment'],
+            'sortWhitelist' => [] // disable sorting
         ];
 
         $user = $this->Auth->user();
-        $query = $this->Bookings->find()->where(['user_id' => $user['id']]);
+        $query = $this->Bookings->find()->where(['user_id' => $user['id']])->order('start_date');
         $bookings = $this->paginate($query);
 
         $this->set(compact('bookings'));

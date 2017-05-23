@@ -56,7 +56,7 @@ $siteTitle = 'HIT326 Booking';
             <li><a href="/">Home</a></li>
         </ul>
         <?php if ($loggedIn): ?>
-            <form action="/logout" method="post">
+            <?= $this->Form->create(null, ['type' => 'post', 'url' => '/logout']) ?>
             <ul class="nav navbar-nav navbar-right">
                 <?php if ($userRole == 'admin'): ?>
                 <li><a href="/admin">Admin</a></li>
@@ -68,7 +68,7 @@ $siteTitle = 'HIT326 Booking';
                     <input class="btn navbar-btn logout-btn" type="submit" value="logout">
                 </li>
             </ul>
-            </form>
+            <?= $this->Form->end() ?>
         <?php else: ?>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>

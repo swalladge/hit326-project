@@ -54,15 +54,26 @@ class ClosedTimesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('start_time', 'create')
+            ->requirePresence('start_time')
+            ->add('start_time', 'custom', [
+                'rule' => 'datetime',
+                'provider' => 'custom',
+                'message' => 'Invalid start time.'
+            ])
             ->notEmpty('start_time');
 
         $validator
-            ->requirePresence('end_time', 'create')
+            ->requirePresence('end_time')
+            ->add('end_time', 'custom', [
+                'rule' => 'datetime',
+                'provider' => 'custom',
+                'message' => 'Invalid end time.'
+            ])
             ->notEmpty('end_time');
 
         $validator
-            ->allowEmpty('reason');
+            ->allowEmpty('reason')
+            ->maxLength('reason', 10000);
 
         return $validator;
     }

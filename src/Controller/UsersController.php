@@ -65,7 +65,7 @@ class UsersController extends AppController
             }
 
             if ($Users->save($user)) {
-                $this->Flash->success(__('Your account has been created successfully! You may now make a booking.'));
+                $this->Flash->success(__('Your account has been created successfully! You may now create a booking.'));
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }

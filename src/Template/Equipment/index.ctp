@@ -12,7 +12,6 @@
 <!-- TODO: turn this into a mobile friendly list of equipment, rather than a table -->
  <div class="list-group" >
          <?php foreach ($equipment as $equipment): ?>
-
          <div >
          <?= $this->Html->link(
                  $this->Html->tag('b',$equipment->name)."   -   "
@@ -22,11 +21,7 @@
                  .$this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-primary','style' => 'height:inherit;']),
              ['controller' => 'Equipment', 'action' => 'view', $equipment->id],
               ['class' => 'list-group-item list-group-item-info','style' => 'width:70%;display:inline-block;','escape'=>false]) ?>
-
-
          </div>
-
-
          <?php endforeach; ?>
   </div>
 <div class="paginator">

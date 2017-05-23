@@ -49,15 +49,26 @@ class OpeningHoursTable extends Table
 
         $validator
             ->integer('weekday')
-            ->requirePresence('weekday', 'create')
+            ->requirePresence('weekday')
+            ->range('weekday', 0, 6)
             ->notEmpty('weekday');
 
         $validator
             ->requirePresence('start_time', 'create')
+            ->add('start_time', 'custom', [
+                'rule' => 'validTime',
+                'provider' => 'custom',
+                'message' => 'Invalid start time.'
+            ])
             ->notEmpty('start_time');
 
         $validator
             ->requirePresence('end_time', 'create')
+            ->add('end_time', 'custom', [
+                'rule' => 'validTime',
+                'provider' => 'custom',
+                'message' => 'Invalid end time.'
+            ])
             ->notEmpty('end_time');
 
         return $validator;

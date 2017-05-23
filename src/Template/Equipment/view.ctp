@@ -9,8 +9,8 @@
 
 
 <div class="btn-group">
-    <?= $this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-primary']) ?>
-    <?= $this->Html->link('List of equipment', ['controller' => 'Equipment', 'action' => 'index'], ['class' => 'btn btn-warning']) ?>
+    <?= $this->Html->link('Book', ['controller' => 'Book', 'action' => 'book2', $equipment->id], ['class' => 'btn btn-warning']) ?>
+    <?= $this->Html->link('List of equipment', ['controller' => 'Equipment', 'action' => 'index'], ['class' => 'btn btn-primary']) ?>
 </div>
 
 

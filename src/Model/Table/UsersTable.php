@@ -49,26 +49,29 @@ class UsersTable extends Table
 
         $validator
             ->email('email')
-            ->requirePresence('email', 'create')
+            ->requirePresence('email')
             ->notEmpty('email')
+            ->maxLength('email', 150)
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->requirePresence('name', 'create')
+            ->maxLength('name', 250)
             ->notEmpty('name');
 
         $validator
             ->requirePresence('password', 'create')
+            ->maxLength('password', 250)
             ->notEmpty('password');
 
-        // TODO: validate role - must be in list of allowed roles
         $validator
-            ->requirePresence('role', 'create')
+            ->requirePresence('role')
+            ->inList('role', ['admin', 'user'])
             ->notEmpty('role');
 
         $validator
-            ->requirePresence('phone', 'create')
-            ->notEmpty('phone');
+            ->maxLength('phone', 250)
+            ->allowEmpty('phone');
 
         return $validator;
     }

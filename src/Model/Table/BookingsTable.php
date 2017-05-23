@@ -52,6 +52,8 @@ class BookingsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        $validator->setProvider('custom', 'App\Model\Validator');
+
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
@@ -60,22 +62,31 @@ class BookingsTable extends Table
             ->integer('user_id')
             ->allowEmpty('user_id');
 
-        // TODO: ensure in [pending, confirmed, rejected] - work out where to
-        // put it for maximum DRY
         $validator
-            ->requirePresence('state', 'create')
+            ->requirePresence('state')
+            ->inList('state', ['pending', 'confirmed', 'rejected'])
             ->notEmpty('state');
 
         $validator
-            ->maxLength('user_notes', 1000);
+            ->allowEmpty('user_notes')
+            ->maxLength('user_notes', 10000);
 
-        // TODO: ensure these are valid datetimes
         $validator
-            ->requirePresence('start_date', 'create')
+            ->requirePresence('start_date')
+            ->add('start_date', 'custom', [
+                'rule' => 'datetime',
+                'provider' => 'custom',
+                'message' => 'Invalid start date.'
+            ])
             ->notEmpty('start_date');
 
         $validator
-            ->requirePresence('end_date', 'create')
+            ->requirePresence('end_date')
+            ->add('end_date', 'custom', [
+                'rule' => 'datetime',
+                'provider' => 'custom',
+                'message' => 'Invalid end date.'
+            ])
             ->notEmpty('start_date');
 
         return $validator;

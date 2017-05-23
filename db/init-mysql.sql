@@ -27,7 +27,7 @@ create table users (
 create table equipment (
     id int auto_increment primary key,
     name varchar(250) not null,
-    description text not null default '',
+    description varchar(10000) not null default '',
     location varchar(250) not null default '', -- TODO: make this reference location table
     is_portable boolean not null default 0,
     quantity int not null default 1,
@@ -65,7 +65,7 @@ create table bookings (
     user_id int references users(id) on delete cascade,
     equipment_id int references equipment(id) on delete cascade,
     state varchar(100) not null default 'pending',
-    user_notes varchar(1000) not null default '',
+    user_notes varchar(10000) not null default '',
     start_date varchar(250) not null, -- store as date string
     end_date varchar(250) not null -- store as date string
 ) ENGINE=InnoDB;
@@ -78,5 +78,5 @@ create table notices (
     display_from varchar(250) not null, -- date
     display_to varchar(250) not null,   -- date
     title varchar(250) not null default '',
-    content varchar(1000) not null default ''
+    content varchar(10000) not null default ''
 ) ENGINE=InnoDB;
