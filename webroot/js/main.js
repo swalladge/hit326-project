@@ -19,6 +19,24 @@ $(function () {
     });
 
 
+    // general linked pickers for dates only
+    $('#start_date_picker').datetimepicker({
+        format: 'YYYY-MM-DD',
+        showClear: true
+    });
+    $('#end_date_picker').datetimepicker({
+        format: 'YYYY-MM-DD',
+        useCurrent: false, //Important! See issue #1075
+        showClear: true
+    });
+    $("#start_date_picker").on("dp.change", function (e) {
+        $('#end_date_picker').data("DateTimePicker").minDate(e.date);
+    });
+    $("#end_date_picker").on("dp.change", function (e) {
+        $('#start_date_picker').data("DateTimePicker").maxDate(e.date);
+    });
+
+
 
     // for general linked date/time pickers
     $('#start_date_picker').datetimepicker({

@@ -18,7 +18,7 @@ class BookController extends AppController
     {
         parent::beforeFilter($event);
         $this->Bookings = TableRegistry::get('Bookings');
-        $this->Security->config('unlockedActions', ['book2']);
+        // $this->Security->config('unlockedActions', ['book2']);
     }
 
     // handle the second page of the booking form - once a piece of equipment

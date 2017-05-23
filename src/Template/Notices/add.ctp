@@ -18,8 +18,8 @@
 
 <div class="form-group">
     <label for="display-from">Display From (also displayed as posted date)</label>
-    <div class='input-group date-picker' >
-        <input name="display_from" id="display-from" type='text' class="form-control" />
+    <div class="input-group" id="start_date_picker" >
+    <input name="display_from" id="display-from" type='text' class="form-control" value="<?= $serverTime['date'] ?>" />
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>
@@ -33,7 +33,7 @@
 
 <div class="form-group">
     <label for="display-to">Display To</label>
-    <div class='input-group date-picker' >
+    <div class="input-group" id="end_date_picker" >
         <input name="display_to" id="display-to" type='text' class="form-control" />
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>

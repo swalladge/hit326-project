@@ -64,7 +64,7 @@ class AppController extends Controller
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
          */
-        $this->loadComponent('Security');
+        // $this->loadComponent('Security');
         $this->loadComponent('Csrf');
     }
 
@@ -86,6 +86,7 @@ class AppController extends Controller
         $now = date_create();
         $serverTime = [
             'time' => $now->format('H:m'),
+            'date' => $now->format('Y-m-d'),
             'timezone' => $now->getTimezone()->getName(),
             'offset' => 'UTC '. $now->format('P')
         ];
