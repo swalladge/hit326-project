@@ -62,6 +62,9 @@ $this->layout = 'default';
 <?php else: ?>
    <p>No notices</p>
 <?php endif; ?>
+
+</div>
+
 <?php else: ?>
 
 <div>
@@ -82,8 +85,6 @@ an account to get started!
 <a class="btn btn-primary" href="/login" role="button">Login</a>
 <a class="btn btn-warning" href="/register" role="button">Register</a>
 </div>
-
-
 
 </div>
 <?php endif; ?>
