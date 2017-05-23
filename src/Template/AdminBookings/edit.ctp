@@ -30,7 +30,7 @@
 
 <div class="form-group">
     <label for="start_date">Start date/time</label>
-    <div class="input-group" id="start_date_picker">
+    <div class="input-group" id="start_datetime_picker">
         <?= $this->Form->text('start_date', ['class' => 'form-control', 'id' => 'start_date']) ?>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
@@ -45,7 +45,7 @@
 
 <div class="form-group">
     <label for="end_date">End date/time</label>
-    <div class="input-group" id="end_date_picker">
+    <div class="input-group" id="end_datetime_picker">
         <?= $this->Form->text('end_date', ['class' => 'form-control', 'id' => 'end_date']) ?>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
@@ -57,5 +57,8 @@
     }
     ?>
 </div>
-    <?= $this->Form->button('Save', ['class' => 'btn btn-primary']) ?>
-    <?= $this->Form->end() ?>
+
+<?= $this->Form->control('user_notes',['class' => 'form-control']) ?>
+<?= $this->Form->control('admin_notes',['label' => 'Admin notes to user', 'class' => 'form-control']) ?>
+<?= $this->Form->button('Save', ['class' => 'btn btn-primary']) ?>
+<?= $this->Form->end() ?>

@@ -39,12 +39,12 @@
             <td><?= $booking->has('user') ? $this->Html->link($booking->user->email, ['controller' => 'AdminUsers', 'action' => 'view', $booking->user->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row">Start Date</th>
-            <td><?= h($booking->start_date) ?></td>
+            <th scope="row">Start date</th>
+            <td><?= $booking->start_date ?></td>
         </tr>
         <tr>
-            <th scope="row">End Date</th>
-            <td><?= h($booking->end_date) ?></td>
+            <th scope="row">End date</th>
+            <td><?= $booking->end_date ?></td>
         </tr>
         <tr>
             <th scope="row">Duration</th>
@@ -55,8 +55,12 @@
             <td><?= h($booking->state) ?></td>
         </tr>
         <tr>
-            <th scope="row">User Notes</th>
+            <th scope="row">User notes</th>
             <td><?= $this->Text->autoParagraph(h($booking->user_notes)) ?></td>
+        </tr>
+        <tr>
+            <th scope="row">Admin notes to user</th>
+            <td><?= $this->Text->autoParagraph(h($booking->admin_notes)) ?></td>
         </tr>
     </table>
 </div>

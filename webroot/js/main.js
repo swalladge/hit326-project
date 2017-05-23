@@ -39,16 +39,16 @@ $(function () {
 
 
     // for general linked date/time pickers
-    $('#start_date_picker').datetimepicker({
+    $('#start_datetime_picker').datetimepicker({
         format: 'YYYY-MM-DD HH:mm',
         showClear: true
     });
-    $('#end_date_picker').datetimepicker({
+    $('#end_datetime_picker').datetimepicker({
         format: 'YYYY-MM-DD HH:mm',
         useCurrent: false, //Important! See issue #1075
         showClear: true
     });
-    $("#start_date_picker").on("dp.change", function (e) {
+    $("#start_datetime_picker").on("dp.change", function (e) {
         var end_picker = $('#end_date_picker').data("DateTimePicker");
 
         var start_date = moment(e.date);
@@ -60,7 +60,7 @@ $(function () {
         end_picker.minDate(start_date);
 
     });
-    $("#end_date_picker").on("dp.change", function (e) {
+    $("#end_datetime_picker").on("dp.change", function (e) {
     });
 
 

@@ -54,5 +54,9 @@ $this->layout = 'default';
         <th scope="row">User Notes</th>
         <td><?= $this->Text->autoParagraph(h($booking->user_notes)) ?></td>
     </tr>
+    <tr>
+        <th scope="row">Admin Notes</th>
+        <td><?= $this->Text->autoParagraph(h($booking->admin_notes)) ?></td>
+    </tr>
 </table>
 

@@ -65,6 +65,7 @@ create table bookings (
     equipment_id integer references equipment(id) on delete cascade,
     state text not null default 'pending',
     user_notes text not null default '',
+    admin_notes text not null default '',
     start_date text not null, -- store as date string
     end_date text not null -- store as date string
 );

@@ -66,6 +66,7 @@ create table bookings (
     equipment_id int references equipment(id) on delete cascade,
     state varchar(100) not null default 'pending',
     user_notes varchar(10000) not null default '',
+    admin_notes varchar(10000) not null default '',
     start_date varchar(250) not null, -- store as date string
     end_date varchar(250) not null -- store as date string
 ) ENGINE=InnoDB;
