@@ -25,7 +25,7 @@
 
 <div class="form-group">
     <label for="display-from">Display From (also displayed as posted date)</label>
-    <div class='input-group date-picker' >
+    <div class="input-group" id="start_date_picker" >
         <?= $this->Form->text('display_from', ['class' => 'form-control', 'id' => 'display-from']) ?>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
@@ -40,7 +40,7 @@
 
 <div class="form-group">
     <label for="display-to">Display To</label>
-    <div class='input-group date-picker' >
+    <div class="input-group" id="end_date_picker" >
         <?= $this->Form->text('display_to', ['class' => 'form-control', 'id' => 'display-to']) ?>
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
