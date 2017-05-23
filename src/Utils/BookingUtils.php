@@ -192,12 +192,8 @@ class BookingUtils
         // $merged_bookings is a list of [time, start/end] pairs of bookings
         // $closed_hours is a similar list built from opening_hours
         // $closed_times_processed also similar list from once-off closed_times
-        Log::write('debug', $merged_bookings);
-        Log::write('debug', $closed_hours);
-        Log::write('debug', $closed_times_processed);
 
         $merged_times = array_merge($merged_bookings, $closed_hours, $closed_times_processed);
-        Log::write('debug', $merged_times);
 
         usort($merged_times, $timeSorter);
 

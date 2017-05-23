@@ -5,6 +5,7 @@ namespace App\Controller;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 use Cake\Log\Log;
+use Cake\Core\Configure;
 
 /**
  * main controller - for the homepage and maybe other general routes
@@ -37,6 +38,7 @@ class MainController extends AppController
             ->all();
 
         $this->set('notices', $notices);
+
 
     }
 

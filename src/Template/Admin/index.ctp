@@ -24,3 +24,15 @@ $this->layout = 'default';
     <a class="list-group-item" href="/admin/closed-times">Once-Off Closed Times</a>
     <a class="list-group-item" href="/admin/users">Users</a>
 </div>
+
+<h2>Maintenance</h2>
+
+<h3>Old Bookings</h3>
+
+<p>
+Old bookings are bookings where the end date is in the past.
+</p>
+
+<?= $this->Form->create(null, ['type' => 'post', 'url' => '/admin/clean-old-bookings']) ?>
+<input type="submit" class="btn btn-danger" value="Remove old bookings">
+<?= $this->Form->end() ?>

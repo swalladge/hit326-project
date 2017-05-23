@@ -79,6 +79,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
 Router::scope('/admin/', function (RouteBuilder $routes) {
 
+    $routes->connect('/clean-old-bookings', ['controller' => 'Admin', 'action' => 'cleanOldBookings']);
+
     // admin equipment management
     $routes->connect('/equipment', ['controller' => 'AdminEquipment', 'action' => 'index']);
     $routes->connect('/equipment/new', ['controller' => 'AdminEquipment', 'action' => 'add' ]);
