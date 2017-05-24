@@ -13,6 +13,8 @@ solution.
 
 A test server is hosted at [cdunits.spinetail.cdu.edu.au](http://cdunits.spinetail.cdu.edu.au/).
 
+The canonical source is hosted on GitHub at [swalladge/hit326-project](https://github.com/swalladge/hit326-project).
+
 
 ## Developing
 
