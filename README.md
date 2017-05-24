@@ -5,11 +5,13 @@ Copyright © 2017 Mrinalini Padmanabhan, Jarrod O'Callaghan, Samuel Walladge
 
 ## About
 
-This project aims to create an online room and equipment booking application. It will be targeted for use within CDU,
-and will aim to replace the current, non-ideal solution.
+This software has been developed as part of the HIT326 group project.
 
+It aims to create an online room and equipment booking application. It will be
+targeted for use within CDU, and will aim to replace the current, non-ideal
+solution.
 
-## TODO
+A test server is hosted at [cdunits.spinetail.cdu.edu.au](http://cdunits.spinetail.cdu.edu.au/).
 
 
 ## Developing
@@ -46,9 +48,14 @@ and will aim to replace the current, non-ideal solution.
    composer run-script check
    ```
 
+
 ## Database
 
-WIP - sqlite database being used for testing atm - some instructions:
+The software includes support for sqlite and mysql/mariadb databases.
+An init script that creates the tables is included for each database type, as
+well as a script to insert some initial example data.
+
+Example to get started with the sqlite database:
 
 ```
 # note: run from the project directory
@@ -62,9 +69,14 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 
 ## Routes
 
-- `/` GET - homepage (public access)
-- `/login` GET, POST - handles user login (public access)
-- `/register` GET, POST - handles registering users (public access)
+### public
+
+- `/` GET - homepage
+- `/login` GET, POST - handles user login
+- `/register` GET, POST - handles registering users
+
+### users
+
 - `/logout` POST - logs the user out if logged in (redirects to homepage)
 - `/account` GET - view your account details
 - `/equipment` GET - view the list of available equipment
@@ -106,20 +118,23 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 - `/admin/users/:id/edit` GET, POST - edit a user
 - `/admin/users/:id/delete` DELETE, POST - delete a user
 
-## Ajax
+### Ajax
 
 - `/book/:id/available/:date` GET - retrieve json data for times equipment (:id) is available on a day (:date)
 
 
 ## Deploying
 
+Note: these commands are designed to deploy the webapp to our space on the
+Spinetail servers - modify as required to deploy elsewhere (the general process
+should be similar).
+
 ### set up the database
 
 To init the cdunit_HIT326_DB1 database:
 
 ```
-mysql -h spinetail.cdu.edu.au -u cdunit -p'PASSWORD' cdunit_HIT326_DB1 <
-db/init-mysql.sql
+mysql -h spinetail.cdu.edu.au -u cdunit -p'PASSWORD' cdunit_HIT326_DB1 < db/init-mysql.sql
 ```
 
 ### create a production config file
@@ -128,10 +143,13 @@ db/init-mysql.sql
 cp config/app.default.php config/app.production.php
 ```
 
-then edit app.production.php to your liking (disable debug mode, add db passwords, etc.
+then edit app.production.php to your liking (disable debug mode, add db passwords, etc.)
 
 
 ### run the deploy script
+
+A deploy script is included to deploy the software to the spinetail server.
+Simply run:
 
 ```
 ./deploy.sh
@@ -150,11 +168,15 @@ configuration relevant for your application.
 
 Useful variables to set in the configuration:
 
-- 'timezone' should be set to the human readable format of the timezone you
+- `'timezone'` should be set to the human readable format of the timezone you
   wish the app to be in by default - eg. `'Australia/Darwin'`
 
-- 'debug' should be set to false in a production environment. This is important
+- `'debug'` should be set to false in a production environment. This is important
   for security reasons.
+
+- `'Datasources'` contain database configuration. Set the `'default'` key to
+  the configuration you require - some example configurations are in the
+  default config.
 
 
 ## License
