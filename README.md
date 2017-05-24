@@ -96,9 +96,11 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 - `/admin/bookings/:id` GET - view a booking
 - `/admin/bookings/:id/edit` GET, POST - edit a booking
 - `/admin/bookings/:id/delete` POST, DELETE - delete a booking
-- `/admin/equipment` GET, POST - (admins only) view list of equipment, post to create new equipment
-- `/admin/equipment/:id` GET, PUT, DELETE - (admins only) read, update, delete equipment available to book
-- `/admin/equipment/new` GET - (admins only) display add new equipment form
+- `/admin/bookings/:id/confirm` POST - shortcut to confirm a booking
+- `/admin/bookings/:id/reject` POST - shortcut to reject a booking
+- `/admin/equipment` GET, POST - view list of equipment, post to create new equipment
+- `/admin/equipment/:id` GET, PUT, DELETE - read, update, delete equipment available to book
+- `/admin/equipment/new` GET - display add new equipment form
 - `/admin/notices` GET - table of notices
 - `/admin/notices/new` GET, POST - create new notice
 - `/admin/notices/:id` GET - view a notice
@@ -119,6 +121,7 @@ sqlite3 db.sqlite3 < db/test/example-data.sql
 - `/admin/users/:id` GET - view a closed day
 - `/admin/users/:id/edit` GET, POST - edit a user
 - `/admin/users/:id/delete` DELETE, POST - delete a user
+- `/admin/clean-old-bookings` POST - remove all bookings that ended in the past
 
 ### Ajax
 
