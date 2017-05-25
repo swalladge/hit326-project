@@ -10,8 +10,8 @@ insert into equipment (name, description, location, is_portable, quantity) value
 
 -- 2 example users (an admin and a standard user), both with passwords set to 'password'
 insert into users (email, password, name, role, phone) values
-    ('admin@example.com','$2y$10$kJcXaIbe2h9jw/wOskR3/u7NvEM5dIPEeEzJXMGvwwDAyZyeIXhtC','Admin User','admin','999'),
-    ('test@example.com','$2y$10$Ufpiw8gs4icUVfKMx9GT6usMC.cDEmKUuQz4VYqN9RUZWsFq.qUly','Example User','user','777');
+    ('test@example.com','$2y$10$Ufpiw8gs4icUVfKMx9GT6usMC.cDEmKUuQz4VYqN9RUZWsFq.qUly','Example User','user','777'),
+    ('test2@example.com','$2y$10$kJcXaIbe2h9jw/wOskR3/u7NvEM5dIPEeEzJXMGvwwDAyZyeIXhtC','Another User','user','123');
 
 
 insert into notices (display_from, display_to, title, content) values
