@@ -149,6 +149,15 @@ class BookingUtils
             $data['opening_hours'][] = ['start' => $o['start_time'], 'end' => $o['end_time']];
         }
 
+        $compare_today = strcmp(date('Y-m-d'), $today->format('Y-m-d'));
+
+        // if the date is in the past, no times available for booking obviously
+        // check here, because we still want to return the opening hours for
+        // that day
+        if ($compare_today > 0) {
+            return;
+        }
+
         // invert opening hours
         $closed_hours = [];
         $previous = '00:00';
@@ -228,8 +237,24 @@ class BookingUtils
 
         }
 
-        // TODO: strip out times or move times where < current time
-        $data['times'] = $opens;
+        // if the booking is for today:
+        if ($compare_today == 0) {
+            // modify times times where < current time
+            $now = date('H:i');
+            $final_opens = [];
+            foreach($opens as $index => $times) {
+                if ($times['end'] > $now) {
+                    if ($times['start'] < $now) {
+                        $times['start'] = $now;
+                    }
+                    $final_opens[] = $times;
+                }
+            }
+        } else {
+            $final_opens = $opens;
+        }
+
+        $data['times'] = $final_opens;
     }
 
 }
