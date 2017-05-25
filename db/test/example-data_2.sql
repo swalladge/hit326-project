@@ -5,7 +5,7 @@ insert into equipment (name, description, location, is_portable, quantity) value
 	("General Equipments", "", "Science and Environmental Lab 3", 0, 1),
 	("General Equipments", "", "Science and Environmental Lab 4", 0, 1),
     ("Gas Chromatography (GC)", "", "lab1", 0, 1),
-	("High Performance Liquid Chromatography (HPLC)", "", "Instruments Room", 1, 1),
+	("High Performance Liquid Chromatography (HPLC)", "", "Instruments Room", 0, 1),
 	("Nuclear Magnetic Resonance (NMR)", "", "Instruments Room", 0, 1),
 	("Fourier transform infrared spectroscopy (FTIR)", "", "Instruments Room", 0, 1),
 	("Atomic Absorption (AA)", "", "Instruments Room", 0, 1),
