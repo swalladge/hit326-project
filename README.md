@@ -64,9 +64,19 @@ Example to get started with the sqlite database:
 # initiate the database (warning: drops tables before creating)
 sqlite3 db.sqlite3 < db/init-sqlite3.sql
 
+# enter the initial admin user
+sqlite3 db.sqlite3 < db/initial-admin-user.sql
+
 # load some test data
 sqlite3 db.sqlite3 < db/test/example-data.sql
 ```
+
+The initial admin user username is `admin@example.com` and password
+`adminpassword`.
+
+The two example users the example-data script inserts have usernames of
+`test@example.com` and `test2@example.com`, both with the password of
+`userpassword`.
 
 
 ## Routes
