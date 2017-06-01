@@ -32,7 +32,7 @@ $this->layout = 'default';
 <h2>Actions</h2>
 
 <div class="btn-group">
-<a class="btn btn-warning" href="/equipment" role="button">New Booking</a>
+<a class="btn btn-warning" href="/book" role="button">New Booking</a>
 <a class="btn btn-primary" href="/bookings" role="button">View Bookings</a>
 </div>
 

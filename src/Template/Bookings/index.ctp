@@ -14,7 +14,7 @@ $this->layout = 'default';
 <h1>My Bookings</h1>
 
 <p>
-    <a href="/equipment" role="button" class="btn btn-warning">New booking</a>
+    <a href="/book" role="button" class="btn btn-warning">New booking</a>
 </p>
 
 <p>Please note that all times are in the server's timezone: <?= $serverTime['timezone'] . ' (' . $serverTime['offset'] . ')' ?></p>
